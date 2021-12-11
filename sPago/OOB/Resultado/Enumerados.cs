@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Provider.IDATA
+namespace sPago.OOB.Resultado
 {
 
-    public interface IProvider : ILogin , IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR
+    public class Enumerados
     {
+
+        public enum EnumResult { isOk=1, isError=-1 };
 
     }
 

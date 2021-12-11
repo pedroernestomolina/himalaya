@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Service.ISERVICE
 {
-
-    public interface IDataService: ILogin, IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR
+    
+    public interface IUsuario
     {
+
+        DTO.Resutado.Entidad<DTO.Usuario.Entidad.Ficha> Usuario_GetById(string id);
+
     }
 
 }

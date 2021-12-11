@@ -39,11 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISERVICE\IConfiguracion.cs" />
     <Compile Include="ISERVICE\IDataService.cs" />
     <Compile Include="ISERVICE\ILogin.cs" />
+    <Compile Include="ISERVICE\IPermiso.cs" />
+    <Compile Include="ISERVICE\IProveedor.cs" />
+    <Compile Include="ISERVICE\IRetISLR.cs" />
+    <Compile Include="ISERVICE\IUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SERVICE\Configuracion.cs" />
     <Compile Include="SERVICE\DataService.cs" />
     <Compile Include="SERVICE\Login.cs" />
+    <Compile Include="SERVICE\Permiso.cs" />
+    <Compile Include="SERVICE\Proveedor.cs" />
+    <Compile Include="SERVICE\RetISLR.cs" />
+    <Compile Include="SERVICE\Usario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

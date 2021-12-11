@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Provider.IDATA
+namespace sPago.DataProvider.IData
 {
 
-    public interface IProvider : ILogin , IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR
+    public interface IProvider: ILogin, IUsuario, IPermiso
     {
-
     }
 
 }

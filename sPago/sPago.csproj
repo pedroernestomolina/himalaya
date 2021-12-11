@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1FD7201-506C-4893-88F6-2BFFFF3D7B45}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sPago</RootNamespace>
+    <AssemblyName>sPago</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataProvider\Data\Login.cs" />
+    <Compile Include="DataProvider\Data\Permiso.cs" />
+    <Compile Include="DataProvider\Data\Provider.cs" />
+    <Compile Include="DataProvider\Data\Usuario.cs" />
+    <Compile Include="DataProvider\IData\ILogin.cs" />
+    <Compile Include="DataProvider\IData\IPermiso.cs" />
+    <Compile Include="DataProvider\IData\IProvider.cs" />
+    <Compile Include="DataProvider\IData\IUsuario.cs" />
+    <Compile Include="Helpers\Msg.cs" />
+    <Compile Include="Helpers\XML.cs" />
+    <Compile Include="OOB\Login\Identificacion\Ficha.cs" />
+    <Compile Include="OOB\Permiso\Solictud\Ficha.cs" />
+    <Compile Include="OOB\Proveedor\Entidad\Ficha.cs" />
+    <Compile Include="OOB\Proveedor\enumerados.cs" />
+    <Compile Include="OOB\Proveedor\Lista\Ficha.cs" />
+    <Compile Include="OOB\Proveedor\Lista\Filtro.cs" />
+    <Compile Include="OOB\Resultado\AutoId.cs" />
+    <Compile Include="OOB\Resultado\Entidad.cs" />
+    <Compile Include="OOB\Resultado\Enumerados.cs" />
+    <Compile Include="OOB\Resultado\Ficha.cs" />
+    <Compile Include="OOB\Resultado\Lista.cs" />
+    <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\CxPagar\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
+    <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\Entidad\Filtro.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\DocActualizarSaldo.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\DocAplicaRet.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\DocInvRecibo.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\MedioPago.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\Pago.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\Recibo.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\Retencion.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\RetencionDet.cs" />
+    <Compile Include="OOB\Usuario\Entidad\Ficha.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Login\Gestion.cs" />
+    <Compile Include="Source\Login\LoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Login\LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Principal\Gestion.cs" />
+    <Compile Include="Source\Principal\MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Principal\MainFrm.Designer.cs">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistema.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Login\LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Principal\MainFrm.resx">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Conf.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\administracion-compras-logistica.jpg" />
+    <Content Include="Imagenes\administrador.png" />
+    <Content Include="Imagenes\automatizacion.jpg" />
+    <Content Include="Imagenes\aydai-logistica.jpg" />
+    <Content Include="Imagenes\bt_abrir_doc.png" />
+    <Content Include="Imagenes\bt_alerta.png" />
+    <Content Include="Imagenes\bt_asignar.png" />
+    <Content Include="Imagenes\bt_bombillo.png" />
+    <Content Include="Imagenes\bt_borrar.png" />
+    <Content Include="Imagenes\bt_buscar.png" />
+    <Content Include="Imagenes\bt_campana.png" />
+    <Content Include="Imagenes\bt_compra.png" />
+    <Content Include="Imagenes\bt_consulta.png" />
+    <Content Include="Imagenes\bt_costo.png" />
+    <Content Include="Imagenes\bt_documento.png" />
+    <Content Include="Imagenes\bt_doc_pend.png" />
+    <Content Include="Imagenes\bt_dollar.png" />
+    <Content Include="Imagenes\bt_editar_20.png" />
+    <Content Include="Imagenes\bt_editar_32.png" />
+    <Content Include="Imagenes\bt_editar_48.png" />
+    <Content Include="Imagenes\bt_editar_ficha.png" />
+    <Content Include="Imagenes\bt_eliminar.png" />
+    <Content Include="Imagenes\bt_enEspera.png" />
+    <Content Include="Imagenes\bt_exchange.png" />
+    <Content Include="Imagenes\bt_exchange_32.png" />
+    <Content Include="Imagenes\bt_exchange_48.png" />
+    <Content Include="Imagenes\bt_gestion.png" />
+    <Content Include="Imagenes\bt_grafico.png" />
+    <Content Include="Imagenes\bt_guardar %282%29.png" />
+    <Content Include="Imagenes\bt_guardar.png" />
+    <Content Include="Imagenes\bt_guardar_disco.png" />
+    <Content Include="Imagenes\bt_historico_32.png" />
+    <Content Include="Imagenes\bt_imagen.png" />
+    <Content Include="Imagenes\bt_imagen_2.png" />
+    <Content Include="Imagenes\bt_imprimir.png" />
+    <Content Include="Imagenes\bt_imprimir_2.png" />
+    <Content Include="Imagenes\bt_imprimir_3.png" />
+    <Content Include="Imagenes\bt_info.png" />
+    <Content Include="Imagenes\bt_info_cliente.png" />
+    <Content Include="Imagenes\bt_limpiar.png" />
+    <Content Include="Imagenes\bt_limpiar_2.png" />
+    <Content Include="Imagenes\bt_limpiar_20.png" />
+    <Content Include="Imagenes\bt_limpiar_24.png" />
+    <Content Include="Imagenes\bt_limpiar_3.png" />
+    <Content Include="Imagenes\bt_lista.png" />
+    <Content Include="Imagenes\bt_mobil_notification.png" />
+    <Content Include="Imagenes\bt_mov.png" />
+    <Content Include="Imagenes\bt_mov_2.png" />
+    <Content Include="Imagenes\bt_new_doc.png" />
+    <Content Include="Imagenes\bt_notificacion.png" />
+    <Content Include="Imagenes\bt_ok_2.png" />
+    <Content Include="Imagenes\bt_ok_3.png" />
+    <Content Include="Imagenes\bt_price.png" />
+    <Content Include="Imagenes\bt_proceso.png" />
+    <Content Include="Imagenes\bt_proveedor.png" />
+    <Content Include="Imagenes\bt_qr.png" />
+    <Content Include="Imagenes\bt_recueracion.png" />
+    <Content Include="Imagenes\bt_reposo.png" />
+    <Content Include="Imagenes\bt_salida.png" />
+    <Content Include="Imagenes\bt_salida_2.png" />
+    <Content Include="Imagenes\bt_setup.png" />
+    <Content Include="Imagenes\bt_status.png" />
+    <Content Include="Imagenes\bt_sumar.png" />
+    <Content Include="Imagenes\bt_sumar_2.png" />
+    <Content Include="Imagenes\bt_usuario %282%29.png" />
+    <Content Include="Imagenes\bt_usuario.png" />
+    <Content Include="Imagenes\bt_visor.png" />
+    <Content Include="Imagenes\bt_warehouse.png" />
+    <Content Include="Imagenes\carpeta.png" />
+    <Content Include="Imagenes\dollar.png" />
+    <Content Include="Imagenes\fecha_derecha.png" />
+    <Content Include="Imagenes\flecha_izquierda.png" />
+    <Content Include="Imagenes\Gestion-Logistica-Integral-768x400.jpeg" />
+    <Content Include="Imagenes\icon_setup.png" />
+    <Content Include="Imagenes\images %281%29.jpg" />
+    <Content Include="Imagenes\images.jpg" />
+    <Content Include="Imagenes\inventario.jpg" />
+    <Content Include="Imagenes\inventario_2.jpg" />
+    <Content Include="Imagenes\libro.png" />
+    <Content Include="Imagenes\Machine-learning-1024x682.jpg" />
+    <Content Include="Imagenes\mobile.ico" />
+    <Content Include="Imagenes\plataforma-efosearch.jpg" />
+    <Content Include="Imagenes\sinImagen.png" />
+    <Content Include="Imagenes\TOOLS.ico" />
+    <Content Include="Imagenes\transferencia.png" />
+    <Content Include="Imagenes\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{5fe8f52b-49be-4d62-bb2e-5f92e5114983}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{8ee048c5-8c7d-4380-b0fa-3e7f37218323}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Provider.IDATA
+namespace sPago.OOB.RetISLR.DocumentoPendPorAplicar.CxPagar
 {
-
-    public interface IProvider : ILogin , IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR
+    
+    public class Ficha
     {
-
     }
 
 }

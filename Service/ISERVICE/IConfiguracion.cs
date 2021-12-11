@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Service.ISERVICE
 {
-
-    public interface IDataService: ILogin, IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR
+    
+    public interface IConfiguracion
     {
+
+        DTO.Resutado.Entidad<string> Configuracion_Proveedor_PreferenciaBusqueda();
+
     }
 
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Provider.IDATA
+namespace Service.ISERVICE
 {
     
     public interface IProveedor
