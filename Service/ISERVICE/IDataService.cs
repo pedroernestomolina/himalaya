@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DTO.RetISLR.DocumentoPendPorAplicar
+namespace Service.ISERVICE
 {
 
-    public class Ficha
+    public interface IDataService: ILogin
     {
     }
 

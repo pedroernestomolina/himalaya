@@ -31,7 +31,23 @@ namespace Test
              };
              var r05 = dataProv.Proveedor_GetLista(filtro5);
              var r06 = dataProv.Configuracion_Proveedor_PreferenciaBusqueda();
-             var r07 = dataProv.Proveedor_GetById("0000001008");
+             var r07 = dataProv.Proveedor_GetById("0000001014");
+
+             var filtro8 = new DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Filtro()
+             {
+                 idProv = "0000001014",
+             };
+             var r08 = dataProv.RetISLR_DocumentosPendPorAplicar_GetLista(filtro8);
+
+             var r09 = dataProv.RetISLR_DocumentoPendPorAplicar_GetByIdDoc("0000000010");
+
+             var filtro10 = new DTO.RetISLR.DocumentoPendPorAplicar.CxPagar.Filtro()
+             {
+                 idDoc = "0000000016",
+                 tipoDoc = "FAC",
+             };
+             var r10 = dataProv.RetISLR_DocumentoPendPorAplicar_CtaxPagar(filtro10);
+
         }
     }
 

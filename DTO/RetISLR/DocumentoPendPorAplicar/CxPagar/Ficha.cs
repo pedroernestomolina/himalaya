@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DTO.RetISLR.DocumentoPendPorAplicar
+namespace DTO.RetISLR.DocumentoPendPorAplicar.CxPagar
 {
     
-    public class Filtro
+    public class Ficha
     {
     }
 

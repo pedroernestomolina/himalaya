@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FE8F52B-49BE-4D62-BB2E-5F92E5114983}</ProjectGuid>
+    <ProjectGuid>{8EE048C5-8C7D-4380-B0FA-3E7F37218323}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DTO</RootNamespace>
-    <AssemblyName>DTO</AssemblyName>
+    <RootNamespace>Service</RootNamespace>
+    <AssemblyName>Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,34 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login\Identificacion\Ficha.cs" />
-    <Compile Include="Permiso\Solictud\Ficha.cs" />
+    <Compile Include="ISERVICE\IDataService.cs" />
+    <Compile Include="ISERVICE\ILogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proveedor\Entidad\Ficha.cs" />
-    <Compile Include="Proveedor\enumerados.cs" />
-    <Compile Include="Proveedor\Lista\Ficha.cs" />
-    <Compile Include="Proveedor\Lista\Filtro.cs" />
-    <Compile Include="Resutado\Enumerados.cs" />
-    <Compile Include="Resutado\Ficha.cs" />
-    <Compile Include="Resutado\AutoId.cs" />
-    <Compile Include="Resutado\Entidad.cs" />
-    <Compile Include="Resutado\Lista.cs" />
-    <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Ficha.cs" />
-    <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
-    <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
-    <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Filtro.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\DocActualizarSaldo.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\DocAplicaRet.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\DocInvRecibo.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\Ficha.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\MedioPago.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\Pago.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\Recibo.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\Retencion.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\RetencionDet.cs" />
-    <Compile Include="Usuario\Entidad\Ficha.cs" />
+    <Compile Include="SERVICE\DataService.cs" />
+    <Compile Include="SERVICE\Login.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{5fe8f52b-49be-4d62-bb2e-5f92e5114983}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Provider\Provider.csproj">
+      <Project>{7434b385-0161-4488-bda1-88c9983642a4}</Project>
+      <Name>Provider</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
