@@ -53,21 +53,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProvider\Data\Configuracion.cs" />
     <Compile Include="DataProvider\Data\Login.cs" />
     <Compile Include="DataProvider\Data\Permiso.cs" />
+    <Compile Include="DataProvider\Data\Proveedor.cs" />
     <Compile Include="DataProvider\Data\Provider.cs" />
+    <Compile Include="DataProvider\Data\RetISLR.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
+    <Compile Include="DataProvider\IData\IConfiguracion.cs" />
     <Compile Include="DataProvider\IData\ILogin.cs" />
     <Compile Include="DataProvider\IData\IPermiso.cs" />
+    <Compile Include="DataProvider\IData\IProveedor.cs" />
     <Compile Include="DataProvider\IData\IProvider.cs" />
+    <Compile Include="DataProvider\IData\IRetISLR.cs" />
     <Compile Include="DataProvider\IData\IUsuario.cs" />
     <Compile Include="Helpers\Msg.cs" />
+    <Compile Include="LibControl\NumeroDec.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LibControl\NumeroEnt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Proveedor\Lista\data.cs" />
+    <Compile Include="Source\Proveedor\Lista\Gestion.cs" />
+    <Compile Include="Source\Proveedor\Lista\ListaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Proveedor\Lista\ListaFrm.designer.cs">
+      <DependentUpon>ListaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\RetISLR\Generar\data.cs" />
+    <Compile Include="Source\RetISLR\Generar\data_1.cs" />
+    <Compile Include="Source\Seguridad\Enumerados.cs" />
+    <Compile Include="Source\Seguridad\Gestion.cs" />
+    <Compile Include="Source\Seguridad\SeguridadFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Seguridad\SeguridadFrm.designer.cs">
+      <DependentUpon>SeguridadFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\XML.cs" />
     <Compile Include="OOB\Login\Identificacion\Ficha.cs" />
     <Compile Include="OOB\Permiso\Solictud\Ficha.cs" />
     <Compile Include="OOB\Proveedor\Entidad\Ficha.cs" />
     <Compile Include="OOB\Proveedor\enumerados.cs" />
-    <Compile Include="OOB\Proveedor\Lista\Ficha.cs" />
     <Compile Include="OOB\Proveedor\Lista\Filtro.cs" />
     <Compile Include="OOB\Resultado\AutoId.cs" />
     <Compile Include="OOB\Resultado\Entidad.cs" />
@@ -110,6 +139,22 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Sistema.cs" />
+    <Compile Include="Source\RetISLR\Generar\GenerarFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\RetISLR\Generar\GenerarFrm.Designer.cs">
+      <DependentUpon>GenerarFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\RetISLR\Generar\Gestion.cs" />
+    <EmbeddedResource Include="Source\Proveedor\Lista\ListaFrm.resx">
+      <DependentUpon>ListaFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\RetISLR\Generar\GenerarFrm.resx">
+      <DependentUpon>GenerarFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Seguridad\SeguridadFrm.resx">
+      <DependentUpon>SeguridadFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -203,7 +248,7 @@
     <Content Include="Imagenes\bt_status.png" />
     <Content Include="Imagenes\bt_sumar.png" />
     <Content Include="Imagenes\bt_sumar_2.png" />
-    <Content Include="Imagenes\bt_usuario %282%29.png" />
+    <Content Include="Imagenes\bt_usuario_2.png" />
     <Content Include="Imagenes\bt_usuario.png" />
     <Content Include="Imagenes\bt_visor.png" />
     <Content Include="Imagenes\bt_warehouse.png" />

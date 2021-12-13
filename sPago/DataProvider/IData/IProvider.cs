@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 namespace sPago.DataProvider.IData
 {
 
-    public interface IProvider: ILogin, IUsuario, IPermiso
+    public interface IProvider: ILogin, IUsuario, IPermiso, IConfiguracion,
+        IProveedor, IRetISLR
     {
+
+        OOB.Resultado.Entidad<DateTime> FechaSistema();
+
     }
 
 }

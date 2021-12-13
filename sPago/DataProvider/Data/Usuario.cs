@@ -26,12 +26,12 @@ namespace sPago.DataProvider.Data
             var ent = r01.MiEntidad;
             rt.MiEntidad = new OOB.Usuario.Entidad.Ficha()
             {
-                codigoUsu = ent.codigoUsu,
-                estatusUsu = ent.estatusUsu,
-                id = ent.id,
-                idGrupo = ent.idGrupo,
-                nombreGrup = ent.nombreGrup,
-                nombreUsu = ent.nombreUsu,
+                codigoUsu = ent.codigoUsu.Trim(),
+                estatusUsu = ent.estatusUsu.Trim(),
+                id = ent.id.Trim(),
+                idGrupo = ent.idGrupo.Trim(),
+                nombreGrup = ent.nombreGrup.Trim(),
+                nombreUsu = ent.nombreUsu.Trim(),
             };
 
             return rt;

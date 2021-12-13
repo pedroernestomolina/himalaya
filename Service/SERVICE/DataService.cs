@@ -20,6 +20,12 @@ namespace Service.SERVICE
             ServiceProv = new Provider.DATASQL.Provider(instancia, bd);
         }
 
+
+        public DTO.Resutado.Entidad<DateTime> FechaSistema()
+        {
+            return ServiceProv.FechaSistema();
+        }
+
     }
 
 }

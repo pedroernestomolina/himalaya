@@ -12,16 +12,19 @@ namespace Service.SERVICE
     public partial class DataService: IDataService
     {
 
+        public DTO.Resutado.Entidad<int> RetISLR_ContadorUltimaRetencion()
+        {
+            return ServiceProv.RetISLR_ContadorUltimaRetencion();
+        }
+
         public DTO.Resutado.Lista<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentosPendPorAplicar_GetLista(DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Filtro filtro)
         {
             return ServiceProv.RetISLR_DocumentosPendPorAplicar_GetLista(filtro);
         }
-
         public DTO.Resutado.Entidad<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentoPendPorAplicar_GetByIdDoc(string idDoc)
         {
             return ServiceProv.RetISLR_DocumentoPendPorAplicar_GetByIdDoc(idDoc);
         }
-
         public DTO.Resutado.Entidad<string> RetISLR_DocumentoPendPorAplicar_CtaxPagar(DTO.RetISLR.DocumentoPendPorAplicar.CxPagar.Filtro filtro)
         {
             return ServiceProv.RetISLR_DocumentoPendPorAplicar_CtaxPagar(filtro);

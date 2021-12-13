@@ -16,7 +16,7 @@ namespace DTO.Proveedor.Lista
         public string codigo { get; set; }
         public string nombreRazonSocial { get; set; }
         public string dirFiscal { get; set; }
-        private string estatus { get; set; }
+        public string estatus { get; set; }
 
 
         public Ficha() 

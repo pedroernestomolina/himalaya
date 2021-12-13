@@ -14,7 +14,7 @@ namespace sPago.DataProvider.Data
 
         public OOB.Resultado.AutoId Login_Identificacion(OOB.Login.Identificacion.Ficha ficha)
         {
-            var rt= new OOB.Resultado.AutoId ();
+            var rt = new OOB.Resultado.AutoId();
 
             var fichaDTO = new DTO.Login.Identificacion.Ficha()
             {

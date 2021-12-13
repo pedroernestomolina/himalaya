@@ -14,6 +14,38 @@ namespace Provider.DATASQL
     public partial class Provider: IProvider
     {
 
+        public DTO.Resutado.Entidad<int> RetISLR_ContadorUltimaRetencion()
+        {
+            var rt = new DTO.Resutado.Entidad<int>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var sql_1 = @"select a_retencion_compras_islr
+                        FROM contadores ";
+                    var sql = sql_1 ;
+                    var ent = cn.Database.SqlQuery<int>(sql).FirstOrDefault();
+                    if (ent == null) 
+                    {
+                        rt.Mensaje = "CONTADOR ISLR NO DEFINIDO";
+                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return rt;
+                    }
+                    rt.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+
+        //
+
         public DTO.Resutado.Lista<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentosPendPorAplicar_GetLista(DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Filtro filtro)
         {
             var rt = new DTO.Resutado.Lista<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha>();
@@ -56,7 +88,6 @@ namespace Provider.DATASQL
 
             return rt;
         }
-
         public DTO.Resutado.Entidad<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentoPendPorAplicar_GetByIdDoc(string idDoc)
         {
             var rt = new DTO.Resutado.Entidad<DTO.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha>();
@@ -98,7 +129,6 @@ namespace Provider.DATASQL
 
             return rt;
         }
-
         public DTO.Resutado.Entidad<string> RetISLR_DocumentoPendPorAplicar_CtaxPagar(DTO.RetISLR.DocumentoPendPorAplicar.CxPagar.Filtro filtro)
         {
             var rt = new DTO.Resutado.Entidad<string>();
@@ -133,6 +163,8 @@ namespace Provider.DATASQL
 
             return rt;
         }
+        
+        //
 
         public DTO.Resutado.AutoId RetISLR_GenerarRetencion(DTO.RetISLR.GenerarRetencion.Ficha ficha)
         {

@@ -13,6 +13,10 @@ namespace Provider.IDATA
 
         DTO.Resutado.Entidad<string> Configuracion_Proveedor_PreferenciaBusqueda();
 
+        DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMaximo();
+        DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMedio();
+        DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMinimo();
+
     }
 
 }

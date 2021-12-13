@@ -11,6 +11,9 @@ namespace Service.ISERVICE
     public interface IDataService: ILogin, IUsuario, IPermiso, IProveedor, IConfiguracion, 
         IRetISLR
     {
+
+        DTO.Resutado.Entidad<DateTime> FechaSistema();
+
     }
 
 }

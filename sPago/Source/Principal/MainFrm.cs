@@ -17,16 +17,73 @@ namespace sPago.Source.Principal
 
 
         private Gestion _controlador;
+        private Timer timer;
 
 
         public MainFrm()
         {
             InitializeComponent();
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer_Tick;
         }
+
 
         public void setControlador(Gestion ctr)
         {
             _controlador = ctr;
+        }
+
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+            timer.Start();
+            L_VERSION.Text = _controlador.VersionSistema;
+            L_HOST.Text = _controlador.Host;
+            L_USUARIO.Text = _controlador.UsuarioActivo;
+            L_FECHA.Text = "";
+            L_HORA.Text = "";
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            var s = DateTime.Now;
+            L_FECHA.Text = s.ToLongDateString();
+            L_HORA.Text = s.ToLongTimeString();
+        }
+
+        private void BT_SALIR_Click(object sender, EventArgs e)
+        {
+            Salir();
+        }
+
+        private void Salir()
+        {
+            this.Close();
+        }
+
+        private void TSM_ARCHIVO_SALIR_Click(object sender, EventArgs e)
+        {
+            Salir();
+        }
+
+        public void setVisibilidadOff()
+        {
+            this.Visible = false;
+        }
+
+        public void setVisibilidadOn()
+        {
+            this.Visible = true;
+        }
+
+        private void M_PAGO_ELABORAR_RETENCION_ISLR_Click(object sender, EventArgs e)
+        {
+            ElaborarRetencionISLR();
+        }
+
+        private void ElaborarRetencionISLR()
+        {
+            _controlador.ElaborarRetencionISLR();
         }
 
     }

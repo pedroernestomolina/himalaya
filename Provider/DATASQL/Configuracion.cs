@@ -40,6 +40,85 @@ namespace Provider.DATASQL
             return result;
         }
 
+        public DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMaximo()
+        {
+            var result = new DTO.Resutado.Entidad<string>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var ent = cn.opciones.FirstOrDefault(f => f.codigo == "GLOBAL_10");
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent.usuario;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMedio()
+        {
+            var result = new DTO.Resutado.Entidad<string>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var ent = cn.opciones.FirstOrDefault(f => f.codigo == "GLOBAL_11");
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent.usuario;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<string> Configuracion_Sistema_ClaveNivelMinimo()
+        {
+            var result = new DTO.Resutado.Entidad<string>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var ent = cn.opciones.FirstOrDefault(f => f.codigo == "GLOBAL_12");
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent.usuario;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+
     }
 
 }

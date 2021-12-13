@@ -12,6 +12,8 @@ namespace Provider.IDATA
         IRetISLR
     {
 
+        DTO.Resutado.Entidad<DateTime> FechaSistema();
+
     }
 
 }

@@ -22,6 +22,29 @@ namespace sPago.OOB.RetISLR.DocumentoPendPorAplicar.Entidad
         public decimal montoIva { get; set; }
         public decimal total { get; set; }
         public string estatus { get; set; }
+        public string TipoDocumento
+        {
+            get 
+            {
+                var rt = "";
+                switch (tipoDoc) 
+                {
+                    case "01":
+                        rt = "FACTURA";
+                        break;
+                    case "02":
+                        rt = "NOTA DEBITO";
+                        break;
+                    case "03":
+                        rt = "NOTA CREDITO";
+                        break;
+                    case "04":
+                        rt = "NOTA ENTREGA";
+                        break;
+                }
+                return rt;
+            }
+        }
 
 
         public Ficha() 
