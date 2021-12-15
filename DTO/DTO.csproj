@@ -55,12 +55,12 @@
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Filtro.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\DocActualizarSaldo.cs" />
+    <Compile Include="RetISLR\GenerarRetencion\DocActualizarSaldoCxP.cs" />
     <Compile Include="RetISLR\GenerarRetencion\DocAplicaRet.cs" />
     <Compile Include="RetISLR\GenerarRetencion\DocInvRecibo.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Ficha.cs" />
     <Compile Include="RetISLR\GenerarRetencion\MedioPago.cs" />
-    <Compile Include="RetISLR\GenerarRetencion\Pago.cs" />
+    <Compile Include="RetISLR\GenerarRetencion\CxP.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Recibo.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Retencion.cs" />
     <Compile Include="RetISLR\GenerarRetencion\RetencionDet.cs" />

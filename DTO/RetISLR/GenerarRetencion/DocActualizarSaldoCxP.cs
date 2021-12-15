@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace DTO.RetISLR.GenerarRetencion
 {
     
-    public class DocActualizarSaldo
+    public class DocActualizarSaldoCxP
     {
 
-        public string idDoc { get; set; }
+        public string idDocCxP { get; set; }
         public decimal montoAbonado { get; set; }
 
 
-        public DocActualizarSaldo()
+        public DocActualizarSaldoCxP()
         {
-            idDoc = "";
+            idDocCxP = "";
             montoAbonado = 0m;
         }
 

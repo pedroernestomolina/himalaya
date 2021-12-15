@@ -74,6 +74,151 @@ namespace sPago.DataProvider.Data
             return rt;
         }
 
+        public OOB.Resultado.Entidad<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentoPendPorAplicar_GetByIdDoc(string idDoc)
+        {
+            var rt = new OOB.Resultado.Entidad<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha>();
+
+            var r01 = MyData.RetISLR_DocumentoPendPorAplicar_GetByIdDoc(idDoc);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+            var ent = r01.MiEntidad;
+            rt.MiEntidad = new OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha()
+            {
+                autoDoc = ent.autoDoc.Trim().ToUpper(),
+                autoCxP=ent.autoCxP.Trim().ToUpper(),
+                estatus = ent.estatus.Trim().ToUpper(),
+                fechaDoc = ent.fechaDoc,
+                montoBase = ent.montoBase,
+                montoExento = ent.montoExento,
+                montoIva = ent.montoIva,
+                numControlDoc = ent.numControlDoc.Trim().ToUpper(),
+                numDoc = ent.numDoc.Trim().ToUpper(),
+                serieDoc = ent.serieDoc.Trim().ToUpper(),
+                tipoDoc = ent.tipoDoc.Trim().ToUpper(),
+                total = ent.total,
+                Base_1 = ent.Base_1,
+                Base_2 = ent.Base_2,
+                Base_3 = ent.Base_3,
+                DocAplica = ent.DocAplica.Trim().ToUpper(),
+                Iva_1 = ent.Iva_1,
+                Iva_2 = ent.Iva_2,
+                Iva_3 = ent.Iva_3,
+                TasaIva_1 = ent.TasaIva_1,
+                TasaIva_2 = ent.TasaIva_2,
+                TasaIva_3 = ent.TasaIva_3,
+            };
+
+            return rt;
+        }
+
+        public OOB.Resultado.AutoId RetISLR_GenerarRetencion(OOB.RetISLR.GenerarRetencion.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.AutoId();
+
+            var fichaDTO = new DTO.RetISLR.GenerarRetencion.Ficha();
+            var e1= ficha.retencion;
+            fichaDTO.retencion = new DTO.RetISLR.GenerarRetencion.Retencion()
+            {
+                autoProv = e1.autoProv,
+                ciRifProv = e1.ciRifProv,
+                codigoProv = e1.codigoProv,
+                dirFiscalProv = e1.dirFiscalProv,
+                estatusAnulado = e1.estatusAnulado,
+                montoBase = e1.montoBase,
+                montoExento = e1.montoExento,
+                montoIva = e1.montoIva,
+                montoRetencion = e1.montoRetencion,
+                nombreRazonSocialProv = e1.nombreRazonSocialProv,
+                tasaRetencion = e1.tasaRetencion,
+                tipoRetencion = e1.tipoRetencion,
+                total = e1.total,
+            };
+            fichaDTO.retencionDet = ficha.retencionDet.Select(s =>
+            {
+                var nr = new DTO.RetISLR.GenerarRetencion.RetencionDet()
+                {
+                    autoDoc = s.autoDoc,
+                    ciRifProv = s.ciRifProv,
+                    estatusAnulado = s.estatusAnulado,
+                    fechaDoc = s.fechaDoc,
+                    montoBase = s.montoBase,
+                    montoBase1 = s.montoBase1,
+                    montoBase2 = s.montoBase2,
+                    montoBase3 = s.montoBase3,
+                    montoExento = s.montoExento,
+                    montoIva = s.montoIva,
+                    montoIva1 = s.montoIva1,
+                    montoIva2 = s.montoIva2,
+                    montoIva3 = s.montoIva3,
+                    montoRetencion = s.montoRetencion,
+                    montoTasa1 = s.montoTasa1,
+                    montoTasa2 = s.montoTasa2,
+                    montoTasa3 = s.montoTasa3,
+                    numControlDoc = s.numControlDoc,
+                    numDoc = s.numDoc,
+                    numDocAplica = s.numDocAplica,
+                    signoDoc = s.signoDoc,
+                    tasaRetencion = s.tasaRetencion,
+                    tipoDoc = s.tipoDoc,
+                    tipoRetencion = s.tipoRetencion,
+                    total = s.total,
+                };
+                return nr;
+            }).ToList();
+            fichaDTO.docAplicaRet = ficha.docAplicaRet.Select(s =>
+            {
+                var nr = new DTO.RetISLR.GenerarRetencion.DocAplicaRet()
+                {
+                    autoDoc = s.autoDoc,
+                    montoAplica = s.montoAplica,
+                    tasaAplica = s.tasaAplica,
+                };
+                return nr;
+            }).ToList();
+            fichaDTO.docActualizarSaldoCxP = ficha.docActualizarSaldoCxP.Select(s =>
+            {
+                var nr = new DTO.RetISLR.GenerarRetencion.DocActualizarSaldoCxP()
+                {
+                    idDocCxP = s.idDocCxP,
+                    montoAbonado = s.montoAbonado,
+                };
+                return nr;
+            }).ToList();
+            var e2= ficha.cxp;
+            fichaDTO.cxp = new DTO.RetISLR.GenerarRetencion.CxP()
+            {
+                acumulado = e2.acumulado,
+                autoProv = e2.autoProv,
+                ciRifProv = e2.ciRifProv,
+                codigoProv = e2.codigoProv,
+                detalle = e2.detalle,
+                estatusAnulado = e2.estatusAnulado,
+                estatusPagado = e2.estatusPagado,
+                importe = e2.importe,
+                moduloOrigen = e2.moduloOrigen,
+                montoResta = e2.montoResta,
+                nombreRazonSocialProv = e2.nombreRazonSocialProv,
+                signo = e2.signo,
+                tipoDocGen = e2.tipoDocGen,
+            };
+
+            var r01 = MyData.RetISLR_GenerarRetencion(fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+            rt.Auto = r01.Auto;
+            rt.Id = r01.Id;
+
+            return rt;
+        }
+
     }
 
 }

@@ -12,6 +12,7 @@ namespace DTO.RetISLR.DocumentoPendPorAplicar.Entidad
     {
 
         public string autoDoc { get; set; }
+        public string autoCxP { get; set; }
         public string numDoc { get; set; }
         public string numControlDoc { get; set; }
         public string serieDoc { get; set; }
@@ -22,11 +23,22 @@ namespace DTO.RetISLR.DocumentoPendPorAplicar.Entidad
         public decimal montoIva { get; set; }
         public decimal total { get; set; }
         public string estatus { get; set; }
+        public decimal Base_1 { get; set; }
+        public decimal Base_2 { get; set; }
+        public decimal Base_3 { get; set; }
+        public decimal Iva_1 { get; set; }
+        public decimal Iva_2 { get; set; }
+        public decimal Iva_3 { get; set; }
+        public decimal TasaIva_1 { get; set; }
+        public decimal TasaIva_2 { get; set; }
+        public decimal TasaIva_3 { get; set; }
+        public string DocAplica { get; set; }
 
 
         public Ficha() 
         {
             autoDoc = "";
+            autoCxP = "";
             numDoc = "";
             numControlDoc = "";
             serieDoc = "";
@@ -37,6 +49,16 @@ namespace DTO.RetISLR.DocumentoPendPorAplicar.Entidad
             montoIva = 0m;
             total = 0m;
             estatus = "";
+            Base_1 = 0m;
+            Base_2 = 0m;
+            Base_3 = 0m;
+            Iva_1 = 0m;
+            Iva_2 = 0m;
+            Iva_3 = 0m;
+            TasaIva_1 = 0m;
+            TasaIva_2 = 0m;
+            TasaIva_3 = 0m;
+            DocAplica = "";
         }
 
     }

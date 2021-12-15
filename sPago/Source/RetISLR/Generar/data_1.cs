@@ -14,6 +14,7 @@ namespace sPago.Source.RetISLR.Generar
         private OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha _it;
 
 
+        public string AutoDoc { get { return _it.autoDoc; } }
         public string Origen { get { return _it.TipoDocumento; } }
         public string Documento{ get { return _it.numDoc; } }
         public string Control { get { return _it.numControlDoc; } }

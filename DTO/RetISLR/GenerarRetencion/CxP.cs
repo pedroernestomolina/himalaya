@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 namespace DTO.RetISLR.GenerarRetencion
 {
     
-    public class Pago
+    public class CxP
     {
 
-        public string autoDocGen { get; set; }
         public string tipoDocGen { get; set; }
-        public string numDocGen { get; set; }
         public string detalle { get; set; }
         public decimal importe { get; set; }
         public decimal acumulado { get; set; }
@@ -24,15 +22,13 @@ namespace DTO.RetISLR.GenerarRetencion
         public string estatusAnulado { get; set; }
         public string estatusPagado { get; set; }
         public decimal montoResta { get; set; }
-        public string operacion { get; set; }
         public int signo { get; set; }
+        public string moduloOrigen { get; set; }
 
 
-        public Pago()
+        public CxP()
         {
-            autoDocGen = "";
             tipoDocGen = "";
-            numDocGen = "";
             detalle = "";
             importe = 0m;
             acumulado = 0m;
@@ -43,8 +39,8 @@ namespace DTO.RetISLR.GenerarRetencion
             estatusAnulado = "";
             estatusPagado = "";
             montoResta = 0m;
-            operacion = "";
             signo = 1;
+            moduloOrigen = "";
         }
 
     }

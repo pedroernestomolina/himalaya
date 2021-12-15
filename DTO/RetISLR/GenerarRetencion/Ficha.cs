@@ -14,8 +14,8 @@ namespace DTO.RetISLR.GenerarRetencion
         public Retencion retencion { get; set; }
         public List<RetencionDet> retencionDet { get; set; }
         public List<DocAplicaRet> docAplicaRet { get; set; }
-        public List<DocActualizarSaldo> docActualizarSaldo { get; set; }
-        public Pago pago { get; set; }
+        public List<DocActualizarSaldoCxP> docActualizarSaldoCxP { get; set; }
+        public CxP cxp{ get; set; }
         public Recibo recibo { get; set; }
         public List<DocInvRecibo> docInvRecibo { get; set; }
         public MedioPago medioPago { get; set; }
@@ -26,8 +26,8 @@ namespace DTO.RetISLR.GenerarRetencion
             retencion = new Retencion();
             retencionDet = new List<RetencionDet>();
             docAplicaRet = new List<DocAplicaRet>();
-            docActualizarSaldo = new List<DocActualizarSaldo>();
-            pago = new Pago();
+            docActualizarSaldoCxP = new List<DocActualizarSaldoCxP>();
+            cxp= new CxP();
             recibo = new Recibo();
             docInvRecibo = new List<DocInvRecibo>();
             medioPago = new MedioPago();

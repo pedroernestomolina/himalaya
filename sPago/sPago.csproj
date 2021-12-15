@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Source\RetISLR\Generar\data.cs" />
     <Compile Include="Source\RetISLR\Generar\data_1.cs" />
+    <Compile Include="Source\RetISLR\Generar\data_2.cs" />
     <Compile Include="Source\Seguridad\Enumerados.cs" />
     <Compile Include="Source\Seguridad\Gestion.cs" />
     <Compile Include="Source\Seguridad\SeguridadFrm.cs">
@@ -107,12 +108,12 @@
     <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
     <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
     <Compile Include="OOB\RetISLR\DocumentoPendPorAplicar\Entidad\Filtro.cs" />
-    <Compile Include="OOB\RetISLR\GenerarRetencion\DocActualizarSaldo.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\DocActualizarSaldoCxP.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\DocAplicaRet.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\DocInvRecibo.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\Ficha.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\MedioPago.cs" />
-    <Compile Include="OOB\RetISLR\GenerarRetencion\Pago.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\CxP.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\Recibo.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\Retencion.cs" />
     <Compile Include="OOB\RetISLR\GenerarRetencion\RetencionDet.cs" />

@@ -12,7 +12,6 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
     {
 
         public string autoDoc { get; set; }
-        public string numComrobante { get; set; }
         public decimal tasaAplica { get; set; }
         public decimal montoAplica { get; set; }
 
@@ -20,7 +19,6 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
         public DocAplicaRet() 
         {
             autoDoc = "";
-            numComrobante = "";
             tasaAplica = 0m;
             montoAplica = 0m;
         }
