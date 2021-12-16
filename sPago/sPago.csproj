@@ -40,9 +40,12 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider\Data\Configuracion.cs" />
+    <Compile Include="DataProvider\Data\Empresa.cs" />
     <Compile Include="DataProvider\Data\Login.cs" />
     <Compile Include="DataProvider\Data\Permiso.cs" />
     <Compile Include="DataProvider\Data\Proveedor.cs" />
@@ -61,6 +65,7 @@
     <Compile Include="DataProvider\Data\RetISLR.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
     <Compile Include="DataProvider\IData\IConfiguracion.cs" />
+    <Compile Include="DataProvider\IData\IEmpresa.cs" />
     <Compile Include="DataProvider\IData\ILogin.cs" />
     <Compile Include="DataProvider\IData\IPermiso.cs" />
     <Compile Include="DataProvider\IData\IProveedor.cs" />
@@ -68,12 +73,17 @@
     <Compile Include="DataProvider\IData\IRetISLR.cs" />
     <Compile Include="DataProvider\IData\IUsuario.cs" />
     <Compile Include="Helpers\Msg.cs" />
+    <Compile Include="Helpers\Utils.cs" />
     <Compile Include="LibControl\NumeroDec.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="LibControl\NumeroEnt.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="OOB\Empresa\Entidad\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\Entidad\Detalle.cs" />
+    <Compile Include="OOB\RetISLR\Entidad\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
     <Compile Include="Source\Proveedor\Lista\data.cs" />
     <Compile Include="Source\Proveedor\Lista\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\ListaFrm.cs">
@@ -82,6 +92,47 @@
     <Compile Include="Source\Proveedor\Lista\ListaFrm.designer.cs">
       <DependentUpon>ListaFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\DS_ISLR.cs">
+      <DependentUpon>DS_ISLR.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\DS_ISLR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_ISLR.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\ReporteFrm.designer.cs">
+      <DependentUpon>ReporteFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\RetISLR\AdmLista\data.cs" />
+    <Compile Include="Source\Reportes\RetISLR\AdmLista\Gestion.cs" />
+    <Compile Include="Source\Reportes\RetISLR\Filtro\data.cs" />
+    <Compile Include="Source\Reportes\RetISLR\Filtro\ficha.cs" />
+    <Compile Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.designer.cs">
+      <DependentUpon>FiltrosFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\RetISLR\Filtro\Gestion.cs" />
+    <Compile Include="Source\Reportes\RetISLR\GeneralRet\Gestion.cs" />
+    <Compile Include="Source\Reportes\RetISLR\Reportes\Gestion.cs" />
+    <Compile Include="Source\Reportes\RetISLR\Reportes\IGestion.cs" />
+    <Compile Include="Source\RetISLR\Administrador\data.cs" />
+    <Compile Include="Source\RetISLR\Administrador\AdmDocFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\RetISLR\Administrador\AdmDocFrm.Designer.cs">
+      <DependentUpon>AdmDocFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\RetISLR\Administrador\Filtro\data.cs" />
+    <Compile Include="Source\RetISLR\Administrador\Filtro\Gestion.cs" />
+    <Compile Include="Source\RetISLR\Administrador\Gestion.cs" />
+    <Compile Include="Source\RetISLR\Administrador\Items\data.cs" />
+    <Compile Include="Source\RetISLR\Administrador\Items\Gestion.cs" />
     <Compile Include="Source\RetISLR\Generar\data.cs" />
     <Compile Include="Source\RetISLR\Generar\data_1.cs" />
     <Compile Include="Source\RetISLR\Generar\data_2.cs" />
@@ -150,6 +201,21 @@
     <EmbeddedResource Include="Source\Proveedor\Lista\ListaFrm.resx">
       <DependentUpon>ListaFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\ReporteFrm.resx">
+      <DependentUpon>ReporteFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.resx">
+      <DependentUpon>FiltrosFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\RetISLR\Planilla.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\RetISLR\Retencion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\RetISLR\Administrador\AdmDocFrm.resx">
+      <DependentUpon>AdmDocFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\RetISLR\Generar\GenerarFrm.resx">
       <DependentUpon>GenerarFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +243,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Source\Reportes\DS_ISLR.xsc">
+      <DependentUpon>DS_ISLR.xsd</DependentUpon>
+    </None>
+    <None Include="Source\Reportes\DS_ISLR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_ISLR.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Source\Reportes\DS_ISLR.xss">
+      <DependentUpon>DS_ISLR.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -211,6 +288,7 @@
     <Content Include="Imagenes\bt_exchange.png" />
     <Content Include="Imagenes\bt_exchange_32.png" />
     <Content Include="Imagenes\bt_exchange_48.png" />
+    <Content Include="Imagenes\bt_filtro.png" />
     <Content Include="Imagenes\bt_gestion.png" />
     <Content Include="Imagenes\bt_grafico.png" />
     <Content Include="Imagenes\bt_guardar %282%29.png" />
@@ -258,6 +336,9 @@
     <Content Include="Imagenes\fecha_derecha.png" />
     <Content Include="Imagenes\flecha_izquierda.png" />
     <Content Include="Imagenes\Gestion-Logistica-Integral-768x400.jpeg" />
+    <Content Include="Imagenes\gestionPago_01.png" />
+    <Content Include="Imagenes\gestionPago_02.png" />
+    <Content Include="Imagenes\gestionPago_03.png" />
     <Content Include="Imagenes\icon_setup.png" />
     <Content Include="Imagenes\images %281%29.jpg" />
     <Content Include="Imagenes\images.jpg" />
@@ -271,6 +352,10 @@
     <Content Include="Imagenes\TOOLS.ico" />
     <Content Include="Imagenes\transferencia.png" />
     <Content Include="Imagenes\warehouse.png" />
+    <None Include="Resources\gestionPago_03.png" />
+    <None Include="Resources\gestionPago_02.png" />
+    <None Include="Resources\gestionPago_01.png" />
+    <None Include="Resources\bt_filtro.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

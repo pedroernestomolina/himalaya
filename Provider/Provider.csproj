@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DATASQL\Configuracion.cs" />
+    <Compile Include="DATASQL\Empresa.cs" />
     <Compile Include="DATASQL\Login.cs" />
     <Compile Include="DATASQL\Permiso.cs" />
     <Compile Include="DATASQL\Proveedor.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="DATASQL\RetISLR.cs" />
     <Compile Include="DATASQL\Usuario.cs" />
     <Compile Include="IDATA\IConfiguracion.cs" />
+    <Compile Include="IDATA\IEmpresa.cs" />
     <Compile Include="IDATA\ILogin.cs" />
     <Compile Include="IDATA\IPermiso.cs" />
     <Compile Include="IDATA\IProveedor.cs" />

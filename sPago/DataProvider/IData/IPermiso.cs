@@ -12,7 +12,14 @@ namespace sPago.DataProvider.IData
     {
 
         OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_ModuloPago(string idGrupo);
+        
+        //
+
         OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_ElaborarRetencionISLR(string idGrupo);
+        OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_ModuloRetencionISLR(string idGrupo);
+        OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_AdministradorRetencionISLR(string idGrupo);
+        OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_AnularRetencionISLR(string idGrupo);
+        OOB.Resultado.Entidad<OOB.Permiso.Solictud.Ficha> Permiso_Solicitud_ReporteRetencionISLR(string idGrupo);
 
     }
 

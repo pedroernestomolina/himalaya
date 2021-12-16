@@ -441,6 +441,128 @@ namespace Provider.DATASQL
             return rt;
         }
 
+        //
+
+        public DTO.Resutado.Lista<DTO.RetISLR.Lista.Ficha> RetISLR_GetLista(DTO.RetISLR.Lista.Filtro filtro)
+        {
+            var rt = new DTO.Resutado.Lista<DTO.RetISLR.Lista.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("", "");
+                    var p2 = new SqlParameter("", "");
+                    var p3 = new SqlParameter("", "");
+                    var p4 = new SqlParameter("", "");
+                    var p5 = new SqlParameter("", "");
+                    var sql_1 = @"select 
+                        r.auto as id,
+                        r.documento as documento,
+                        r.fecha as deFecha,
+                        r.nombre as nombreProv,
+                        r.ci_rif as ciRifProv,
+                        r.tipo as tipoRetencion,
+                        r.tasa_retencion as tasaRet,
+                        r.retencion as montoRet,
+                        r.estatus as estatus,
+                        r.exento as mexento, 
+                        r.base as mbase, 
+                        r.impuesto as miva, 
+                        r.total as mtotal
+                        FROM retenciones_compras as r ";
+                    var sql_2 = " where 1=1 ";
+
+                    if (filtro.desde.HasValue) 
+                    {
+                        sql_2 += " and r.fecha>=@desde ";
+                        p1.ParameterName = "@desde";
+                        p1.Value = filtro.desde.Value;
+                    }
+                    if (filtro.hasta.HasValue)
+                    {
+                        sql_2 += " and r.fecha<=@hasta ";
+                        p2.ParameterName = "@hasta";
+                        p2.Value = filtro.hasta.Value;
+                    }
+                    if (filtro.tipoRetencion!="")
+                    {
+                        sql_2 += " and r.tipo=@tipoRet ";
+                        p3.ParameterName = "@tipoRet";
+                        p3.Value = filtro.tipoRetencion;
+                    }
+                    if (filtro.idProv != "")
+                    {
+                        sql_2 += " and r.auto_entidad=@idProv ";
+                        p4.ParameterName = "@idProv";
+                        p4.Value = filtro.idProv;
+                    }
+                    if (filtro.estatus != "")
+                    {
+                        sql_2 += " and r.estatus=@estatus ";
+                        p5.ParameterName = "@estatus";
+                        p5.Value = filtro.estatus;
+                    }
+                    var sql = sql_1 + sql_2;
+                    var lst = cn.Database.SqlQuery<DTO.RetISLR.Lista.Ficha>(sql, p1, p2, p3, p4, p5).ToList();
+                    rt.ListaEntidad = lst;
+                }
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Entidad<DTO.RetISLR.Entidad.Ficha> RetISLR_GetById(string id)
+        {
+            var rt = new DTO.Resutado.Entidad<DTO.RetISLR.Entidad.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var ent = cn.retenciones_compras.Find(id);
+                    if (ent==null)
+                    {
+                        rt.Mensaje = "ID DOCUMENTO NO ENCONTRADO";
+                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return rt;
+                    }
+                    var enc = new DTO.RetISLR.Entidad.Ficha()
+                    {
+                        anoRelacion = ent.ano_relacion,
+                        ciRifProv = ent.ci_rif,
+                        codigoProv = ent.codigo_entidad,
+                        deFecha = ent.fecha,
+                        documento = ent.documento,
+                        estatus = ent.estatus,
+                        id = ent.auto,
+                        idProv = ent.auto_entidad,
+                        mBase = ent.@base,
+                        mesRelacion = ent.mes_relacion,
+                        mExento = ent.exento,
+                        mIva = ent.impuesto,
+                        montoRet = ent.retencion,
+                        mTotal = ent.total,
+                        nombreProv = ent.nombre,
+                        tasaRet = ent.tasa_retencion,
+                        tipoRetencion = ent.tipo,
+                    };
+                    rt.MiEntidad = enc;
+                }
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+
     }
 
 }

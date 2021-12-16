@@ -86,6 +86,26 @@ namespace sPago.Source.Principal
             _controlador.ElaborarRetencionISLR();
         }
 
+        private void M_PAGO_ADMINISTRADOR_RETENCION_ISLR_Click(object sender, EventArgs e)
+        {
+            AdministradorDocRetencionISLR();
+        }
+
+        private void AdministradorDocRetencionISLR()
+        {
+            _controlador.AdministradorDocRetencionISLR();
+        }
+
+        private void M_PAGO_REPORTE_RETENCION_ISL_Click(object sender, EventArgs e)
+        {
+            ReporteRetencionISLR();
+        }
+
+        private void ReporteRetencionISLR()
+        {
+            _controlador.ReporteRetencionISLR();
+        }
+
     }
 
 }

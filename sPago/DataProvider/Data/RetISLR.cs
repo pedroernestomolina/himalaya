@@ -219,6 +219,96 @@ namespace sPago.DataProvider.Data
             return rt;
         }
 
+        public OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha> RetISLR_GetLista(OOB.RetISLR.Lista.Filtro filtro)
+        {
+            var rt = new OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha>();
+
+            var filtroDto = new DTO.RetISLR.Lista.Filtro()
+            {
+                desde = filtro.desde,
+                hasta = filtro.hasta,
+                tipoRetencion = filtro.tipoRetencion,
+                estatus = filtro.estatus,
+                idProv = filtro.idProv,
+            };
+            var r01 = MyData.RetISLR_GetLista(filtroDto);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            var lst = new List<OOB.RetISLR.Entidad.Ficha>();
+            if (r01.ListaEntidad != null)
+            {
+                if (r01.ListaEntidad.Count > 0)
+                {
+                    lst = r01.ListaEntidad.Select(s =>
+                    {
+                        var rg = new OOB.RetISLR.Entidad.Ficha()
+                        {
+                            ciRifProv = s.ciRifProv.Trim().ToUpper(),
+                            deFecha = s.deFecha,
+                            documento = s.documento.Trim().ToUpper(),
+                            estatus = s.estatus.Trim().ToUpper(),
+                            id = s.id.Trim().ToUpper(),
+                            montoRet = s.montoRet,
+                            nombreProv = s.nombreProv.Trim().ToUpper(),
+                            tasaRet = s.tasaRet,
+                            tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
+                            mBase = s.mBase,
+                            mExento = s.mExento,
+                            mIva = s.mIva,
+                            mTotal = s.mTotal,
+                        };
+                        return rg;
+                    }).ToList();
+                }
+            }
+            rt.ListaEntidad = lst;
+
+            return rt;
+        }
+
+        public OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha> RetISLR_GetById(string id)
+        {
+            var rt = new OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha>();
+
+            var r01 = MyData.RetISLR_GetById(id);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            var s = r01.MiEntidad;
+            var rg = new OOB.RetISLR.Entidad.Ficha()
+            {
+                ciRifProv = s.ciRifProv.Trim().ToUpper(),
+                deFecha = s.deFecha,
+                documento = s.documento.Trim().ToUpper(),
+                estatus = s.estatus.Trim().ToUpper(),
+                id = s.id.Trim().ToUpper(),
+                montoRet = s.montoRet,
+                nombreProv = s.nombreProv.Trim().ToUpper(),
+                tasaRet = s.tasaRet,
+                tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
+                mBase = s.mBase,
+                mExento = s.mExento,
+                mIva = s.mIva,
+                mTotal = s.mTotal,
+                anoRelacion = s.anoRelacion,
+                codigoProv = s.codigoProv,
+                idProv = s.idProv,
+                mesRelacion = s.mesRelacion,
+            };
+            rt.MiEntidad = rg;
+
+            return rt;
+        }
+
     }
 
 }

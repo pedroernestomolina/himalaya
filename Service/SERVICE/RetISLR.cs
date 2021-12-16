@@ -35,6 +35,16 @@ namespace Service.SERVICE
             return ServiceProv.RetISLR_GenerarRetencion(ficha);
         }
 
+        public DTO.Resutado.Lista<DTO.RetISLR.Lista.Ficha> RetISLR_GetLista(DTO.RetISLR.Lista.Filtro filtro)
+        {
+            return ServiceProv.RetISLR_GetLista(filtro);
+        }
+
+        public DTO.Resutado.Entidad<DTO.RetISLR.Entidad.Ficha> RetISLR_GetById(string id)
+        {
+            return ServiceProv.RetISLR_GetById(id);
+        }
+
     }
 
 }

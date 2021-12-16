@@ -93,9 +93,49 @@ namespace sPago.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bt_documento {
+            get {
+                object obj = ResourceManager.GetObject("bt_documento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_eliminar {
+            get {
+                object obj = ResourceManager.GetObject("bt_eliminar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bt_enEspera {
             get {
                 object obj = ResourceManager.GetObject("bt_enEspera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_filtro {
+            get {
+                object obj = ResourceManager.GetObject("bt_filtro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_imprimir_2 {
+            get {
+                object obj = ResourceManager.GetObject("bt_imprimir_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +156,16 @@ namespace sPago.Properties {
         internal static System.Drawing.Bitmap bt_limpiar_3 {
             get {
                 object obj = ResourceManager.GetObject("bt_limpiar_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_lista {
+            get {
+                object obj = ResourceManager.GetObject("bt_lista", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +196,36 @@ namespace sPago.Properties {
         internal static System.Drawing.Bitmap bt_usuario_2 {
             get {
                 object obj = ResourceManager.GetObject("bt_usuario_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gestionPago_01 {
+            get {
+                object obj = ResourceManager.GetObject("gestionPago_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gestionPago_02 {
+            get {
+                object obj = ResourceManager.GetObject("gestionPago_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gestionPago_03 {
+            get {
+                object obj = ResourceManager.GetObject("gestionPago_03", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

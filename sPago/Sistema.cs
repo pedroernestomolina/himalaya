@@ -16,7 +16,7 @@ namespace sPago
         static public string Instancia;
         static public string BaseDatos;
         public static OOB.Usuario.Entidad.Ficha Usuario;
-        //public static OOB.Sistema.Empresa.Entidad.Ficha DatosEmpresa;
+        public static OOB.Empresa.Entidad.Ficha DatosEmpresa;
         public static string EquipoEstacion;
         public static string IdEquipo;
 

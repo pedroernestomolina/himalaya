@@ -53,6 +53,13 @@ namespace Test
              //var r12 = dataProv.FechaSistema();
              //var r13 = dataProv.RetISLR_ContadorUltimaRetencion();
 
+             //var filtro14 = new DTO.RetISLR.Lista.Filtro()
+             // {
+             //     tipoRetencion = "02",
+             // };
+             //var r14 = dataProv.RetISLR_GetLista(filtro14);
+
+             //var r15 = dataProv.Empresa_GetFicha();
         }
 
     }

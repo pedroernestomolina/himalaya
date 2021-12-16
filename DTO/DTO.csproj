@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Empresa\Entidad\Ficha.cs" />
     <Compile Include="Login\Identificacion\Ficha.cs" />
     <Compile Include="Permiso\Solictud\Ficha.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +56,8 @@
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Filtro.cs" />
+    <Compile Include="RetISLR\Entidad\Detalle.cs" />
+    <Compile Include="RetISLR\Entidad\Ficha.cs" />
     <Compile Include="RetISLR\GenerarRetencion\DocActualizarSaldoCxP.cs" />
     <Compile Include="RetISLR\GenerarRetencion\DocAplicaRet.cs" />
     <Compile Include="RetISLR\GenerarRetencion\DocInvRecibo.cs" />
@@ -64,6 +67,8 @@
     <Compile Include="RetISLR\GenerarRetencion\Recibo.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Retencion.cs" />
     <Compile Include="RetISLR\GenerarRetencion\RetencionDet.cs" />
+    <Compile Include="RetISLR\Lista\Ficha.cs" />
+    <Compile Include="RetISLR\Lista\Filtro.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -9,7 +9,7 @@ namespace sPago.DataProvider.IData
 {
 
     public interface IProvider: ILogin, IUsuario, IPermiso, IConfiguracion,
-        IProveedor, IRetISLR
+        IProveedor, IRetISLR, IEmpresa
     {
 
         OOB.Resultado.Entidad<DateTime> FechaSistema();

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ISERVICE\IConfiguracion.cs" />
     <Compile Include="ISERVICE\IDataService.cs" />
+    <Compile Include="ISERVICE\IEmpresa.cs" />
     <Compile Include="ISERVICE\ILogin.cs" />
     <Compile Include="ISERVICE\IPermiso.cs" />
     <Compile Include="ISERVICE\IProveedor.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SERVICE\Configuracion.cs" />
     <Compile Include="SERVICE\DataService.cs" />
+    <Compile Include="SERVICE\Empresa.cs" />
     <Compile Include="SERVICE\Login.cs" />
     <Compile Include="SERVICE\Permiso.cs" />
     <Compile Include="SERVICE\Proveedor.cs" />
