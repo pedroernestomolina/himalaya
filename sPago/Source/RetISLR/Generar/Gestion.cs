@@ -31,6 +31,8 @@ namespace sPago.Source.RetISLR.Generar
         private BindingSource _bs_2;
         //
         private bool _abandonarIsOk;
+        private bool _procesarRetencionIsOK;
+        private string _autoRetencionGenerada;
         //
         private bool _activarBusquedaIsOk;
 
@@ -46,12 +48,16 @@ namespace sPago.Source.RetISLR.Generar
         public decimal Monto { get { return _lst_ret.Sum(s => s.MontoRetencion); } }
         public int Items { get { return _bs_2.Count; } }
         public bool AbandonarIsOk { get { return _abandonarIsOk; } }
+        public bool ProcesarRetencionIsOK { get { return _procesarRetencionIsOK; } }
+        public string AutoRetencionGenerada { get { return _autoRetencionGenerada; } }
 
 
         public Gestion() 
         {
             _activarBusquedaIsOk = true;
             _abandonarIsOk = false;
+            _procesarRetencionIsOK = false;
+            _autoRetencionGenerada = "";
             _data = new data();
             _prefBusPrv = "";
             _prefBusqueda = enumPrefBusqueda.SinDefinir;
@@ -67,11 +73,12 @@ namespace sPago.Source.RetISLR.Generar
             _bs_2.DataSource = _lst_ret;
         }
 
-
         public void Inicializa()
         {
             _activarBusquedaIsOk = true;
             _abandonarIsOk = false;
+            _procesarRetencionIsOK = false;
+            _autoRetencionGenerada = "";
             //
             _data.Inicializa();
             //
@@ -291,9 +298,30 @@ namespace sPago.Source.RetISLR.Generar
         
         public void ProcesarFicha()
         {
-            if (Items ==0)
+            AplicarRetDocSeleccionados();
+            frm.ActualizarSaldos();
+
+            if (_data.DataProveedorRetISLR==0m)
             {
+                Helpers.Msg.Error("TASA RETENCION NO PUEDE SER CERO (0)");
                 return;
+            }
+
+            var cnt = _lst_1.Count(w => w.IsActivo);
+            if (cnt == 0)
+            {
+                Helpers.Msg.Error("NO HAY ITEMS SELECCIONADOS, POR FAVOR PRESIONAR BOTON [ APLICAR RET ]");
+                return;
+            }
+
+            foreach(var d in _lst_ret)
+            {
+                var ex = _lst_1.FirstOrDefault(f => f.AutoDoc == d.AutoDoc);
+                if (ex==null)
+                {
+                    Helpers.Msg.Error("ITEMS APLICAR RETENCION NO CONCUERDAN CON LOS ITEM SELECCIONADO, POR FAVOR PRESIONAR BOTON [ APLICAR RET ]");
+                    return;
+                }
             }
             
             var msg = "Procesar Dicha Retención ?";
@@ -393,7 +421,51 @@ namespace sPago.Source.RetISLR.Generar
                 nombreRazonSocialProv = _data.Proveedor.nombreRazonSocial,
                 signo = -1,
                 tipoDocGen = "IR",
-                moduloOrigen = "05",
+                moduloOrigen = "07",//A TRAVEZ DE UN DOCUMENTO DE COMPRA PLANILLA IR
+            };
+            ficha.recibo = new OOB.RetISLR.GenerarRetencion.Recibo()
+            {
+                autoProv = _data.Proveedor.id,
+                autoUsuario = Sistema.Usuario.id,
+                cantDocInvolucrado = _lst_ret.Count,
+                ciRifProv = _data.Proveedor.ciRif,
+                codigoProv = _data.Proveedor.codigo,
+                dirFiscalProv = _data.Proveedor.dirFiscal,
+                estatusAnulado = "0",
+                importe = Monto,
+                montoCambio = 0m,
+                montoRecibido = Monto,
+                nombreRazonSocialProv = _data.Proveedor.nombreRazonSocial,
+                nombreUsuario = Sistema.Usuario.nombreUsu,
+                detalle = "RETENCION ISLR " + _data.DataProveedorRetISLR.ToString("n2") + "%",
+                notas="",
+                origenModuloPago="3", //COMPRA A TRAVEZ DE LA RETENCION
+                telefonoProv = _data.Proveedor.telefonos,
+            };
+            var it=0;
+            ficha.docInvRecibo = _lst_ret.Select(s =>
+            {
+                it+=1;
+                var nr = new OOB.RetISLR.GenerarRetencion.DocInvRecibo()
+                {
+                    autoCxPDocInv = s.Ficha.autoCxP,
+                    detalle = "Abono Planilla ISLR Numero: ",
+                    fechaDocInv = s.Fecha,
+                    montoImporte = s.MontoRetencion,
+                    nItem = it,
+                    numDocInv = s.Documento,
+                    operacionEjecutar = "Abono",
+                    tipoDocInv = s.Ficha.tipoDoc,
+                    nombreDocInv=s.Ficha.TipoDocumento,
+                };
+                return nr;
+            }).ToList();
+            ficha.medioPago = new OOB.RetISLR.GenerarRetencion.MedioPago()
+            {
+                codigoMedioPago = "IR",
+                descMedioPago = "IR",
+                estatusAnulado = "0",
+                montoRecibido = Monto,
             };
 
             var r01 = Sistema.MyData.RetISLR_GenerarRetencion(ficha);
@@ -402,6 +474,9 @@ namespace sPago.Source.RetISLR.Generar
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
+            _procesarRetencionIsOK=true;
+            _autoRetencionGenerada = r01.Auto;
+            Helpers.Msg.OK("OPERACION REALIZADA CON EXITO !!!");
         }
 
     }

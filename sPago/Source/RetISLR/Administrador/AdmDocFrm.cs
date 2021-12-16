@@ -99,8 +99,9 @@ namespace sPago.Source.RetISLR.Administrador
             var c8 = new DataGridViewTextBoxColumn();
             c8.DataPropertyName = "ISACTIVO";
             c8.HeaderText = "Estatus";
+            c8.Name = "ESTATUS";
             c8.Visible = true;
-            c8.Width = 80;
+            c8.Width = 100;
             c8.HeaderCell.Style.Font = f;
             c8.DefaultCellStyle.Font = f2;
             c8.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -116,15 +117,15 @@ namespace sPago.Source.RetISLR.Administrador
 
         private void DGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            //foreach (DataGridViewRow row in DGV.Rows)
-            //{
-            //    if ((bool)row.Cells["IsAnulado"].Value == true)
-            //    {
-            //        row.DefaultCellStyle.ForeColor = Color.Red;
-            //        row.Cells["Estatus"].Style.BackColor = Color.Red;
-            //        row.Cells["Estatus"].Style.ForeColor = Color.White;
-            //    }
-            //}
+            foreach (DataGridViewRow row in DGV.Rows)
+            {
+                if (row.Cells["ESTATUS"].Value.ToString() !="")
+                {
+                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.Cells["ESTATUS"].Style.BackColor = Color.Red;
+                    row.Cells["ESTATUS"].Style.ForeColor = Color.White;
+                }
+            }
         }
 
         private void AdministradorFrm_Load(object sender, EventArgs e)
@@ -169,7 +170,8 @@ namespace sPago.Source.RetISLR.Administrador
 
         private void AnularItem()
         {
-            //_controlador.AnularItem();
+            _controlador.AnularItem();
+            DGV.Refresh();
         }
 
         private void DTP_DESDE_ValueChanged(object sender, EventArgs e)

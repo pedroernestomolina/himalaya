@@ -20,8 +20,10 @@ namespace Provider.IDATA
 
         //
         DTO.Resutado.AutoId RetISLR_GenerarRetencion(DTO.RetISLR.GenerarRetencion.Ficha ficha);
-
+        DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Ficha ficha);
+        DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha > RetISLR_AnularRetencion_GetData(string idRetencion);
         //
+
         DTO.Resutado.Lista<DTO.RetISLR.Lista.Ficha> RetISLR_GetLista(DTO.RetISLR.Lista.Filtro filtro);
         DTO.Resutado.Entidad<DTO.RetISLR.Entidad.Ficha> RetISLR_GetById(string id);
 

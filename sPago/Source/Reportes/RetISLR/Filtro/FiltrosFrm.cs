@@ -54,6 +54,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
             _controlador.LimpiarFiltros();
             DTP_DESDE.Value = _controlador.Desde;
             DTP_HASTA.Value = _controlador.Hasta;
+            CB_ESTATUS.SelectedIndex = -1;
         }
 
         private void L_ESTATUS_Click(object sender, EventArgs e)

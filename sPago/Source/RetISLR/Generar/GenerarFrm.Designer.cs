@@ -79,6 +79,7 @@
             this.panel31 = new System.Windows.Forms.Panel();
             this.L_FECHA_APLICAR = new System.Windows.Forms.Label();
             this.panel33 = new System.Windows.Forms.Panel();
+            this.TB_PORCT_RET = new sPago.LibControl.NumeroDec();
             this.panel34 = new System.Windows.Forms.Panel();
             this.L_ULTIMO_RETENCION = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -137,7 +138,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.BT_SALIR = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.TB_PORCT_RET = new sPago.LibControl.NumeroDec();
             this.P_PRINCIPAL.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -817,6 +817,20 @@
             this.panel33.Padding = new System.Windows.Forms.Padding(2);
             this.panel33.Size = new System.Drawing.Size(105, 24);
             this.panel33.TabIndex = 4;
+            // 
+            // TB_PORCT_RET
+            // 
+            this.TB_PORCT_RET.BackColor = System.Drawing.Color.Yellow;
+            this.TB_PORCT_RET.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_PORCT_RET.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB_PORCT_RET.Location = new System.Drawing.Point(2, 2);
+            this.TB_PORCT_RET.Name = "TB_PORCT_RET";
+            this.TB_PORCT_RET.Size = new System.Drawing.Size(101, 22);
+            this.TB_PORCT_RET.TabIndex = 0;
+            this.TB_PORCT_RET.Text = "0";
+            this.TB_PORCT_RET.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_PORCT_RET.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
+            this.TB_PORCT_RET.Leave += new System.EventHandler(this.TB_PORCT_RET_Leave);
             // 
             // panel34
             // 
@@ -1514,20 +1528,6 @@
             this.BT_SALIR.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.BT_SALIR.UseVisualStyleBackColor = true;
             this.BT_SALIR.Click += new System.EventHandler(this.BT_SALIR_Click);
-            // 
-            // TB_PORCT_RET
-            // 
-            this.TB_PORCT_RET.BackColor = System.Drawing.Color.Yellow;
-            this.TB_PORCT_RET.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TB_PORCT_RET.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_PORCT_RET.Location = new System.Drawing.Point(2, 2);
-            this.TB_PORCT_RET.Name = "TB_PORCT_RET";
-            this.TB_PORCT_RET.Size = new System.Drawing.Size(101, 22);
-            this.TB_PORCT_RET.TabIndex = 0;
-            this.TB_PORCT_RET.Text = "0";
-            this.TB_PORCT_RET.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TB_PORCT_RET.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
-            this.TB_PORCT_RET.Leave += new System.EventHandler(this.TB_PORCT_RET_Leave);
             // 
             // GenerarFrm
             // 

@@ -393,7 +393,7 @@ namespace sPago.Source.RetISLR.Generar
         private void GenerarFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            if (_controlador.AbandonarIsOk) 
+            if (_controlador.AbandonarIsOk || _controlador.ProcesarRetencionIsOK) 
             {
                 e.Cancel = false;
             }
@@ -437,6 +437,15 @@ namespace sPago.Source.RetISLR.Generar
         private void ProcesarFicha()
         {
             _controlador.ProcesarFicha();
+            if (_controlador.ProcesarRetencionIsOK)
+            {
+                Salir();
+            }
+        }
+
+        public void ActualizarSaldos()
+        {
+            ActualizarTotales();
         }
 
     }

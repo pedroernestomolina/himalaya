@@ -24,6 +24,7 @@
               <xs:element name="impuesto" msprop:Generator_ColumnVarNameInTable="columnimpuesto" msprop:Generator_ColumnPropNameInRow="impuesto" msprop:Generator_ColumnPropNameInTable="impuestoColumn" msprop:Generator_UserColumnName="impuesto" type="xs:decimal" minOccurs="0" />
               <xs:element name="tasaRet" msprop:Generator_ColumnVarNameInTable="columntasaRet" msprop:Generator_ColumnPropNameInRow="tasaRet" msprop:Generator_ColumnPropNameInTable="tasaRetColumn" msprop:Generator_UserColumnName="tasaRet" type="xs:decimal" minOccurs="0" />
               <xs:element name="montoRet" msprop:Generator_ColumnVarNameInTable="columnmontoRet" msprop:Generator_ColumnPropNameInRow="montoRet" msprop:Generator_ColumnPropNameInTable="montoRetColumn" msprop:Generator_UserColumnName="montoRet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="estatus" msprop:Generator_ColumnVarNameInTable="columnestatus" msprop:Generator_ColumnPropNameInRow="estatus" msprop:Generator_ColumnPropNameInTable="estatusColumn" msprop:Generator_UserColumnName="estatus" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -41,7 +42,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="operacion" msprop:Generator_ColumnVarNameInTable="columnoperacion" msprop:Generator_ColumnPropNameInRow="operacion" msprop:Generator_ColumnPropNameInTable="operacionColumn" msprop:Generator_UserColumnName="operacion" type="xs:string" minOccurs="0" />
-              <xs:element name="docFecha" msprop:Generator_ColumnVarNameInTable="columndocFecha" msprop:Generator_ColumnPropNameInRow="docFecha" msprop:Generator_ColumnPropNameInTable="docFechaColumn" msprop:Generator_UserColumnName="docFecha" type="xs:string" minOccurs="0" />
+              <xs:element name="docFecha" msprop:Generator_ColumnVarNameInTable="columndocFecha" msprop:Generator_ColumnPropNameInRow="docFecha" msprop:Generator_ColumnPropNameInTable="docFechaColumn" msprop:Generator_UserColumnName="docFecha" type="xs:dateTime" minOccurs="0" />
               <xs:element name="docNumero" msprop:Generator_ColumnVarNameInTable="columndocNumero" msprop:Generator_ColumnPropNameInRow="docNumero" msprop:Generator_ColumnPropNameInTable="docNumeroColumn" msprop:Generator_UserColumnName="docNumero" type="xs:string" minOccurs="0" />
               <xs:element name="docControl" msprop:Generator_ColumnVarNameInTable="columndocControl" msprop:Generator_ColumnPropNameInRow="docControl" msprop:Generator_ColumnPropNameInTable="docControlColumn" msprop:Generator_UserColumnName="docControl" type="xs:string" minOccurs="0" />
               <xs:element name="numNCr" msprop:Generator_ColumnVarNameInTable="columnnumNCr" msprop:Generator_ColumnPropNameInRow="numNCr" msprop:Generator_ColumnPropNameInTable="numNCrColumn" msprop:Generator_UserColumnName="numNCr" type="xs:string" minOccurs="0" />

@@ -20,6 +20,7 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
         public decimal Impuesto { get; set; }
         public decimal TasaRetencion { get; set; }
         public decimal MontoRetencion { get; set; }
+        public bool IsAnulado { get; set; }
 
 
         public data(Source.RetISLR.Administrador.Items.data item)
@@ -33,6 +34,7 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
             Impuesto = item.MontoIva;
             TasaRetencion = item.TasaRetencion;
             MontoRetencion = item.MontoRetencion;
+            IsAnulado= item.IsAnulado;
         }
 
     }

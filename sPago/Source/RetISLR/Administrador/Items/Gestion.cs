@@ -51,6 +51,12 @@ namespace sPago.Source.RetISLR.Administrador.Items
             _bl.Clear();
         }
 
+        public void setEstatusAnuladoItemActual()
+        {
+            ItemActual.setEstatusAnulado();
+            _bs.CurrencyManager.Refresh();
+        }
+
     }
 
 }

@@ -49,12 +49,13 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
                 rt["fecha"] = it.Fecha;
                 rt["numero"] = it.Documento;
                 rt["proveedor"] = it.Proveedor;
-                rt["total"] = it.Total;
-                rt["exento"] = it.Exento;
-                rt["base"] = it.Base;
-                rt["impuesto"] = it.Impuesto;
+                rt["total"] = it.IsAnulado ? 0m : it.Total;
+                rt["exento"] = it.IsAnulado ? 0m : it.Exento;
+                rt["base"] = it.IsAnulado ? 0m : it.Base;
+                rt["impuesto"] = it.IsAnulado ? 0m : it.Impuesto;
                 rt["tasaRet"] = it.TasaRetencion;
-                rt["montoRet"] = it.MontoRetencion;
+                rt["montoRet"] = it.IsAnulado ? 0m : it.MontoRetencion;
+                rt["estatus"] = it.IsAnulado ? "ANULADO": "";
                 ds.Tables["documento"].Rows.Add(rt);
             }
 

@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace sPago.Source.RetISLR.Administrador
 {
-    
+
     public class Gestion
     {
 
         private Filtro.Gestion _gFiltro;
         private Items.Gestion _gItem;
+        private Seguridad.Gestion _gSeguridad;
 
 
         public int CntItems { get { return _gItem.CntItem; } }
@@ -38,9 +39,9 @@ namespace sPago.Source.RetISLR.Administrador
         AdmDocFrm frm;
         public void Inicia()
         {
-            if (CargarData()) 
+            if (CargarData())
             {
-                if (frm == null) 
+                if (frm == null)
                 {
                     frm = new AdmDocFrm();
                     frm.setControlador(this);
@@ -76,7 +77,7 @@ namespace sPago.Source.RetISLR.Administrador
             {
                 desde = _gFiltro.GetDesde,
                 hasta = _gFiltro.GetHasta,
-                tipoRetencion="02",
+                tipoRetencion = "02",
             };
             var r01 = Sistema.MyData.RetISLR_GetLista(filtro);
             if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
@@ -117,6 +118,60 @@ namespace sPago.Source.RetISLR.Administrador
                 }
                 Helpers.Utils.VisualizarRetISLR(r01.MiEntidad);
             }
+        }
+
+        public void AnularItem()
+        {
+            if (_gItem.ItemActual == null)
+            {
+                return;
+            }
+            if (_gItem.ItemActual.IsAnulado) 
+            {
+                Helpers.Msg.Error("DOCUMENTO YA ANULADO");
+                return;
+            }
+
+            var r01 = Sistema.MyData.Permiso_Solicitud_AnularRetencionISLR(Sistema.Usuario.idGrupo);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            _gSeguridad.Inicializa();
+            _gSeguridad.Verifica(r01.MiEntidad);
+            if (_gSeguridad.IsOk)
+            {
+                AnularDoc(_gItem.ItemActual.Id);
+            }
+        }
+
+        private void AnularDoc(string idDoc)
+        {
+            var msg = "Seguro de Anular Documento ?";
+            var mr = MessageBox.Show(msg, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+            if (mr == DialogResult.Yes)
+            {
+                var r01 = Sistema.MyData.RetISLR_AnularRetencion_GetData(idDoc);
+                if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
+                {
+                    Helpers.Msg.Error(r01.Mensaje);
+                    return;
+                }
+                var r02 = Sistema.MyData.RetISLR_AnularRetencion(r01.MiEntidad);
+                if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                {
+                    Helpers.Msg.Error(r02.Mensaje);
+                    return;
+                }
+                _gItem.setEstatusAnuladoItemActual();
+                Helpers.Msg.EliminarOk();
+            }
+        }
+
+        public void setGSeguridad(Seguridad.Gestion gSeguridad)
+        {
+            _gSeguridad = gSeguridad;
         }
 
     }

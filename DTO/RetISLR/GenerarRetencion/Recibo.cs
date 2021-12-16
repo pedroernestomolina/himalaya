@@ -25,6 +25,8 @@ namespace DTO.RetISLR.GenerarRetencion
         public decimal montoRecibido { get; set; }
         public decimal montoCambio { get; set; }
         public string notas { get; set; }
+        public string detalle { get; set; }
+        public string tipoPagoOrigen { get; set; }
 
 
         public Recibo() 
@@ -43,6 +45,8 @@ namespace DTO.RetISLR.GenerarRetencion
             montoRecibido = 0m;
             montoCambio = 0m;
             notas = "";
+            detalle = "";
+            tipoPagoOrigen = "";
         }
 
     }

@@ -24,7 +24,9 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
         public int cantDocInvolucrado { get; set; }
         public decimal montoRecibido { get; set; }
         public decimal montoCambio { get; set; }
+        public string detalle { get; set; }
         public string notas { get; set; }
+        public string origenModuloPago { get; set; }
 
 
         public Recibo() 
@@ -43,6 +45,8 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
             montoRecibido = 0m;
             montoCambio = 0m;
             notas = "";
+            detalle = "";
+            origenModuloPago = "";
         }
 
     }

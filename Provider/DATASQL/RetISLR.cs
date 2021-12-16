@@ -400,6 +400,100 @@ namespace Provider.DATASQL
                         cn.cxp.Add(nEntCxP);
                         cn.SaveChanges();
 
+                        sql = "update contadores set a_cxp_recibos=a_cxp_recibos+1, a_cxp_recibos_numero=a_cxp_recibos_numero+1";
+                        r1 = cn.Database.ExecuteSqlCommand(sql);
+                        if (r1 == 0)
+                        {
+                            rt.Mensaje = "PROBLEMA AL ACTUALIZAR TABLA CONTADORES";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        var aRecibo = cn.Database.SqlQuery<int>("select a_cxp_recibos from contadores").FirstOrDefault();
+                        var autoRecibo = aRecibo.ToString().Trim().PadLeft(10, '0');
+                        var nRecibo = cn.Database.SqlQuery<int>("select a_cxp_recibos_numero from contadores").FirstOrDefault();
+                        var numRecibo = nRecibo.ToString().Trim().PadLeft(10, '0');
+
+                        var rec=ficha.recibo;
+                        var eRecibo = new cxp_recibos()
+                        {
+                            auto = autoRecibo,
+                            numero = numRecibo,
+                            fecha = fechaSistema.Date,
+                            auto_usuario = rec.autoUsuario,
+                            importe = rec.importe,
+                            usuario = rec.nombreUsuario,
+                            importe_documentos = rec.importe,
+                            total_documentos = rec.importe,
+                            detalle = rec.detalle + ", DOC: " + documentoRet,
+                            auto_proveedor = rec.autoProv,
+                            nombre_proveedor = rec.nombreRazonSocialProv,
+                            ci_rif_proveedor = rec.ciRifProv,
+                            codigo_proveedor = rec.codigoProv,
+                            estatus = rec.estatusAnulado,
+                            cant_doc_rel = rec.cantDocInvolucrado,
+                            tipo_pago = rec.tipoPagoOrigen,
+                            monto_recibido = rec.montoRecibido,
+                            monto_cambio = rec.montoCambio,
+                            dirFiscal_proveedor = rec.dirFiscalProv,
+                            telefono_proveedor = rec.telefonoProv,
+                            nota = rec.notas,
+                            auto_cxp = autoCxP,
+                        };
+                        cn.cxp_recibos.Add(eRecibo);
+                        cn.SaveChanges();
+
+
+                        // ACTUALIZO ENTIDAD RETENCION ENCABEZADO
+                        ent.auto_cxp = autoCxP;
+                        ent.auto_recibo_cxp = autoRecibo;
+                        cn.SaveChanges();
+                        //
+
+
+                        var sqlCxPDocumento = @"INSERT INTO cxp_documentos
+                                            (item, operacion ,monto ,auto_cxp ,documento ,auto_cxp_pago ,tipo 
+                                            ,fecha ,detalle ,auto_cxp_recibo ,numero_recibo ,origen)
+                                            VALUES 
+                                            (@item, @operacion ,@monto ,@auto_cxp ,@documento ,@auto_cxp_pago ,@tipo 
+                                            ,@fecha ,@detalle ,@auto_cxp_recibo ,@numero_recibo ,@origen)";
+                        foreach(var d in ficha.docInvRecibo)
+                        {
+                            var p1 = new SqlParameter("@item", d.nItem);
+                            var p2 = new SqlParameter("@operacion", d.operacionEjecutar);
+                            var p3 = new SqlParameter("@monto", d.montoImporte);
+                            var p4 = new SqlParameter("@auto_cxp", d.autoCxPDocInv);
+                            var p5 = new SqlParameter("@documento", d.numDocInv);
+                            var p6 = new SqlParameter("@auto_cxp_pago", autoCxP);
+                            var p7 = new SqlParameter("@tipo", d.tipoDocInv);
+                            var p8 = new SqlParameter("@fecha", fechaSistema.Date);
+                            var p9 = new SqlParameter("@detalle", d.detalle + documentoRet);
+                            var p10 = new SqlParameter("@auto_cxp_recibo",autoRecibo);
+                            var p11 = new SqlParameter("@numero_recibo", numRecibo);
+                            var p12 = new SqlParameter("@origen", d.nombreDocInv);
+                            var p13 = new SqlParameter("@monto_pendiente", 0m);
+                            cn.Database.ExecuteSqlCommand(sqlCxPDocumento, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+                            cn.SaveChanges();
+                        }
+
+                        var mPag= ficha.medioPago;
+                        var xp1 = new SqlParameter("@auto_recibo", autoRecibo);
+                        var xp2 = new SqlParameter("@auto_movimientos", "");
+                        var xp3 = new SqlParameter("@numero", "");
+                        var xp4 = new SqlParameter("@banco", "");
+                        var xp5 = new SqlParameter("@importe", mPag.montoRecibido );
+                        var xp6 = new SqlParameter("@nombre", "");
+                        var xp7 = new SqlParameter("@fecha", fechaSistema.Date);
+                        var xp8 = new SqlParameter("@estatus_anulado", mPag.estatusAnulado);
+                        var xp9 = new SqlParameter("@codigo_medio_pago", mPag.codigoMedioPago);
+                        var xp10 = new SqlParameter("@desc_medio_pago", mPag.descMedioPago);
+                        var sqlModoPago = @"INSERT INTO cxp_modo_pago
+                                            (auto_recibo, auto_movimientos ,numero ,banco ,importe 
+                                            ,nombre ,fecha ,estatus_anulado ,codigo_medio_pago ,desc_medio_pago)
+                                            VALUES
+                                            (@auto_recibo, @auto_movimientos ,@numero ,@banco ,@importe 
+                                            ,@nombre ,@fecha ,@estatus_anulado ,@codigo_medio_pago ,@desc_medio_pago)";
+                        cn.Database.ExecuteSqlCommand(sqlModoPago, xp1, xp2, xp3, xp4, xp5, xp6, xp7, xp8, xp9, xp10);
+                        cn.SaveChanges();
 
                         ts.Complete();
                         rt.Auto = autoRet;
@@ -431,6 +525,192 @@ namespace Provider.DATASQL
                 }
                 rt.Mensaje = ex.Message;
                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError; 
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Ficha ficha)
+        {
+            var rt = new DTO.Resutado.Ficha();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    using (var ts = new TransactionScope())
+                    {
+                        var fechaSistema = cn.Database.SqlQuery<DateTime>("select getDate()").FirstOrDefault();
+
+                        var eRet = cn.retenciones_compras.Find(ficha.autoDocRetencion);
+                        if (eRet == null) 
+                        {
+                            rt.Mensaje = "ID DOCUMENTO RETENCION NO ENCONTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (eRet.estatus =="1")
+                        {
+                            rt.Mensaje = "DOCUMENTO RETENCION YA ANULADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+
+                        var p1 = new SqlParameter("@autoDoc", ficha.autoDocRetencion);
+                        var sql = "update retenciones_compras set estatus='1' where auto=@autoDoc";
+                        cn.Database.ExecuteSqlCommand(sql, p1);
+                        cn.SaveChanges();
+
+                        var p2 = new SqlParameter("@autoDoc", ficha.autoDocRetencion);
+                        sql = "update retenciones_compras_detalle set estatus='1' where auto_documento=@autoDoc";
+                        cn.Database.ExecuteSqlCommand(sql, p2);
+                        cn.SaveChanges();
+
+                        foreach (var r in ficha.docCompraAplicaRetencion)
+                        {
+                            var xp1 = new SqlParameter("@autoDoc", r.autoDocCompra);
+                            sql = @"update compras set tasa_retencion_islr=0, retencion_islr=0, 
+                            comprobante_retencion_islr='' where auto=@autoDoc";
+                            cn.Database.ExecuteSqlCommand(sql, xp1);
+                            cn.SaveChanges();
+
+                            var xp2 = new SqlParameter("@autoCxP", r.autoCxP);
+                            var xp3 = new SqlParameter("@monto", r.montoAplica);
+                            sql = @"update cxp set acumulado=acumulado-@monto, resta=resta+@monto 
+                            where auto=@autoCxP";
+                            cn.Database.ExecuteSqlCommand(sql, xp2, xp3);
+                            cn.SaveChanges();
+                        }
+
+                        var p3 = new SqlParameter("@autoPago", ficha.autoPago);
+                        sql = "update cxp set estatus='1' where auto=@autoPago";
+                        cn.Database.ExecuteSqlCommand(sql, p3);
+                        cn.SaveChanges();
+
+                        var p4 = new SqlParameter("@autoRecibo", ficha.autoRecibo);
+                        sql = "update cxp_recibos set estatus='1' where auto=@autoRecibo";
+                        cn.Database.ExecuteSqlCommand(sql, p4);
+                        cn.SaveChanges();
+
+                        var p5 = new SqlParameter("@autoRecibo", ficha.autoRecibo);
+                        sql = "update cxp_modo_pago set estatus_anulado='1' where auto_recibo=@autoRecibo";
+                        cn.Database.ExecuteSqlCommand(sql, p5);
+                        cn.SaveChanges();
+
+                        ts.Complete();
+                    }
+                }
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                var dbUpdateEx = ex as System.Data.Entity.Infrastructure.DbUpdateException;
+                var sqlEx = dbUpdateEx.InnerException;
+                if (sqlEx != null)
+                {
+                    var exx = (SqlException)sqlEx.InnerException;
+                    if (exx != null)
+                    {
+                        if (exx.Number == 1452)
+                        {
+                            rt.Mensaje = "PROBLEMA DE CLAVE FORANEA" + Environment.NewLine + exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        else
+                        {
+                            rt.Mensaje = exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                    }
+                }
+                rt.Mensaje = ex.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
+        {
+            var rt = new DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var eRet = cn.retenciones_compras.Find(idRetencion);
+                    if (eRet == null) 
+                    {
+                        rt.Mensaje = "DOCUMENTO RETENCION A ANULAR NO ENCONTRADO";
+                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return rt;
+                    }
+                    var nr = new DTO.RetISLR.AnularRetencion.Ficha()
+                    {
+                        autoDocRetencion = eRet.auto,
+                        autoPago = eRet.auto_cxp,
+                        autoRecibo = eRet.auto_recibo_cxp,
+                    };
+
+                    var lst = new List<DTO.RetISLR.AnularRetencion.DocCompraAplicaRetencion>();
+                    var eRetDet = cn.retenciones_compras_detalle.Where(w => w.auto == idRetencion).ToList();
+                    foreach (var d in eRetDet)
+                    {
+                        var rg = new DTO.RetISLR.AnularRetencion.DocCompraAplicaRetencion()
+                        {
+                            autoDocCompra = d.auto_documento,
+                            montoAplica = d.retencion,
+                        };
+
+                        var eCxP = cn.cxp.FirstOrDefault(f=>f.auto_documento==rg.autoDocCompra && f.modulo_origen=="07");
+                        if (eCxP==null)
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP NO ENCONTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        rg.autoCxP = eCxP.auto;
+                        lst.Add(rg);
+                    }
+                    nr.docCompraAplicaRetencion = lst;
+
+                    rt.MiEntidad = nr;
+                }
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                var dbUpdateEx = ex as System.Data.Entity.Infrastructure.DbUpdateException;
+                var sqlEx = dbUpdateEx.InnerException;
+                if (sqlEx != null)
+                {
+                    var exx = (SqlException)sqlEx.InnerException;
+                    if (exx != null)
+                    {
+                        if (exx.Number == 1452)
+                        {
+                            rt.Mensaje = "PROBLEMA DE CLAVE FORANEA" + Environment.NewLine + exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        else
+                        {
+                            rt.Mensaje = exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                    }
+                }
+                rt.Mensaje = ex.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
             }
             catch (Exception e)
             {
@@ -551,6 +831,41 @@ namespace Provider.DATASQL
                         tasaRet = ent.tasa_retencion,
                         tipoRetencion = ent.tipo,
                     };
+
+                    var lst = new List<DTO.RetISLR.Entidad.Detalle>();
+                    var entDet = cn.retenciones_compras_detalle.Where(w => w.auto== id).ToList();
+                    foreach (var d in entDet) 
+                    {
+                        var nr = new DTO.RetISLR.Entidad.Detalle()
+                        {
+                            autoDoc = d.auto_documento,
+                            ciRifProv = d.ci_rif,
+                            estatusAnulado = d.estatus,
+                            fechaDoc = d.fecha,
+                            montoBase = d.@base,
+                            montoBase1 = d.base1.Value ,
+                            montoBase2 = d.base2.Value ,
+                            montoBase3 = d.base3.Value ,
+                            montoExento = d.exento,
+                            montoIva = d.impuesto,
+                            montoIva1 = d.impuesto1.Value ,
+                            montoIva2 = d.impuesto2.Value ,
+                            montoIva3 = d.impuesto3.Value ,
+                            montoRetencion = d.retencion,
+                            montoTasa1 = d.tasa1.Value ,
+                            montoTasa2 = d.tasa2.Value ,
+                            montoTasa3 = d.tasa3.Value ,
+                            numControlDoc = d.control,
+                            numDoc = d.documento,
+                            numDocAplica = d.aplica,
+                            tasaRetencion = d.tasa_retencion,
+                            tipoDoc = d.tipo,
+                            total = d.total,
+                        };
+                        lst.Add(nr);
+                    }
+                    enc.Detalles = lst;
+
                     rt.MiEntidad = enc;
                 }
             }

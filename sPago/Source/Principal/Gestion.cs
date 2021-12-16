@@ -90,7 +90,22 @@ namespace sPago.Source.Principal
             {
                 _gestionRetIslrGenerar.Inicializa();
                 _gestionRetIslrGenerar.Inicia();
+                if (_gestionRetIslrGenerar.ProcesarRetencionIsOK) 
+                {
+                    VisualizarPlanillaRetencion(_gestionRetIslrGenerar.AutoRetencionGenerada);
+                }
             }
+        }
+
+        private void VisualizarPlanillaRetencion(string id)
+        {
+            var r01 = Sistema.MyData.RetISLR_GetById(id);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            Helpers.Utils.VisualizarRetISLR(r01.MiEntidad);
         }
 
         public void AdministradorDocRetencionISLR()
@@ -106,6 +121,7 @@ namespace sPago.Source.Principal
             _gestionSeguridad.Verifica(r01.MiEntidad);
             if (_gestionSeguridad.IsOk)
             {
+                _gestionAdmRetIslr.setGSeguridad(_gestionSeguridad);
                 _gestionAdmRetIslr.Inicializa();
                 _gestionAdmRetIslr.Inicia();
             }

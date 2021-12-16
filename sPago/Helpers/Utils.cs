@@ -23,20 +23,39 @@ namespace sPago.Helpers
             rt["documento"] = ficha.documento;
             ds.Tables["Planilla"].Rows.Add(rt);
 
-            //foreach (var it in _lst.ToList())
-            //{
-            //    DataRow rt = ds.Tables["documento"].NewRow();
-            //    rt["fecha"] = it.deFecha;
-            //    rt["numero"] = it.documento;
-            //    rt["proveedor"] = it.nombreProv + Environment.NewLine + it.ciRifProv;
-            //    rt["total"] = it.mTotal;
-            //    rt["exento"] = it.mExento;
-            //    rt["base"] = it.mBase;
-            //    rt["impuesto"] = it.mIva;
-            //    rt["tasaRet"] = it.tasaRet;
-            //    rt["montoRet"] = it.montoRet;
-            //    ds.Tables["documento"].Rows.Add(rt);
-            //}
+            var op = 0;
+            foreach (var it in ficha.Detalles)
+            {
+                var fac = "";
+                var ncr= "";
+                var ndb= "";
+                switch (it.tipoDoc)
+                {
+                    case "01":
+                        fac = it.numDoc;
+                        break;
+                    case "02":
+                        ndb = it.numDoc;
+                        break;
+                    case "03":
+                        ncr = it.numDoc;
+                        break;
+                }
+
+                op += 1;
+                DataRow rtDet = ds.Tables["PlanillaDet"].NewRow();
+                rtDet["operacion"] = op;
+                rtDet["docFecha"] = it.fechaDoc;
+                rtDet["docNumero"] = fac ;
+                rtDet["docControl"] = it.numControlDoc;
+                rtDet["numNCr"] = ncr;
+                rtDet["numNDb"] = ndb;
+                rtDet["tipoTr"] = "01-reg";
+                rtDet["aplica"] = it.numDocAplica;
+                rtDet["total"] = it.total;
+                rtDet["exento"] = it.montoExento;
+                ds.Tables["PlanillaDet"].Rows.Add(rtDet);
+            }
 
             var Rds = new List<ReportDataSource>();
             var pmt = new List<ReportParameter>();
@@ -44,6 +63,7 @@ namespace sPago.Helpers
             //pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
             ////pmt.Add(new ReportParameter("Filtros", _filtros));
             Rds.Add(new ReportDataSource("Planilla", ds.Tables["Planilla"]));
+            Rds.Add(new ReportDataSource("PlanillaDet", ds.Tables["PlanillaDet"]));
 
             var frp = new ReporteFrm();
             frp.rds = Rds;

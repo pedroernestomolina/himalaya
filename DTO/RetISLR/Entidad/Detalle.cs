@@ -62,6 +62,7 @@ namespace DTO.RetISLR.Entidad
             montoTasa2 = 0m;
             montoTasa3 = 0m;
         }
+
     }
 
 }

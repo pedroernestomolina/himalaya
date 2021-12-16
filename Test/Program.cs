@@ -60,6 +60,10 @@ namespace Test
              //var r14 = dataProv.RetISLR_GetLista(filtro14);
 
              //var r15 = dataProv.Empresa_GetFicha();
+
+            //var r16 = dataProv.RetISLR_AnularRetencion_GetData("0000000015");
+            //var r17 = dataProv.RetISLR_AnularRetencion(r16.MiEntidad);
+
         }
 
     }

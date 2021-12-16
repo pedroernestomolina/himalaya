@@ -28,6 +28,7 @@ namespace sPago.DataProvider.Data
             return rt;
         }
 
+        //
         public OOB.Resultado.Lista<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentosPendPorAplicar_GetLista(OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Filtro filtro)
         {
             var rt = new OOB.Resultado.Lista<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha>();
@@ -73,7 +74,6 @@ namespace sPago.DataProvider.Data
 
             return rt;
         }
-
         public OOB.Resultado.Entidad<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha> RetISLR_DocumentoPendPorAplicar_GetByIdDoc(string idDoc)
         {
             var rt = new OOB.Resultado.Entidad<OOB.RetISLR.DocumentoPendPorAplicar.Entidad.Ficha>();
@@ -115,12 +115,133 @@ namespace sPago.DataProvider.Data
             return rt;
         }
 
+        //
+        public OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha> RetISLR_GetLista(OOB.RetISLR.Lista.Filtro filtro)
+        {
+            var rt = new OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha>();
+
+            var filtroDto = new DTO.RetISLR.Lista.Filtro()
+            {
+                desde = filtro.desde,
+                hasta = filtro.hasta,
+                tipoRetencion = filtro.tipoRetencion,
+                estatus = filtro.estatus,
+                idProv = filtro.idProv,
+            };
+            var r01 = MyData.RetISLR_GetLista(filtroDto);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            var lst = new List<OOB.RetISLR.Entidad.Ficha>();
+            if (r01.ListaEntidad != null)
+            {
+                if (r01.ListaEntidad.Count > 0)
+                {
+                    lst = r01.ListaEntidad.Select(s =>
+                    {
+                        var rg = new OOB.RetISLR.Entidad.Ficha()
+                        {
+                            ciRifProv = s.ciRifProv.Trim().ToUpper(),
+                            deFecha = s.deFecha,
+                            documento = s.documento.Trim().ToUpper(),
+                            estatus = s.estatus.Trim().ToUpper(),
+                            id = s.id.Trim().ToUpper(),
+                            montoRet = s.montoRet,
+                            nombreProv = s.nombreProv.Trim().ToUpper(),
+                            tasaRet = s.tasaRet,
+                            tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
+                            mBase = s.mBase,
+                            mExento = s.mExento,
+                            mIva = s.mIva,
+                            mTotal = s.mTotal,
+                        };
+                        return rg;
+                    }).ToList();
+                }
+            }
+            rt.ListaEntidad = lst;
+
+            return rt;
+        }
+        public OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha> RetISLR_GetById(string id)
+        {
+            var rt = new OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha>();
+
+            var r01 = MyData.RetISLR_GetById(id);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            var s = r01.MiEntidad;
+            var rg = new OOB.RetISLR.Entidad.Ficha()
+            {
+                ciRifProv = s.ciRifProv.Trim().ToUpper(),
+                deFecha = s.deFecha,
+                documento = s.documento.Trim().ToUpper(),
+                estatus = s.estatus.Trim().ToUpper(),
+                id = s.id.Trim().ToUpper(),
+                montoRet = s.montoRet,
+                nombreProv = s.nombreProv.Trim().ToUpper(),
+                tasaRet = s.tasaRet,
+                tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
+                mBase = s.mBase,
+                mExento = s.mExento,
+                mIva = s.mIva,
+                mTotal = s.mTotal,
+                anoRelacion = s.anoRelacion,
+                codigoProv = s.codigoProv,
+                idProv = s.idProv,
+                mesRelacion = s.mesRelacion,
+                Detalles = s.Detalles.Select(ss => 
+                {
+                    var nr = new OOB.RetISLR.Entidad.Detalle()
+                    {
+                        autoDoc = ss.autoDoc,
+                        ciRifProv = ss.ciRifProv,
+                        estatusAnulado = ss.estatusAnulado,
+                        fechaDoc = ss.fechaDoc,
+                        montoBase = ss.montoBase,
+                        montoBase1 = ss.montoBase1,
+                        montoBase2 = ss.montoBase2,
+                        montoBase3 = ss.montoBase3,
+                        montoExento = ss.montoExento,
+                        montoIva = ss.montoIva,
+                        montoIva1 = ss.montoIva1,
+                        montoIva2 = ss.montoIva2,
+                        montoIva3 = ss.montoIva3,
+                        montoRetencion = ss.montoRetencion,
+                        montoTasa1 = ss.montoTasa1,
+                        montoTasa2 = ss.montoTasa2,
+                        montoTasa3 = ss.montoTasa3,
+                        numControlDoc = ss.numControlDoc,
+                        numDoc = ss.numDoc,
+                        numDocAplica = ss.numDocAplica,
+                        tasaRetencion = ss.tasaRetencion,
+                        tipoDoc = ss.tipoDoc,
+                        total = ss.total,
+                    };
+                    return nr;
+                }).ToList(),
+            };
+            rt.MiEntidad = rg;
+
+            return rt;
+        }
+
+        //
         public OOB.Resultado.AutoId RetISLR_GenerarRetencion(OOB.RetISLR.GenerarRetencion.Ficha ficha)
         {
             var rt = new OOB.Resultado.AutoId();
 
             var fichaDTO = new DTO.RetISLR.GenerarRetencion.Ficha();
-            var e1= ficha.retencion;
+            var e1 = ficha.retencion;
             fichaDTO.retencion = new DTO.RetISLR.GenerarRetencion.Retencion()
             {
                 autoProv = e1.autoProv,
@@ -188,7 +309,7 @@ namespace sPago.DataProvider.Data
                 };
                 return nr;
             }).ToList();
-            var e2= ficha.cxp;
+            var e2 = ficha.cxp;
             fichaDTO.cxp = new DTO.RetISLR.GenerarRetencion.CxP()
             {
                 acumulado = e2.acumulado,
@@ -205,6 +326,50 @@ namespace sPago.DataProvider.Data
                 signo = e2.signo,
                 tipoDocGen = e2.tipoDocGen,
             };
+            var e3 = ficha.recibo;
+            fichaDTO.recibo = new DTO.RetISLR.GenerarRetencion.Recibo()
+            {
+                autoProv = e3.autoProv,
+                autoUsuario = e3.autoUsuario,
+                cantDocInvolucrado = e3.cantDocInvolucrado,
+                ciRifProv = e3.ciRifProv,
+                codigoProv = e3.codigoProv,
+                dirFiscalProv = e3.dirFiscalProv,
+                estatusAnulado = e3.estatusAnulado,
+                importe = e3.importe,
+                montoCambio = e3.montoCambio,
+                montoRecibido = e3.montoRecibido,
+                nombreRazonSocialProv = e3.nombreRazonSocialProv,
+                nombreUsuario = e3.nombreUsuario,
+                notas = e3.notas,
+                telefonoProv = e3.telefonoProv,
+                detalle = e3.detalle,
+                tipoPagoOrigen = e3.origenModuloPago,
+            };
+            fichaDTO.docInvRecibo = ficha.docInvRecibo.Select(s =>
+            {
+                var nr = new DTO.RetISLR.GenerarRetencion.DocInvRecibo()
+                {
+                    autoCxPDocInv = s.autoCxPDocInv,
+                    detalle = s.detalle,
+                    fechaDocInv = s.fechaDocInv,
+                    montoImporte = s.montoImporte,
+                    nItem = s.nItem,
+                    numDocInv = s.numDocInv,
+                    operacionEjecutar = s.operacionEjecutar,
+                    tipoDocInv = s.tipoDocInv,
+                    nombreDocInv = s.nombreDocInv,
+                };
+                return nr;
+            }).ToList();
+            var e4 = ficha.medioPago;
+            fichaDTO.medioPago = new DTO.RetISLR.GenerarRetencion.MedioPago()
+            {
+                codigoMedioPago = e4.codigoMedioPago,
+                descMedioPago = e4.descMedioPago,
+                estatusAnulado = e4.estatusAnulado,
+                montoRecibido = e4.montoRecibido,
+            };
 
             var r01 = MyData.RetISLR_GenerarRetencion(fichaDTO);
             if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
@@ -218,64 +383,11 @@ namespace sPago.DataProvider.Data
 
             return rt;
         }
-
-        public OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha> RetISLR_GetLista(OOB.RetISLR.Lista.Filtro filtro)
+        public OOB.Resultado.Entidad<OOB.RetISLR.AnularRetencion.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
         {
-            var rt = new OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha>();
+            var rt = new OOB.Resultado.Entidad<OOB.RetISLR.AnularRetencion.Ficha>();
 
-            var filtroDto = new DTO.RetISLR.Lista.Filtro()
-            {
-                desde = filtro.desde,
-                hasta = filtro.hasta,
-                tipoRetencion = filtro.tipoRetencion,
-                estatus = filtro.estatus,
-                idProv = filtro.idProv,
-            };
-            var r01 = MyData.RetISLR_GetLista(filtroDto);
-            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
-            {
-                rt.Mensaje = r01.Mensaje;
-                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
-                return rt;
-            }
-
-            var lst = new List<OOB.RetISLR.Entidad.Ficha>();
-            if (r01.ListaEntidad != null)
-            {
-                if (r01.ListaEntidad.Count > 0)
-                {
-                    lst = r01.ListaEntidad.Select(s =>
-                    {
-                        var rg = new OOB.RetISLR.Entidad.Ficha()
-                        {
-                            ciRifProv = s.ciRifProv.Trim().ToUpper(),
-                            deFecha = s.deFecha,
-                            documento = s.documento.Trim().ToUpper(),
-                            estatus = s.estatus.Trim().ToUpper(),
-                            id = s.id.Trim().ToUpper(),
-                            montoRet = s.montoRet,
-                            nombreProv = s.nombreProv.Trim().ToUpper(),
-                            tasaRet = s.tasaRet,
-                            tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
-                            mBase = s.mBase,
-                            mExento = s.mExento,
-                            mIva = s.mIva,
-                            mTotal = s.mTotal,
-                        };
-                        return rg;
-                    }).ToList();
-                }
-            }
-            rt.ListaEntidad = lst;
-
-            return rt;
-        }
-
-        public OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha> RetISLR_GetById(string id)
-        {
-            var rt = new OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha>();
-
-            var r01 = MyData.RetISLR_GetById(id);
+            var r01 = MyData.RetISLR_AnularRetencion_GetData(idRetencion);
             if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
             {
                 rt.Mensaje = r01.Mensaje;
@@ -284,27 +396,54 @@ namespace sPago.DataProvider.Data
             }
 
             var s = r01.MiEntidad;
-            var rg = new OOB.RetISLR.Entidad.Ficha()
+            var rg = new OOB.RetISLR.AnularRetencion.Ficha()
             {
-                ciRifProv = s.ciRifProv.Trim().ToUpper(),
-                deFecha = s.deFecha,
-                documento = s.documento.Trim().ToUpper(),
-                estatus = s.estatus.Trim().ToUpper(),
-                id = s.id.Trim().ToUpper(),
-                montoRet = s.montoRet,
-                nombreProv = s.nombreProv.Trim().ToUpper(),
-                tasaRet = s.tasaRet,
-                tipoRetencion = s.tipoRetencion.Trim().ToUpper(),
-                mBase = s.mBase,
-                mExento = s.mExento,
-                mIva = s.mIva,
-                mTotal = s.mTotal,
-                anoRelacion = s.anoRelacion,
-                codigoProv = s.codigoProv,
-                idProv = s.idProv,
-                mesRelacion = s.mesRelacion,
+                autoDocRetencion = s.autoDocRetencion,
+                autoPago = s.autoPago,
+                autoRecibo = s.autoRecibo,
+                docCompraAplicaRetencion = s.docCompraAplicaRetencion.Select(ss =>
+                {
+                    var nr = new OOB.RetISLR.AnularRetencion.DocCompraAplicaRetencion()
+                    {
+                        autoCxP = ss.autoCxP,
+                        autoDocCompra = ss.autoDocCompra,
+                        montoAplica = ss.montoAplica,
+                    };
+                    return nr;
+                }).ToList(),
             };
             rt.MiEntidad = rg;
+
+            return rt;
+        }
+        public OOB.Resultado.Ficha RetISLR_AnularRetencion(OOB.RetISLR.AnularRetencion.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.Ficha();
+
+            var s = ficha;
+            var fichaDTO = new DTO.RetISLR.AnularRetencion.Ficha()
+            {
+                autoDocRetencion = s.autoDocRetencion,
+                autoPago = s.autoPago,
+                autoRecibo = s.autoRecibo,
+                docCompraAplicaRetencion = s.docCompraAplicaRetencion.Select(ss =>
+                {
+                    var nr = new DTO.RetISLR.AnularRetencion.DocCompraAplicaRetencion()
+                    {
+                        autoCxP = ss.autoCxP,
+                        autoDocCompra = ss.autoDocCompra,
+                        montoAplica = ss.montoAplica,
+                    };
+                    return nr;
+                }).ToList(),
+            };
+            var r01 = MyData.RetISLR_AnularRetencion (fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
 
             return rt;
         }

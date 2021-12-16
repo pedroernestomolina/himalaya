@@ -52,6 +52,8 @@
     <Compile Include="Resutado\AutoId.cs" />
     <Compile Include="Resutado\Entidad.cs" />
     <Compile Include="Resutado\Lista.cs" />
+    <Compile Include="RetISLR\AnularRetencion\DocAplicaRetencion.cs" />
+    <Compile Include="RetISLR\AnularRetencion\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />

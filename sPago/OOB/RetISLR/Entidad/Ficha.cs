@@ -28,6 +28,7 @@ namespace sPago.OOB.RetISLR.Entidad
         public decimal mTotal { get; set; }
         public string mesRelacion { get; set; }
         public string anoRelacion { get; set; }
+        public bool isAnulado { get { return estatus.Trim().ToUpper() == "1"; } }
         public List<Detalle> Detalles { get; set; }
 
 

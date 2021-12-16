@@ -25,12 +25,19 @@ namespace sPago.Source.RetISLR.Administrador.Items
         public decimal MontoBase{ get { return _ficha.mBase; } }
         public decimal MontoIva{ get { return _ficha.mIva ; } }
         public decimal MontoTotal { get { return _ficha.mTotal; } }
-        public string IsActivo { get { return _ficha.estatus=="1"?"ANULADO":"ACTIVO"; } }
+        public string IsActivo { get { return _ficha.estatus == "1" ? "ANULADO" : ""; } }
+        public bool IsAnulado { get { return _ficha.estatus == "1" ? true : false; } }
 
 
         public data(OOB.RetISLR.Entidad.Ficha ficha)
         {
             this._ficha = ficha;
+        }
+
+
+        public void setEstatusAnulado()
+        {
+            _ficha.estatus = "1";
         }
 
     }

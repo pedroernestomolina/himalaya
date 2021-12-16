@@ -28,6 +28,7 @@ namespace sPago.OOB.Proveedor.Entidad
         public decimal retISLR { get; set; }
         public decimal retIVA { get; set; }
         public DateTime fechaAlta { get; set; }
+        public string telefonos { get { return telefono1 + "," + telefono2 + "," + telefono3; } }
 
 
         public Ficha()

@@ -37,18 +37,19 @@ namespace sPago.Source.Reportes.RetISLR.GeneralRet
             var pt = AppDomain.CurrentDomain.BaseDirectory + @"Source\Reportes\RetISLR\Retencion.rdlc";
             var ds = new DS_ISLR();
 
-            foreach (var it in _lst.ToList())
+            foreach (var it in _lst.OrderByDescending(o=>o.documento).ToList())
             {
                 DataRow rt = ds.Tables["documento"].NewRow();
                 rt["fecha"] = it.deFecha;
                 rt["numero"] = it.documento;
                 rt["proveedor"] = it.nombreProv+Environment.NewLine+it.ciRifProv;
-                rt["total"] = it.mTotal;
-                rt["exento"] = it.mExento;
-                rt["base"] = it.mBase;
-                rt["impuesto"] = it.mIva;
+                rt["total"] = it.isAnulado ? 0m : it.mTotal;
+                rt["exento"] = it.isAnulado ? 0m : it.mExento;
+                rt["base"] = it.isAnulado ? 0m : it.mBase;
+                rt["impuesto"] = it.isAnulado? 0m : it.mIva;
                 rt["tasaRet"] = it.tasaRet;
-                rt["montoRet"] = it.montoRet;
+                rt["montoRet"] = it.isAnulado ? 0m : it.montoRet;
+                rt["estatus"] = it.isAnulado ? "ANULADO" : "";
                 ds.Tables["documento"].Rows.Add(rt);
             }
 

@@ -367,6 +367,8 @@ namespace sPago.Source.Reportes {
             
             private global::System.Data.DataColumn columnmontoRet;
             
+            private global::System.Data.DataColumn columnestatus;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public documentoDataTable() {
@@ -474,6 +476,14 @@ namespace sPago.Source.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn estatusColumn {
+                get {
+                    return this.columnestatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -509,7 +519,7 @@ namespace sPago.Source.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public documentoRow AdddocumentoRow(System.DateTime fecha, string numero, string proveedor, decimal total, decimal exento, decimal _base, decimal impuesto, decimal tasaRet, decimal montoRet) {
+            public documentoRow AdddocumentoRow(System.DateTime fecha, string numero, string proveedor, decimal total, decimal exento, decimal _base, decimal impuesto, decimal tasaRet, decimal montoRet, string estatus) {
                 documentoRow rowdocumentoRow = ((documentoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fecha,
@@ -520,7 +530,8 @@ namespace sPago.Source.Reportes {
                         _base,
                         impuesto,
                         tasaRet,
-                        montoRet};
+                        montoRet,
+                        estatus};
                 rowdocumentoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdocumentoRow);
                 return rowdocumentoRow;
@@ -552,6 +563,7 @@ namespace sPago.Source.Reportes {
                 this.columnimpuesto = base.Columns["impuesto"];
                 this.columntasaRet = base.Columns["tasaRet"];
                 this.columnmontoRet = base.Columns["montoRet"];
+                this.columnestatus = base.Columns["estatus"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -578,6 +590,8 @@ namespace sPago.Source.Reportes {
                 base.Columns.Add(this.columntasaRet);
                 this.columnmontoRet = new global::System.Data.DataColumn("montoRet", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmontoRet);
+                this.columnestatus = new global::System.Data.DataColumn("estatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnestatus);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1200,7 +1214,7 @@ namespace sPago.Source.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlanillaDetRow AddPlanillaDetRow(string operacion, string docFecha, string docNumero, string docControl, string numNCr, string numNDb, string tipoTr, string aplica, decimal total, decimal exento, decimal _base, decimal impuesto, decimal retencion) {
+            public PlanillaDetRow AddPlanillaDetRow(string operacion, System.DateTime docFecha, string docNumero, string docControl, string numNCr, string numNDb, string tipoTr, string aplica, decimal total, decimal exento, decimal _base, decimal impuesto, decimal retencion) {
                 PlanillaDetRow rowPlanillaDetRow = ((PlanillaDetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         operacion,
@@ -1258,7 +1272,7 @@ namespace sPago.Source.Reportes {
             private void InitClass() {
                 this.columnoperacion = new global::System.Data.DataColumn("operacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnoperacion);
-                this.columndocFecha = new global::System.Data.DataColumn("docFecha", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndocFecha = new global::System.Data.DataColumn("docFecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndocFecha);
                 this.columndocNumero = new global::System.Data.DataColumn("docNumero", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndocNumero);
@@ -1571,6 +1585,22 @@ namespace sPago.Source.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string estatus {
+                get {
+                    try {
+                        return ((string)(this[this.tabledocumento.estatusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'estatus\' in table \'documento\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledocumento.estatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsfechaNull() {
                 return this.IsNull(this.tabledocumento.fechaColumn);
             }
@@ -1675,6 +1705,18 @@ namespace sPago.Source.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetmontoRetNull() {
                 this[this.tabledocumento.montoRetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsestatusNull() {
+                return this.IsNull(this.tabledocumento.estatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetestatusNull() {
+                this[this.tabledocumento.estatusColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1837,10 +1879,10 @@ namespace sPago.Source.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string docFecha {
+            public System.DateTime docFecha {
                 get {
                     try {
-                        return ((string)(this[this.tablePlanillaDet.docFechaColumn]));
+                        return ((global::System.DateTime)(this[this.tablePlanillaDet.docFechaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'docFecha\' in table \'PlanillaDet\' is DBNull.", e);

@@ -81,6 +81,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="OOB\Empresa\Entidad\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\AnularRetencion\DocCompraAplicaRetencion.cs" />
+    <Compile Include="OOB\RetISLR\AnularRetencion\Ficha.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Detalle.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Ficha.cs" />
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
@@ -121,7 +123,6 @@
     <Compile Include="Source\Reportes\RetISLR\GeneralRet\Gestion.cs" />
     <Compile Include="Source\Reportes\RetISLR\Reportes\Gestion.cs" />
     <Compile Include="Source\Reportes\RetISLR\Reportes\IGestion.cs" />
-    <Compile Include="Source\RetISLR\Administrador\data.cs" />
     <Compile Include="Source\RetISLR\Administrador\AdmDocFrm.cs">
       <SubType>Form</SubType>
     </Compile>
