@@ -63,7 +63,7 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
             var pmt = new List<ReportParameter>();
             pmt.Add(new ReportParameter("EMPRESA_RIF", Sistema.DatosEmpresa.ciRif));
             pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
-            //pmt.Add(new ReportParameter("Filtros", _filtros));
+            pmt.Add(new ReportParameter("FILTRO", _filtros));
             Rds.Add(new ReportDataSource("documento", ds.Tables["documento"]));
 
             var frp = new ReporteFrm();

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace sPago.OOB.RetISLR.AnularRetencion
+namespace DTO.RetISLR.AnularRetencion.Anular
 {
     
     public class Ficha
@@ -15,14 +15,16 @@ namespace sPago.OOB.RetISLR.AnularRetencion
         public string autoPago { get; set; }
         public string autoRecibo { get; set; }
         public List<DocCompraAplicaRetencion> docCompraAplicaRetencion { get; set; }
+        public docRegistro registroAnulacion { get; set; }
 
 
-        public Ficha()
+        public Ficha() 
         {
             autoDocRetencion = "";
             autoPago = "";
             autoRecibo = "";
             docCompraAplicaRetencion = new List<DocCompraAplicaRetencion>();
+            registroAnulacion = new docRegistro();
         }
 
     }

@@ -44,15 +44,47 @@ namespace Service.SERVICE
         //
         public DTO.Resutado.AutoId RetISLR_GenerarRetencion(DTO.RetISLR.GenerarRetencion.Ficha ficha)
         {
+            var xficha = new DTO.RetISLR.GenerarRetencion.Verifica()
+            {
+                docAplicaRet = ficha.docAplicaRet.Select(s =>
+                {
+                    var nr = new DTO.RetISLR.GenerarRetencion.DocAplicaRet()
+                    {
+                        autoDoc = s.autoDoc,
+                        montoAplica = s.montoAplica,
+                        tasaAplica = s.tasaAplica,
+                    };
+                    return nr;
+                }).ToList(),
+                docActualizarSaldoCxP = ficha.docActualizarSaldoCxP.Select(s =>
+                {
+                    var nr = new DTO.RetISLR.GenerarRetencion.DocActualizarSaldoCxP()
+                    {
+                        idDocCxP = s.idDocCxP,
+                        montoAbonado = s.montoAbonado,
+                    };
+                    return nr;
+                }).ToList(),
+            };
+            var r01 = ServiceProv.RetISLR_GenerarRetencion_Veirificar(xficha);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                var rt= new DTO.Resutado.AutoId ()
+                {
+                     Result = DTO.Resutado.Enumerados.EnumResult.isError,
+                      Mensaje=r01.Mensaje,
+                };
+                return rt;
+            }
             return ServiceProv.RetISLR_GenerarRetencion(ficha);
         }
-        public DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Ficha ficha)
-        {
-            return ServiceProv.RetISLR_AnularRetencion(ficha);
-        }
-        public DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
+        public DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.CapturarData.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
         {
             return ServiceProv.RetISLR_AnularRetencion_GetData(idRetencion);
+        }
+        public DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Anular.Ficha ficha)
+        {
+            return ServiceProv.RetISLR_AnularRetencion(ficha);
         }
 
     }

@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DTO.RetISLR.AnularRetencion
+namespace sPago.OOB.RetISLR.AnularRetencion.CapturarData
 {
-
     
     public class DocCompraAplicaRetencion
     {

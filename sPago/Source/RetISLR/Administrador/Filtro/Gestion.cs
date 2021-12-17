@@ -16,7 +16,7 @@ namespace sPago.Source.RetISLR.Administrador.Filtro
 
         public DateTime GetDesde { get { return _data.GetDesde; } }
         public DateTime GetHasta { get { return _data.GetHasta; } }
-        public string Filtros { get; set; }
+        public string Filtros { get { return filtro(); } }
 
 
         public Gestion()
@@ -38,6 +38,14 @@ namespace sPago.Source.RetISLR.Administrador.Filtro
         public void setFechaHasta(DateTime fecha)
         {
             _data.setFechaHasta(fecha);
+        }
+
+        private string filtro()
+        {
+            var rt = "";
+            rt += "Desde: " + _data.GetDesde.ToShortDateString();
+            rt += ", Hasta: " + _data.GetHasta.ToShortDateString();
+            return rt;
         }
 
     }

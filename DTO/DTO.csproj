@@ -52,8 +52,11 @@
     <Compile Include="Resutado\AutoId.cs" />
     <Compile Include="Resutado\Entidad.cs" />
     <Compile Include="Resutado\Lista.cs" />
-    <Compile Include="RetISLR\AnularRetencion\DocAplicaRetencion.cs" />
-    <Compile Include="RetISLR\AnularRetencion\Ficha.cs" />
+    <Compile Include="RetISLR\AnularRetencion\Anular\DocAplicaRetencion.cs" />
+    <Compile Include="RetISLR\AnularRetencion\Anular\docRegistro.cs" />
+    <Compile Include="RetISLR\AnularRetencion\Anular\Ficha.cs" />
+    <Compile Include="RetISLR\AnularRetencion\CapturarData\DocAplicaRetencion.cs" />
+    <Compile Include="RetISLR\AnularRetencion\CapturarData\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Filtro.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\Entidad\Ficha.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="RetISLR\GenerarRetencion\Recibo.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Retencion.cs" />
     <Compile Include="RetISLR\GenerarRetencion\RetencionDet.cs" />
+    <Compile Include="RetISLR\GenerarRetencion\Verifica.cs" />
     <Compile Include="RetISLR\Lista\Ficha.cs" />
     <Compile Include="RetISLR\Lista\Filtro.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />

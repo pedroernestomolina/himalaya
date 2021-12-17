@@ -152,13 +152,40 @@ namespace sPago.Source.RetISLR.Administrador
             var mr = MessageBox.Show(msg, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
             if (mr == DialogResult.Yes)
             {
-                var r01 = Sistema.MyData.RetISLR_AnularRetencion_GetData(idDoc);
+                var r01 = Sistema.MyData.RetISLR_AnularRetencion_CapturarData(idDoc);
                 if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
                 {
                     Helpers.Msg.Error(r01.Mensaje);
                     return;
                 }
-                var r02 = Sistema.MyData.RetISLR_AnularRetencion(r01.MiEntidad);
+
+                var s = r01.MiEntidad;
+                var ficha = new OOB.RetISLR.AnularRetencion.Anular.Ficha()
+                {
+                    autoDocRetencion = s.autoDocRetencion,
+                    autoPago = s.autoPago,
+                    autoRecibo = s.autoRecibo,
+                    docCompraAplicaRetencion = s.docCompraAplicaRetencion.Select(ss => 
+                    {
+                        var nr = new OOB.RetISLR.AnularRetencion.Anular.DocCompraAplicaRetencion()
+                        {
+                            autoCxP = ss.autoCxP,
+                            autoDocCompra = ss.autoDocCompra,
+                            montoAplica = ss.montoAplica,
+                        };
+                        return nr;
+                    }).ToList(),
+                };
+                ficha.docRegistrAnulacion = new OOB.RetISLR.AnularRetencion.Anular.DocRegistro()
+                {
+                    autoDoc = idDoc,
+                    detalle = "ANULA PLANILLA RET ISLR",
+                    equipoEstacion = Sistema.EquipoEstacion,
+                    moduloOrigen = "07R2",
+                    usuCodigo = Sistema.Usuario.codigoUsu,
+                    usuNombre = Sistema.Usuario.nombreUsu,
+                };
+                var r02 = Sistema.MyData.RetISLR_AnularRetencion(ficha);
                 if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
                 {
                     Helpers.Msg.Error(r02.Mensaje);

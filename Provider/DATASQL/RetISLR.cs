@@ -69,7 +69,7 @@ namespace Provider.DATASQL
                         c.total as total,
                         c.estatus as estatus
                         FROM compras as c ";
-                    var sql_2= " where 1=1 and comprobante_retencion_islr='' ";
+                    var sql_2= " where 1=1 and  c.estatus='0' and c.tipo in ('01','02','03') and c.comprobante_retencion_islr='' ";
                     if (filtro.idProv!= "")
                     {
                         p1.ParameterName = "idProv";
@@ -534,7 +534,88 @@ namespace Provider.DATASQL
 
             return rt;
         }
-        public DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Ficha ficha)
+        public DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.CapturarData.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
+        {
+            var rt = new DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.CapturarData.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var eRet = cn.retenciones_compras.Find(idRetencion);
+                    if (eRet == null)
+                    {
+                        rt.Mensaje = "DOCUMENTO RETENCION A ANULAR NO ENCONTRADO";
+                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return rt;
+                    }
+                    var nr = new DTO.RetISLR.AnularRetencion.CapturarData.Ficha()
+                    {
+                        autoDocRetencion = eRet.auto,
+                        autoPago = eRet.auto_cxp,
+                        autoRecibo = eRet.auto_recibo_cxp,
+                    };
+
+                    var lst = new List<DTO.RetISLR.AnularRetencion.CapturarData.DocCompraAplicaRetencion>();
+                    var eRetDet = cn.retenciones_compras_detalle.Where(w => w.auto == idRetencion).ToList();
+                    foreach (var d in eRetDet)
+                    {
+                        var rg = new DTO.RetISLR.AnularRetencion.CapturarData.DocCompraAplicaRetencion()
+                        {
+                            autoDocCompra = d.auto_documento,
+                            montoAplica = d.retencion,
+                        };
+
+                        var eCxP = cn.cxp.FirstOrDefault(f => f.auto_documento == rg.autoDocCompra && f.modulo_origen == "07");
+                        if (eCxP == null)
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP NO ENCONTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        rg.autoCxP = eCxP.auto;
+                        lst.Add(rg);
+                    }
+                    nr.docCompraAplicaRetencion = lst;
+
+                    rt.MiEntidad = nr;
+                }
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                var dbUpdateEx = ex as System.Data.Entity.Infrastructure.DbUpdateException;
+                var sqlEx = dbUpdateEx.InnerException;
+                if (sqlEx != null)
+                {
+                    var exx = (SqlException)sqlEx.InnerException;
+                    if (exx != null)
+                    {
+                        if (exx.Number == 1452)
+                        {
+                            rt.Mensaje = "PROBLEMA DE CLAVE FORANEA" + Environment.NewLine + exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        else
+                        {
+                            rt.Mensaje = exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                    }
+                }
+                rt.Mensaje = ex.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Ficha RetISLR_AnularRetencion(DTO.RetISLR.AnularRetencion.Anular.Ficha ficha)
         {
             var rt = new DTO.Resutado.Ficha();
 
@@ -559,14 +640,11 @@ namespace Provider.DATASQL
                             rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
                             return rt;
                         }
-
-                        var p1 = new SqlParameter("@autoDoc", ficha.autoDocRetencion);
-                        var sql = "update retenciones_compras set estatus='1' where auto=@autoDoc";
-                        cn.Database.ExecuteSqlCommand(sql, p1);
+                        eRet.estatus = "1";
                         cn.SaveChanges();
 
                         var p2 = new SqlParameter("@autoDoc", ficha.autoDocRetencion);
-                        sql = "update retenciones_compras_detalle set estatus='1' where auto_documento=@autoDoc";
+                        var sql = "update retenciones_compras_detalle set estatus='1' where auto_documento=@autoDoc";
                         cn.Database.ExecuteSqlCommand(sql, p2);
                         cn.SaveChanges();
 
@@ -599,6 +677,31 @@ namespace Provider.DATASQL
                         var p5 = new SqlParameter("@autoRecibo", ficha.autoRecibo);
                         sql = "update cxp_modo_pago set estatus_anulado='1' where auto_recibo=@autoRecibo";
                         cn.Database.ExecuteSqlCommand(sql, p5);
+                        cn.SaveChanges();
+
+                        sql = "update contadores set a_documentos_anulados=a_documentos_anulados+1";
+                        cn.Database.ExecuteSqlCommand(sql);
+                        cn.SaveChanges();
+
+                        sql = "select a_documentos_anulados from contadores";
+                        var aDoc=cn.Database.SqlQuery<int>(sql).FirstOrDefault();
+                        var autoDoc = aDoc.ToString().Trim().PadLeft(10, '0');
+
+                        var anu= ficha.registroAnulacion;
+                        var tp1 = new SqlParameter("@codigo", anu.moduloOrigen);
+                        var tp2 = new SqlParameter("@fecha", fechaSistema.Date);
+                        var tp3 = new SqlParameter("@hora", fechaSistema.ToShortTimeString());
+                        var tp4 = new SqlParameter("@detalle", anu.detalle);
+                        var tp5 = new SqlParameter("@estacion", anu.equipoEstacion);
+                        var tp6 = new SqlParameter("@usuario", anu.usuNombre);
+                        var tp7 = new SqlParameter("@codigo_usuario ", anu.usuCodigo);
+                        var tp8 = new SqlParameter("@auto ", autoDoc);
+                        var tp9 = new SqlParameter("@auto_documento", anu.autoDoc);
+                        sql = @"INSERT INTO documentos_anulados
+                                (codigo ,fecha ,hora ,detalle ,estacion ,usuario ,codigo_usuario ,auto ,auto_documento)
+                                VALUES
+                                (@codigo ,@fecha ,@hora ,@detalle ,@estacion ,@usuario ,@codigo_usuario ,@auto ,@auto_documento)";
+                        cn.Database.ExecuteSqlCommand(sql, tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp9);
                         cn.SaveChanges();
 
                         ts.Complete();
@@ -639,51 +742,77 @@ namespace Provider.DATASQL
 
             return rt;
         }
-        public DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion)
+        public DTO.Resutado.Ficha RetISLR_GenerarRetencion_Veirificar(DTO.RetISLR.GenerarRetencion.Verifica ficha)
         {
-            var rt = new DTO.Resutado.Entidad<DTO.RetISLR.AnularRetencion.Ficha>();
+            var rt = new DTO.Resutado.Ficha();
 
             try
             {
                 using (var cn = new EPago(_cn.ConnectionString))
                 {
-                    var eRet = cn.retenciones_compras.Find(idRetencion);
-                    if (eRet == null) 
-                    {
-                        rt.Mensaje = "DOCUMENTO RETENCION A ANULAR NO ENCONTRADO";
-                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
-                        return rt;
-                    }
-                    var nr = new DTO.RetISLR.AnularRetencion.Ficha()
-                    {
-                        autoDocRetencion = eRet.auto,
-                        autoPago = eRet.auto_cxp,
-                        autoRecibo = eRet.auto_recibo_cxp,
-                    };
 
-                    var lst = new List<DTO.RetISLR.AnularRetencion.DocCompraAplicaRetencion>();
-                    var eRetDet = cn.retenciones_compras_detalle.Where(w => w.auto == idRetencion).ToList();
-                    foreach (var d in eRetDet)
+                    foreach (var r in ficha.docAplicaRet)
                     {
-                        var rg = new DTO.RetISLR.AnularRetencion.DocCompraAplicaRetencion()
+                        var entDocAplicaRet = cn.compras.Find(r.autoDoc);
+                        if (entDocAplicaRet == null)
                         {
-                            autoDocCompra = d.auto_documento,
-                            montoAplica = d.retencion,
-                        };
-
-                        var eCxP = cn.cxp.FirstOrDefault(f=>f.auto_documento==rg.autoDocCompra && f.modulo_origen=="07");
-                        if (eCxP==null)
-                        {
-                            rt.Mensaje = "DOCUMENTO CXP NO ENCONTRADO";
+                            rt.Mensaje = "DOCUMENTO COMPRA AL CUAL APLICA RETENCION ESTATUS: NO ENCONTRADO";
                             rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
                             return rt;
                         }
-                        rg.autoCxP = eCxP.auto;
-                        lst.Add(rg);
+                        if (entDocAplicaRet.estatus.Trim().ToUpper() == "1")
+                        {
+                            rt.Mensaje = "DOCUMENTO COMPRA AL CUAL APLICA RETENCION ESTATUS: ANULADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (
+                            (entDocAplicaRet.comprobante_retencion_islr.Trim() != "") ||
+                            (entDocAplicaRet.tasa_retencion_islr != 0m) ||
+                            (entDocAplicaRet.retencion_islr != 0m)
+                           )
+                        {
+                            rt.Mensaje = "DOCUMENTO COMPRA AL CUAL APLICA RETENCION ESTATUS: YA POSEE UNA RETENCION";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (!new[] {"01","02","03"}.Contains(entDocAplicaRet.tipo))
+                        {
+                            rt.Mensaje = "DOCUMENTO COMPRA: TIPO DOCUMENTO INCORRECTO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
                     }
-                    nr.docCompraAplicaRetencion = lst;
 
-                    rt.MiEntidad = nr;
+                    foreach (var r in ficha.docActualizarSaldoCxP)
+                    {
+                        var entCxP = cn.cxp.Find(r.idDocCxP);
+                        if (entCxP == null)
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP ESTATUS: NO ENCONTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (entCxP.estatus.Trim().ToUpper() == "1")
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP ESTATUS: ANULADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (entCxP.cancelado.Trim().ToUpper() == "1")
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP ESTATUS: PAGADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if ((entCxP.acumulado + r.montoAbonado) > entCxP.importe)
+                        {
+                            rt.Mensaje = "DOCUMENTO CXP ESTATUS: MONTO PAGO INCORRECTO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                    }
+
                 }
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException ex)

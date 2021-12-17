@@ -21,8 +21,8 @@ namespace sPago.DataProvider.IData
         //
 
         OOB.Resultado.AutoId RetISLR_GenerarRetencion(OOB.RetISLR.GenerarRetencion.Ficha ficha);
-        OOB.Resultado.Ficha RetISLR_AnularRetencion(OOB.RetISLR.AnularRetencion.Ficha ficha);
-        OOB.Resultado.Entidad<OOB.RetISLR.AnularRetencion.Ficha> RetISLR_AnularRetencion_GetData(string idRetencion);
+        OOB.Resultado.Entidad<OOB.RetISLR.AnularRetencion.CapturarData.Ficha> RetISLR_AnularRetencion_CapturarData(string idRetencion);
+        OOB.Resultado.Ficha RetISLR_AnularRetencion(OOB.RetISLR.AnularRetencion.Anular.Ficha ficha);
 
         //
         OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha> RetISLR_GetLista(OOB.RetISLR.Lista.Filtro filtro);

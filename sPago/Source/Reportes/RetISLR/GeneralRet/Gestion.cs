@@ -29,10 +29,10 @@ namespace sPago.Source.Reportes.RetISLR.GeneralRet
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
-            Imprime(r01.ListaEntidad);
+            Imprime(r01.ListaEntidad,filtros.FiltrarPor);
         }
 
-        private void Imprime(List<OOB.RetISLR.Entidad.Ficha> _lst)
+        private void Imprime(List<OOB.RetISLR.Entidad.Ficha> _lst, string _filtro)
         {
             var pt = AppDomain.CurrentDomain.BaseDirectory + @"Source\Reportes\RetISLR\Retencion.rdlc";
             var ds = new DS_ISLR();
@@ -57,7 +57,7 @@ namespace sPago.Source.Reportes.RetISLR.GeneralRet
             var pmt = new List<ReportParameter>();
             pmt.Add(new ReportParameter("EMPRESA_RIF", Sistema.DatosEmpresa.ciRif));
             pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
-            //pmt.Add(new ReportParameter("Filtros", _filtros));
+            pmt.Add(new ReportParameter("FILTRO", _filtro));
             Rds.Add(new ReportDataSource("documento", ds.Tables["documento"]));
 
             var frp = new ReporteFrm();

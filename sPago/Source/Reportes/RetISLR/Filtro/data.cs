@@ -30,6 +30,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         }
         public DateTime GetDesde { get { return _desde; } }
         public DateTime GetHasta { get { return _hasta; } }
+        public string FiltrarPor { get { return filtrar(); } }
 
 
         public data() 
@@ -67,6 +68,18 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         public void setEstatus(ficha ficha)
         {
             _estatus = ficha;
+        }
+
+        private string filtrar()
+        {
+            var rt = "";
+            rt += "Desde: " + _desde.ToShortDateString();
+            rt += ", Hasta: " + _hasta.ToShortDateString();
+            if (_estatus !=null)
+            {
+                rt += ", Estatus: " + _estatus.desc;
+            };
+            return rt;
         }
 
     }
