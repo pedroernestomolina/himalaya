@@ -17,8 +17,11 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         private bool _abandonarIsOk;
         private List<ficha> _lEstatus;
         private BindingSource _bsEstatus;
+        private string _cadenaProv;
+        private Proveedor.Lista.Gestion _gListaProv;
 
 
+        public string Proveedor { get { return _data.GetNombreProveedor; } }
         public DateTime Desde { get { return _data.GetDesde; } }
         public DateTime Hasta { get { return _data.GetHasta; } }
         public bool FiltrosIsOk { get { return _filtrarIsOk; } }
@@ -35,16 +38,20 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
             _lEstatus = new List<ficha>();
             _bsEstatus = new BindingSource();
             _bsEstatus.DataSource = _lEstatus;
+            _cadenaProv = "";
+            _gListaProv = new Proveedor.Lista.Gestion();
         }
 
 
         public void Inicializa()
         {
+            _cadenaProv = "";
             _lEstatus.Clear();
             _bsEstatus.DataSource = _lEstatus;
             _filtrarIsOk = false;
             _abandonarIsOk = false;
             _data.Limpiar();
+            _gListaProv.Inicializa();
         }
 
         FiltrosFrm frm;
@@ -97,6 +104,36 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         public void Abandonar()
         {
             _abandonarIsOk = true;
+        }
+
+        public void setCadenaProv(string cadena)
+        {
+            _cadenaProv = cadena;
+        }
+
+        public void BuscarProveedor()
+        {
+            if (_cadenaProv == "")
+                return;
+
+            var filtro = new OOB.Proveedor.Lista.Filtro()
+            {
+                cadena = _cadenaProv,
+                metodoBusq = OOB.Proveedor.enumerados.metodosBusq.PorRazonSocial,
+            };
+            var r01 = Sistema.MyData.Proveedor_GetLista(filtro);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            _gListaProv.Inicializa();
+            _gListaProv.setLista(r01.ListaEntidad);
+            _gListaProv.Inicia();
+            if (_gListaProv.ItemSeleccionadoIsOk)
+            {
+                _data.setProveedor(_gListaProv.ItemSeleccionado);
+            }
         }
 
     }

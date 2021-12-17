@@ -18,6 +18,7 @@ namespace sPago.Source.Reportes.RetISLR.GeneralRet
         {
             var filtro = new OOB.RetISLR.Lista.Filtro()
             {
+                idProv = filtros.GetIdProveedor,
                 estatus = filtros.GetEstatus,
                 desde = filtros.GetDesde,
                 hasta = filtros.GetHasta,

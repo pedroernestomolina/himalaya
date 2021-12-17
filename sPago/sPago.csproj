@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagenes\TOOLS.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -89,6 +92,13 @@
     <Compile Include="OOB\RetISLR\Entidad\Detalle.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Ficha.cs" />
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
+    <Compile Include="Source\Anular\AnularFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Anular\AnularFrm.Designer.cs">
+      <DependentUpon>AnularFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Anular\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\data.cs" />
     <Compile Include="Source\Proveedor\Lista\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\ListaFrm.cs">
@@ -202,6 +212,9 @@
       <DependentUpon>GenerarFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\RetISLR\Generar\Gestion.cs" />
+    <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
+      <DependentUpon>AnularFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Proveedor\Lista\ListaFrm.resx">
       <DependentUpon>ListaFrm.cs</DependentUpon>
     </EmbeddedResource>

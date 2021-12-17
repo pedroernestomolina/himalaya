@@ -15,6 +15,7 @@ namespace sPago.Source.RetISLR.Administrador
         private Filtro.Gestion _gFiltro;
         private Items.Gestion _gItem;
         private Seguridad.Gestion _gSeguridad;
+        private Anular.Gestion _gAnular;
 
 
         public int CntItems { get { return _gItem.CntItem; } }
@@ -27,6 +28,7 @@ namespace sPago.Source.RetISLR.Administrador
         {
             _gFiltro = new Filtro.Gestion();
             _gItem = new Items.Gestion();
+            _gAnular = new Anular.Gestion();
         }
 
 
@@ -34,6 +36,7 @@ namespace sPago.Source.RetISLR.Administrador
         {
             _gFiltro.Inicializa();
             _gItem.Inicializa();
+            _gAnular.Inicializa();
         }
 
         AdmDocFrm frm;
@@ -148,51 +151,56 @@ namespace sPago.Source.RetISLR.Administrador
 
         private void AnularDoc(string idDoc)
         {
-            var msg = "Seguro de Anular Documento ?";
-            var mr = MessageBox.Show(msg, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-            if (mr == DialogResult.Yes)
+            _gAnular.Inicializa();
+            _gAnular.Inicia();
+            if (_gAnular.ProcesarIsOK)
             {
-                var r01 = Sistema.MyData.RetISLR_AnularRetencion_CapturarData(idDoc);
-                if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
+                var msg = "Seguro de Anular Documento ?";
+                var mr = MessageBox.Show(msg, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                if (mr == DialogResult.Yes)
                 {
-                    Helpers.Msg.Error(r01.Mensaje);
-                    return;
-                }
-
-                var s = r01.MiEntidad;
-                var ficha = new OOB.RetISLR.AnularRetencion.Anular.Ficha()
-                {
-                    autoDocRetencion = s.autoDocRetencion,
-                    autoPago = s.autoPago,
-                    autoRecibo = s.autoRecibo,
-                    docCompraAplicaRetencion = s.docCompraAplicaRetencion.Select(ss => 
+                    var r01 = Sistema.MyData.RetISLR_AnularRetencion_CapturarData(idDoc);
+                    if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
                     {
-                        var nr = new OOB.RetISLR.AnularRetencion.Anular.DocCompraAplicaRetencion()
+                        Helpers.Msg.Error(r01.Mensaje);
+                        return;
+                    }
+
+                    var s = r01.MiEntidad;
+                    var ficha = new OOB.RetISLR.AnularRetencion.Anular.Ficha()
+                    {
+                        autoDocRetencion = s.autoDocRetencion,
+                        autoPago = s.autoPago,
+                        autoRecibo = s.autoRecibo,
+                        docCompraAplicaRetencion = s.docCompraAplicaRetencion.Select(ss =>
                         {
-                            autoCxP = ss.autoCxP,
-                            autoDocCompra = ss.autoDocCompra,
-                            montoAplica = ss.montoAplica,
-                        };
-                        return nr;
-                    }).ToList(),
-                };
-                ficha.docRegistrAnulacion = new OOB.RetISLR.AnularRetencion.Anular.DocRegistro()
-                {
-                    autoDoc = idDoc,
-                    detalle = "ANULA PLANILLA RET ISLR",
-                    equipoEstacion = Sistema.EquipoEstacion,
-                    moduloOrigen = "07R2",
-                    usuCodigo = Sistema.Usuario.codigoUsu,
-                    usuNombre = Sistema.Usuario.nombreUsu,
-                };
-                var r02 = Sistema.MyData.RetISLR_AnularRetencion(ficha);
-                if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
-                {
-                    Helpers.Msg.Error(r02.Mensaje);
-                    return;
+                            var nr = new OOB.RetISLR.AnularRetencion.Anular.DocCompraAplicaRetencion()
+                            {
+                                autoCxP = ss.autoCxP,
+                                autoDocCompra = ss.autoDocCompra,
+                                montoAplica = ss.montoAplica,
+                            };
+                            return nr;
+                        }).ToList(),
+                    };
+                    ficha.docRegistrAnulacion = new OOB.RetISLR.AnularRetencion.Anular.DocRegistro()
+                    {
+                        autoDoc = idDoc,
+                        detalle = _gAnular.Motivo,
+                        equipoEstacion = Sistema.EquipoEstacion,
+                        moduloOrigen = "07R2",
+                        usuCodigo = Sistema.Usuario.codigoUsu,
+                        usuNombre = Sistema.Usuario.nombreUsu,
+                    };
+                    var r02 = Sistema.MyData.RetISLR_AnularRetencion(ficha);
+                    if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                    {
+                        Helpers.Msg.Error(r02.Mensaje);
+                        return;
+                    }
+                    _gItem.setEstatusAnuladoItemActual();
+                    Helpers.Msg.EliminarOk();
                 }
-                _gItem.setEstatusAnuladoItemActual();
-                Helpers.Msg.EliminarOk();
             }
         }
 

@@ -14,6 +14,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         private ficha _estatus;
         private DateTime _desde;
         private DateTime _hasta;
+        private Proveedor.Lista.data _prov;
 
 
         public string GetEstatus 
@@ -27,6 +28,30 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
                 }
                 return rt;
             }
+        }
+        public string GetNombreProveedor 
+        {
+            get 
+            {
+                var rt = "";
+                if (_prov != null)
+                {
+                    rt = _prov.razonSocial ;
+                }
+                return rt;
+            } 
+        }
+        public string GetIdProveedor 
+        {
+            get
+            {
+                var rt = "";
+                if (_prov != null)
+                {
+                    rt = _prov.auto;
+                }
+                return rt;
+            } 
         }
         public DateTime GetDesde { get { return _desde; } }
         public DateTime GetHasta { get { return _hasta; } }
@@ -43,6 +68,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
             _estatus = null;
             _desde = DateTime.Now.Date;
             _hasta= DateTime.Now.Date;
+            _prov = null;
         }
 
         public void setFechaDesde(DateTime fecha)
@@ -79,7 +105,17 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
             {
                 rt += ", Estatus: " + _estatus.desc;
             };
+            if (_prov != null)
+            {
+                rt += ", Proveedor: " + _prov.razonSocial;
+            };
+
             return rt;
+        }
+
+        public void setProveedor(Proveedor.Lista.data ficha)
+        {
+            _prov = ficha;
         }
 
     }

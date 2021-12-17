@@ -35,6 +35,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
         {
             DTP_DESDE.Value = _controlador.Desde;
             DTP_HASTA.Value = _controlador.Hasta;
+            TB_PROVEEDOR.Text = _controlador.Proveedor;
             CB_ESTATUS.DataSource = _controlador.EstatusSource;
             CB_ESTATUS.SelectedIndex = -1;
         }
@@ -55,6 +56,7 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
             DTP_DESDE.Value = _controlador.Desde;
             DTP_HASTA.Value = _controlador.Hasta;
             CB_ESTATUS.SelectedIndex = -1;
+            TB_PROVEEDOR.Text= _controlador.Proveedor;
         }
 
         private void L_ESTATUS_Click(object sender, EventArgs e)
@@ -126,6 +128,26 @@ namespace sPago.Source.Reportes.RetISLR.Filtro
 
         private void BT_PROVEEDOR_BUSCAR_Click(object sender, EventArgs e)
         {
+            BuscarProveedor();
+        }
+
+        private void BuscarProveedor()
+        {
+            _controlador.BuscarProveedor();
+            TB_PROVEEDOR.Text = _controlador.Proveedor;
+        }
+
+        private void TB_PROVEEDOR_Leave(object sender, EventArgs e)
+        {
+            _controlador.setCadenaProv(TB_PROVEEDOR.Text.Trim().ToUpper());
+        }
+
+        private void TB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
         }
        
     }
