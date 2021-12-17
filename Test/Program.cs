@@ -64,6 +64,13 @@ namespace Test
             //var r16 = dataProv.RetISLR_AnularRetencion_GetData("0000000015");
             //var r17 = dataProv.RetISLR_AnularRetencion(r16.MiEntidad);
 
+            // var ficha18 = new DTO.Sistema.DocAnulado.Buscar.Ficha()
+            // {
+            //     autoDoc = "0000000018",
+            //     moduloOrigen = "07R2",
+            // };
+            //var r18 = dataProv.Sistema_DocAnulado_Buscar (ficha18);
+
         }
 
     }

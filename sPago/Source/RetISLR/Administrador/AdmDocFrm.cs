@@ -236,18 +236,22 @@ namespace sPago.Source.RetISLR.Administrador
         {
         }
 
-        private void DGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            //if ((e.ColumnIndex == DGV.Columns["Sucursal"].Index) && e.Value != null)
-            //{ 
-            //    DataGridViewCell cell =DGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    cell.ToolTipText = DGV.Rows[e.RowIndex].Cells["SucursalDesc"].Value.ToString();
-            //}
-        }
-
         public void setControlador(Gestion ctr)
         {
             _controlador = ctr;
+        }
+
+        private void DGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex !=-1 && e.ColumnIndex!=-1)
+            {
+                VisualizarDocAnulado();
+            }
+        }
+
+        private void VisualizarDocAnulado()
+        {
+            _controlador.VisualizarDocAnulado();
         }
 
     }

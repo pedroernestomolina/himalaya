@@ -75,6 +75,8 @@
     <Compile Include="RetISLR\GenerarRetencion\Verifica.cs" />
     <Compile Include="RetISLR\Lista\Ficha.cs" />
     <Compile Include="RetISLR\Lista\Filtro.cs" />
+    <Compile Include="Sistema\DocAnulado\Buscar\Ficha.cs" />
+    <Compile Include="Sistema\DocAnulado\Entidad\Ficha.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />
   </ItemGroup>
   <ItemGroup />

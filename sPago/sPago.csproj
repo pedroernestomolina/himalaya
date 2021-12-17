@@ -66,6 +66,7 @@
     <Compile Include="DataProvider\Data\Proveedor.cs" />
     <Compile Include="DataProvider\Data\Provider.cs" />
     <Compile Include="DataProvider\Data\RetISLR.cs" />
+    <Compile Include="DataProvider\Data\Sistema.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
     <Compile Include="DataProvider\IData\IConfiguracion.cs" />
     <Compile Include="DataProvider\IData\IEmpresa.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="DataProvider\IData\IProveedor.cs" />
     <Compile Include="DataProvider\IData\IProvider.cs" />
     <Compile Include="DataProvider\IData\IRetISLR.cs" />
+    <Compile Include="DataProvider\IData\ISistema.cs" />
     <Compile Include="DataProvider\IData\IUsuario.cs" />
     <Compile Include="Helpers\Msg.cs" />
     <Compile Include="Helpers\Utils.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="OOB\RetISLR\Entidad\Detalle.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Ficha.cs" />
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
+    <Compile Include="OOB\Sistema\DocAnulado\Buscar\Ficha.cs" />
+    <Compile Include="OOB\Sistema\DocAnulado\Entidad\Ficha.cs" />
     <Compile Include="Source\Anular\AnularFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +216,13 @@
       <DependentUpon>GenerarFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\RetISLR\Generar\Gestion.cs" />
+    <Compile Include="Source\SistemaCtrl\VerAnulacion\Gestion.cs" />
+    <Compile Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.designer.cs">
+      <DependentUpon>VisualizarFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Principal\MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.resx">
+      <DependentUpon>VisualizarFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

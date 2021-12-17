@@ -56,6 +56,7 @@
     <Compile Include="DATASQL\Proveedor.cs" />
     <Compile Include="DATASQL\Provider.cs" />
     <Compile Include="DATASQL\RetISLR.cs" />
+    <Compile Include="DATASQL\Sistema.cs" />
     <Compile Include="DATASQL\Usuario.cs" />
     <Compile Include="IDATA\IConfiguracion.cs" />
     <Compile Include="IDATA\IEmpresa.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="IDATA\IProveedor.cs" />
     <Compile Include="IDATA\IProvider.cs" />
     <Compile Include="IDATA\IRetISLR.cs" />
+    <Compile Include="IDATA\ISistema.cs" />
     <Compile Include="IDATA\IUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

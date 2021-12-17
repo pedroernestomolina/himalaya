@@ -16,6 +16,7 @@ namespace sPago.Source.RetISLR.Administrador
         private Items.Gestion _gItem;
         private Seguridad.Gestion _gSeguridad;
         private Anular.Gestion _gAnular;
+        private SistemaCtrl.VerAnulacion.Gestion _gAuditoria;
 
 
         public int CntItems { get { return _gItem.CntItem; } }
@@ -29,6 +30,7 @@ namespace sPago.Source.RetISLR.Administrador
             _gFiltro = new Filtro.Gestion();
             _gItem = new Items.Gestion();
             _gAnular = new Anular.Gestion();
+            _gAuditoria = new  SistemaCtrl.VerAnulacion.Gestion();
         }
 
 
@@ -37,6 +39,7 @@ namespace sPago.Source.RetISLR.Administrador
             _gFiltro.Inicializa();
             _gItem.Inicializa();
             _gAnular.Inicializa();
+            _gAuditoria.Inicializa();
         }
 
         AdmDocFrm frm;
@@ -207,6 +210,34 @@ namespace sPago.Source.RetISLR.Administrador
         public void setGSeguridad(Seguridad.Gestion gSeguridad)
         {
             _gSeguridad = gSeguridad;
+        }
+
+        public void VisualizarDocAnulado()
+        {
+            if (_gItem.ItemActual == null)
+            {
+                return;
+            }
+            if (!_gItem.ItemActual.IsAnulado)
+            {
+                return;
+            }
+
+            var ficha = new OOB.Sistema.DocAnulado.Buscar.Ficha()
+            {
+                autoDoc = _gItem.ItemActual.Id,
+                moduloOrigen = "07R2",
+            };
+            var r01 = sPago.Sistema.MyData.Sistema_DocAnulado_Buscar(ficha);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+
+            _gAuditoria.Inicializa();
+            _gAuditoria.setData(r01.MiEntidad);
+            _gAuditoria.Inicia();
         }
 
     }

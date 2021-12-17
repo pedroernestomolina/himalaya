@@ -9,7 +9,7 @@ namespace Provider.IDATA
 {
 
     public interface IProvider : ILogin , IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR, IEmpresa
+        IRetISLR, IEmpresa, ISistema
     {
 
         DTO.Resutado.Entidad<DateTime> FechaSistema();
