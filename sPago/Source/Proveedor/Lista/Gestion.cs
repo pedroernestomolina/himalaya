@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace sPago.Source.Proveedor.Lista
 {
 
-    public class Gestion
+    public class Gestion: Filtrar.IListaProv
     {
 
         private List<data> _lst;
@@ -22,6 +22,7 @@ namespace sPago.Source.Proveedor.Lista
         public BindingSource Source { get { return _bs; } }
         public data ItemSeleccionado { get { return _itemSeleccionado; } }
         public bool ItemSeleccionadoIsOk { get { return _itemSeleccionado!=null; } }
+        public OOB.Proveedor.Entidad.Ficha ProveedorSeleccionado { get { return _itemSeleccionado.Ficha; } }
 
 
         public Gestion()
@@ -39,7 +40,7 @@ namespace sPago.Source.Proveedor.Lista
             _lst.Clear();
             foreach (var rg in list.OrderBy(o=>o.nombreRazonSocial).ToList())
             {
-                _lst.Add(new data(rg.id, rg.ciRif, rg.nombreRazonSocial, rg.estatus));
+                _lst.Add(new data(rg));
             }
             _bs.CurrencyManager.Refresh();
         }

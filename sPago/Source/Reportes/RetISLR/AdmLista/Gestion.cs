@@ -29,7 +29,7 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
             _filtros = p;
         }
 
-        public void setLista(List<Source.RetISLR.Administrador.Items.data> lst)
+        public void setLista(List<AdministradorDoc.data> lst)
         {
             _lst.Clear();
             foreach(var r in lst)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace sPago.Source.Anular
 {
     
-    public class Gestion
+    public class Gestion: IGestion
     {
 
 

@@ -45,9 +45,7 @@ namespace Provider.DATASQL
 
             return result;
         }
-
         //
-
         public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_Solicitud_ElaborarRetencionISLR(string idGrupo)
         {
             var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
@@ -182,6 +180,194 @@ namespace Provider.DATASQL
                 {
                     var p1 = new SqlParameter("p1", idGrupo);
                     var p2 = new SqlParameter("p2", "0530990000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        //
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_ToolPago(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0501000000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_Adminstrador(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0502000000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_Adminstrador_AnularPago(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0502010000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        //
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_DocumentosPorPagar(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0599010000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_PagosEmitidos(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0599020000");
+                    var sql = @"select estatus, seguridad as nivelSeguridad
+                    from grupo_opciones 
+                    where codigo_grupo=@p1 and codigo_opcion=@p2";
+                    var ent = cn.Database.SqlQuery<DTO.Permiso.Solictud.Ficha>(sql, p1, p2).FirstOrDefault();
+                    if (ent == null)
+                    {
+                        result.Mensaje = "OPCION NO DEFINIDA";
+                        result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return result;
+                    }
+                    result.MiEntidad = ent;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Mensaje = e.Message;
+                result.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return result;
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_AnalisisVencimiento(string idGrupo)
+        {
+            var result = new DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("p1", idGrupo);
+                    var p2 = new SqlParameter("p2", "0599030000");
                     var sql = @"select estatus, seguridad as nivelSeguridad
                     from grupo_opciones 
                     where codigo_grupo=@p1 and codigo_opcion=@p2";

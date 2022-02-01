@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider\Data\Configuracion.cs" />
+    <Compile Include="DataProvider\Data\CtaPagar.cs" />
     <Compile Include="DataProvider\Data\Empresa.cs" />
     <Compile Include="DataProvider\Data\Login.cs" />
     <Compile Include="DataProvider\Data\Permiso.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="DataProvider\Data\Sistema.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
     <Compile Include="DataProvider\IData\IConfiguracion.cs" />
+    <Compile Include="DataProvider\IData\ICtaPagar.cs" />
     <Compile Include="DataProvider\IData\IEmpresa.cs" />
     <Compile Include="DataProvider\IData\ILogin.cs" />
     <Compile Include="DataProvider\IData\IPermiso.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="LibControl\NumeroEnt.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="OOB\CtaPagar\Lista\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\Lista\Filtro.cs" />
     <Compile Include="OOB\Empresa\Entidad\Ficha.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocCompraAplicaRetencion.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocRegistro.cs" />
@@ -96,6 +100,9 @@
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Entidad\Ficha.cs" />
+    <Compile Include="Source\AdministradorDoc\data.cs" />
+    <Compile Include="Source\AdministradorDoc\Enumerados.cs" />
+    <Compile Include="Source\AdministradorDoc\GestionLista.cs" />
     <Compile Include="Source\Anular\AnularFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +110,29 @@
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Anular\Gestion.cs" />
+    <Compile Include="Source\AdministradorDoc\AdmDocFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AdministradorDoc\AdmDocFrm.Designer.cs">
+      <DependentUpon>AdmDocFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AdministradorDoc\Gestion.cs" />
+    <Compile Include="Source\AdministradorDoc\IGestion.cs" />
+    <Compile Include="Source\Anular\IGestion.cs" />
+    <Compile Include="Source\CtasPagar\AdministradorDoc\Gestion.cs" />
+    <Compile Include="Source\CtasPagar\AdministradorDoc\GestionFiltro.cs" />
+    <Compile Include="Source\Filtrar\dataFiltrar.cs" />
+    <Compile Include="Source\Filtrar\ficha.cs" />
+    <Compile Include="Source\Filtrar\FiltroFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Filtrar\FiltroFrm.designer.cs">
+      <DependentUpon>FiltroFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Filtrar\Gestion.cs" />
+    <Compile Include="Source\Filtrar\IFiltrar.cs" />
+    <Compile Include="Source\Filtrar\IGestion.cs" />
+    <Compile Include="Source\Filtrar\IListaProv.cs" />
     <Compile Include="Source\Proveedor\Lista\data.cs" />
     <Compile Include="Source\Proveedor\Lista\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\ListaFrm.cs">
@@ -110,6 +140,21 @@
     </Compile>
     <Compile Include="Source\Proveedor\Lista\ListaFrm.designer.cs">
       <DependentUpon>ListaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Reportes\CtaPagar\AdmLista\data.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\AdmLista\Gestion.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\AnalisisVencimiento\Filtro.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\AnalisisVencimiento\Gestion.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\DocumentosPorPagar\Gestion.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\DocumentosPorPagar\Filtro.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\PagosEmitidos\Filtro.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\PagosEmitidos\Gestion.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\RelacionPagoProveedor\Filtro.cs" />
+    <Compile Include="Source\Reportes\CtaPagar\RelacionPagoProveedor\Gestion.cs" />
+    <Compile Include="Source\Reportes\DS_CTAPAGAR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_CTAPAGAR.xsd</DependentUpon>
     </Compile>
     <Compile Include="Source\Reportes\DS_ISLR.cs">
       <DependentUpon>DS_ISLR.xsd</DependentUpon>
@@ -120,6 +165,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS_ISLR.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Source\Reportes\Gestion.cs" />
+    <Compile Include="Source\Reportes\IReportes.cs" />
     <Compile Include="Source\Reportes\ReporteFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,34 +175,16 @@
     </Compile>
     <Compile Include="Source\Reportes\RetISLR\AdmLista\data.cs" />
     <Compile Include="Source\Reportes\RetISLR\AdmLista\Gestion.cs" />
-    <Compile Include="Source\Reportes\RetISLR\Filtro\data.cs" />
-    <Compile Include="Source\Reportes\RetISLR\Filtro\ficha.cs" />
-    <Compile Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.designer.cs">
-      <DependentUpon>FiltrosFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\Reportes\RetISLR\Filtro\Gestion.cs" />
+    <Compile Include="Source\Reportes\RetISLR\GeneralRet\Filtro.cs" />
     <Compile Include="Source\Reportes\RetISLR\GeneralRet\Gestion.cs" />
-    <Compile Include="Source\Reportes\RetISLR\Reportes\Gestion.cs" />
-    <Compile Include="Source\Reportes\RetISLR\Reportes\IGestion.cs" />
-    <Compile Include="Source\RetISLR\Administrador\AdmDocFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\RetISLR\Administrador\AdmDocFrm.Designer.cs">
-      <DependentUpon>AdmDocFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\RetISLR\Administrador\Filtro\data.cs" />
-    <Compile Include="Source\RetISLR\Administrador\Filtro\Gestion.cs" />
-    <Compile Include="Source\RetISLR\Administrador\Gestion.cs" />
-    <Compile Include="Source\RetISLR\Administrador\Items\data.cs" />
-    <Compile Include="Source\RetISLR\Administrador\Items\Gestion.cs" />
+    <Compile Include="Source\RetISLR\AdministradorDoc\Gestion.cs" />
+    <Compile Include="Source\RetISLR\AdministradorDoc\GestionFiltro.cs" />
     <Compile Include="Source\RetISLR\Generar\data.cs" />
     <Compile Include="Source\RetISLR\Generar\data_1.cs" />
     <Compile Include="Source\RetISLR\Generar\data_2.cs" />
     <Compile Include="Source\Seguridad\Enumerados.cs" />
     <Compile Include="Source\Seguridad\Gestion.cs" />
+    <Compile Include="Source\Seguridad\IGestion.cs" />
     <Compile Include="Source\Seguridad\SeguridadFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +246,7 @@
     </Compile>
     <Compile Include="Source\RetISLR\Generar\Gestion.cs" />
     <Compile Include="Source\SistemaCtrl\VerAnulacion\Gestion.cs" />
+    <Compile Include="Source\SistemaCtrl\VerAnulacion\IGestion.cs" />
     <Compile Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,23 +256,26 @@
     <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\AdministradorDoc\AdmDocFrm.resx">
+      <DependentUpon>AdmDocFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Filtrar\FiltroFrm.resx">
+      <DependentUpon>FiltroFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Proveedor\Lista\ListaFrm.resx">
       <DependentUpon>ListaFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\LIstaDoc.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\ReporteFrm.resx">
       <DependentUpon>ReporteFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Reportes\RetISLR\Filtro\FiltrosFrm.resx">
-      <DependentUpon>FiltrosFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\RetISLR\Planilla.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\RetISLR\Retencion.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\RetISLR\Administrador\AdmDocFrm.resx">
-      <DependentUpon>AdmDocFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\RetISLR\Generar\GenerarFrm.resx">
       <DependentUpon>GenerarFrm.cs</DependentUpon>
@@ -274,6 +307,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Source\Reportes\DS_CTAPAGAR.xsc">
+      <DependentUpon>DS_CTAPAGAR.xsd</DependentUpon>
+    </None>
+    <None Include="Source\Reportes\DS_CTAPAGAR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_CTAPAGAR.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Source\Reportes\DS_CTAPAGAR.xss">
+      <DependentUpon>DS_CTAPAGAR.xsd</DependentUpon>
+    </None>
     <None Include="Source\Reportes\DS_ISLR.xsc">
       <DependentUpon>DS_ISLR.xsd</DependentUpon>
     </None>
@@ -305,6 +349,7 @@
     <Content Include="Imagenes\bt_buscar.png" />
     <Content Include="Imagenes\bt_campana.png" />
     <Content Include="Imagenes\bt_compra.png" />
+    <Content Include="Imagenes\bt_configuracion.png" />
     <Content Include="Imagenes\bt_consulta.png" />
     <Content Include="Imagenes\bt_costo.png" />
     <Content Include="Imagenes\bt_documento.png" />

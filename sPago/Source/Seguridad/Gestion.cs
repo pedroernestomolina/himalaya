@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace sPago.Source.Seguridad
 {
     
-    public class Gestion
+    public class Gestion: IGestion
     {
 
         private string _clave;

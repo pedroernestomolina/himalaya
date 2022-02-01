@@ -11,20 +11,21 @@ namespace sPago.OOB.RetISLR.Lista
     public class Filtro
     {
 
+        public enum enumEstatus { SinDefinir = -1, Activo = 1, Anulado };
         public string tipoRetencion { get; set; }
-        public DateTime desde { get; set; }
-        public DateTime hasta { get; set; }
+        public DateTime? desde { get; set; }
+        public DateTime? hasta { get; set; }
         public string idProv { get; set; }
-        public string estatus { get; set; }
+        public enumEstatus estatus { get; set; }
 
 
         public Filtro()
         {
             tipoRetencion = "";
-            desde = DateTime.Now.Date;
-            hasta = DateTime.Now.Date;
+            desde = null;
+            hasta = null;
             idProv = "";
-            estatus = "";
+            estatus =  enumEstatus.SinDefinir;
         }
 
     }

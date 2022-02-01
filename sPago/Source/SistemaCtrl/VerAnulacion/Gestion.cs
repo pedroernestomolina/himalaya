@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace sPago.Source.SistemaCtrl.VerAnulacion
 {
     
-    public class Gestion
+    public class Gestion: IGestion
     {
 
         private OOB.Sistema.DocAnulado.Entidad.Ficha _ficha;

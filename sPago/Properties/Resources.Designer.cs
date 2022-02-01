@@ -83,9 +83,29 @@ namespace sPago.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bt_bombillo {
+            get {
+                object obj = ResourceManager.GetObject("bt_bombillo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bt_buscar {
             get {
                 object obj = ResourceManager.GetObject("bt_buscar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_configuracion {
+            get {
+                object obj = ResourceManager.GetObject("bt_configuracion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

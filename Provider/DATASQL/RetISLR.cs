@@ -906,11 +906,11 @@ namespace Provider.DATASQL
                         p4.ParameterName = "@idProv";
                         p4.Value = filtro.idProv;
                     }
-                    if (filtro.estatus != "")
+                    if (filtro.estatus != DTO.RetISLR.Lista.Filtro.enumEstatus.SinDefinir)
                     {
                         sql_2 += " and r.estatus=@estatus ";
                         p5.ParameterName = "@estatus";
-                        p5.Value = filtro.estatus;
+                        p5.Value = filtro.estatus == DTO.RetISLR.Lista.Filtro.enumEstatus.Anulado?"1":"0";
                     }
                     var sql = sql_1 + sql_2;
                     var lst = cn.Database.SqlQuery<DTO.RetISLR.Lista.Ficha>(sql, p1, p2, p3, p4, p5).ToList();

@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtaPagar\Lista\Ficha.cs" />
+    <Compile Include="CtaPagar\Lista\Filtro.cs" />
     <Compile Include="Empresa\Entidad\Ficha.cs" />
     <Compile Include="Login\Identificacion\Ficha.cs" />
     <Compile Include="Permiso\Solictud\Ficha.cs" />

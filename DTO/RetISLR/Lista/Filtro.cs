@@ -11,11 +11,12 @@ namespace DTO.RetISLR.Lista
     public class Filtro
     {
 
+        public enum enumEstatus { SinDefinir = -1, Activo = 1, Anulado };
         public string tipoRetencion { get; set; }
         public DateTime? desde { get; set; }
         public DateTime? hasta { get; set; }
         public string idProv { get; set; }
-        public string estatus { get; set; }
+        public enumEstatus estatus { get; set; }
 
 
         public Filtro() 
@@ -24,7 +25,7 @@ namespace DTO.RetISLR.Lista
             desde = null;
             hasta = null;
             idProv = "";
-            estatus = "";
+            estatus = enumEstatus.SinDefinir;
         }
 
     }

@@ -11,6 +11,7 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
     public class data
     {
 
+
         public DateTime Fecha{ get; set; }
         public string Documento { get; set; }
         public string Proveedor { get; set; }
@@ -23,18 +24,18 @@ namespace sPago.Source.Reportes.RetISLR.AdmLista
         public bool IsAnulado { get; set; }
 
 
-        public data(Source.RetISLR.Administrador.Items.data item)
+        public data(AdministradorDoc.data item)
         {
-            Fecha = item.Fecha;
-            Documento = item.Documento;
-            Proveedor = item.CiRifProv + Environment.NewLine + item.Proveedor;
-            Total = item.MontoTotal;
-            Exento = item.MontoExento;
-            Base = item.MontoBase;
-            Impuesto = item.MontoIva;
+            Fecha = item.fechaEmiDoc;
+            Documento = item.numDoc;
+            Proveedor = item.provCiRif + Environment.NewLine + item.provNombre;
+            Total = item.MontoTotalRet;
+            Exento = item.MontoExentoRet;
+            Base = item.MontoBaseRet;
+            Impuesto = item.MontoIvaRet;
             TasaRetencion = item.TasaRetencion;
             MontoRetencion = item.MontoRetencion;
-            IsAnulado= item.IsAnulado;
+            IsAnulado = item.isAnulado;
         }
 
     }

@@ -125,7 +125,7 @@ namespace sPago.DataProvider.Data
                 desde = filtro.desde,
                 hasta = filtro.hasta,
                 tipoRetencion = filtro.tipoRetencion,
-                estatus = filtro.estatus,
+                estatus = (DTO.RetISLR.Lista.Filtro.enumEstatus) filtro.estatus,
                 idProv = filtro.idProv,
             };
             var r01 = MyData.RetISLR_GetLista(filtroDto);

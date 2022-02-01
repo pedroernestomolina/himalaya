@@ -106,6 +106,56 @@ namespace sPago.Source.Principal
             _controlador.ReporteRetencionISLR();
         }
 
+        private void M_CTAS_PAGAR_ADMINISTRADOR_Click(object sender, EventArgs e)
+        {
+            CtasPagar_AdministradorDoc();
+        }
+
+        private void CtasPagar_AdministradorDoc()
+        {
+            _controlador.CtasPagar_AdministradorDoc();
+        }
+
+        private void MENU_CTAPAGAR_REPORTES_DOCUMENTO_POR_PAGAR_Click(object sender, EventArgs e)
+        {
+            ReporteDocumentoPorPagarProveed();
+        }
+
+        private void ReporteDocumentoPorPagarProveed()
+        {
+            _controlador.ReporteDocumentoPorPagarProveed();
+        }
+
+        private void MENU_CTAPAGAR_REPORTES_PAGOS_EMITIDOS_Click(object sender, EventArgs e)
+        {
+            ReportePagosEmitidosProveed();
+        }
+
+        private void ReportePagosEmitidosProveed()
+        {
+            _controlador.ReportePagosEmitidosProveed();
+        }
+
+        private void MENU_CTAPAGAR_REPORTES_RELACION_PAGO_Click(object sender, EventArgs e)
+        {
+            ReporteRelacionPagoProveed();
+        }
+
+        private void ReporteRelacionPagoProveed()
+        {
+            _controlador.ReporteRelacionPagoProveed();
+        }
+
+        private void MENU_CTAPAGAR_REPORTES_ANALISIS_VENCIMIENTO_Click(object sender, EventArgs e)
+        {
+            ReporteAnalisisVencimientoProveed();
+        }
+
+        private void ReporteAnalisisVencimientoProveed()
+        {
+            _controlador.ReporteAnalisisVencimientoProveed();
+        }
+
     }
 
 }

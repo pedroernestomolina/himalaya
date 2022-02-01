@@ -22,7 +22,7 @@ namespace sPago.Source.RetISLR.Administrador
         public int CntItems { get { return _gItem.CntItem; } }
         public DateTime Desde { get { return _gFiltro.GetDesde; } }
         public DateTime Hasta { get { return _gFiltro.GetHasta; } }
-        public object ItemSource { get { return _gItem.ItemSource; } }
+        public BindingSource ItemSource { get { return _gItem.ItemSource; } }
 
 
         public Gestion()
@@ -106,10 +106,10 @@ namespace sPago.Source.RetISLR.Administrador
 
         public void Imprimir()
         {
-            var rp = new Reportes.RetISLR.AdmLista.Gestion();
-            rp.setLista(_gItem.ListaItems);
-            rp.setFiltro(_gFiltro.Filtros);
-            rp.Generar();
+            //var rp = new Reportes.RetISLR.AdmLista.Gestion();
+            //rp.setLista(_gItem.ListaItems);
+            //rp.setFiltro(_gFiltro.Filtros);
+            //rp.Generar();
         }
 
         public void VisualizarDocumento()
@@ -149,6 +149,7 @@ namespace sPago.Source.RetISLR.Administrador
             if (_gSeguridad.IsOk)
             {
                 AnularDoc(_gItem.ItemActual.Id);
+                
             }
         }
 

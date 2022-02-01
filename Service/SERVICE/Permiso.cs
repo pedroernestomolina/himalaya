@@ -16,9 +16,7 @@ namespace Service.SERVICE
         {
             return ServiceProv.Permiso_Solicitud_ModuloPago(idGrupo);
         }
-
         //
-
         public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_Solicitud_ElaborarRetencionISLR(string idGrupo)
         {
             return ServiceProv.Permiso_Solicitud_ElaborarRetencionISLR(idGrupo);
@@ -38,6 +36,32 @@ namespace Service.SERVICE
         public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_Solicitud_ReporteRetencionISLR(string idGrupo)
         {
             return ServiceProv.Permiso_Solicitud_ReportesRetencionISLR(idGrupo);
+        }
+        //
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_ToolPago(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtasPagar_ToolPago(idGrupo);
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_Adminstrador(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtasPagar_Adminstrador(idGrupo);
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtasPagar_Adminstrador_AnularPago(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtasPagar_Adminstrador_AnularPago(idGrupo);
+        }
+        //
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_DocumentosPorPagar(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtaPagar_Reporte_DocumentosPorPagar(idGrupo);
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_PagosEmitidos(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtaPagar_Reporte_PagosEmitidos(idGrupo);
+        }
+        public DTO.Resutado.Entidad<DTO.Permiso.Solictud.Ficha> Permiso_CtaPagar_Reporte_AnalisisVencimiento(string idGrupo)
+        {
+            return ServiceProv.Permiso_CtaPagar_Reporte_AnalisisVencimiento(idGrupo);
         }
 
     }

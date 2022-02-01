@@ -71,6 +71,13 @@ namespace Test
             // };
             //var r18 = dataProv.Sistema_DocAnulado_Buscar (ficha18);
 
+            // var ficha19 = new DTO.CtaPagar.Lista.Filtro ()
+            // {
+            //     desde=new DateTime(2021,01,01),
+            //     hasta = new DateTime(2022, 01, 31),
+            // };
+            //var r19 = dataProv.CtaPagar_GetLista(ficha19);
+
         }
 
     }

@@ -258,7 +258,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.44186F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.55814F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel3.Controls.Add(this.panel7, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel30, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel8, 0, 12);
@@ -298,7 +298,7 @@
             this.panel7.Margin = new System.Windows.Forms.Padding(1);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(1);
-            this.panel7.Size = new System.Drawing.Size(224, 28);
+            this.panel7.Size = new System.Drawing.Size(223, 28);
             this.panel7.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -314,14 +314,14 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(222, 26);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(221, 26);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // panel32
             // 
             this.panel32.Controls.Add(this.BT_PROVEEDOR_BUSCAR);
             this.panel32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel32.Location = new System.Drawing.Point(192, 1);
+            this.panel32.Location = new System.Drawing.Point(191, 1);
             this.panel32.Margin = new System.Windows.Forms.Padding(1);
             this.panel32.Name = "panel32";
             this.panel32.Padding = new System.Windows.Forms.Padding(1);
@@ -350,7 +350,7 @@
             this.panel31.Margin = new System.Windows.Forms.Padding(1);
             this.panel31.Name = "panel31";
             this.panel31.Padding = new System.Windows.Forms.Padding(1);
-            this.panel31.Size = new System.Drawing.Size(189, 24);
+            this.panel31.Size = new System.Drawing.Size(188, 24);
             this.panel31.TabIndex = 0;
             // 
             // TB_PROVEEDOR
@@ -361,7 +361,7 @@
             this.TB_PROVEEDOR.Location = new System.Drawing.Point(1, 1);
             this.TB_PROVEEDOR.MaxLength = 30;
             this.TB_PROVEEDOR.Name = "TB_PROVEEDOR";
-            this.TB_PROVEEDOR.Size = new System.Drawing.Size(187, 22);
+            this.TB_PROVEEDOR.Size = new System.Drawing.Size(186, 22);
             this.TB_PROVEEDOR.TabIndex = 0;
             this.TB_PROVEEDOR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
             this.TB_PROVEEDOR.Leave += new System.EventHandler(this.TB_PROVEEDOR_Leave);
@@ -422,7 +422,7 @@
             this.panel10.Margin = new System.Windows.Forms.Padding(1);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(2);
-            this.panel10.Size = new System.Drawing.Size(224, 28);
+            this.panel10.Size = new System.Drawing.Size(223, 28);
             this.panel10.TabIndex = 11;
             // 
             // DTP_DESDE
@@ -434,7 +434,7 @@
             this.DTP_DESDE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTP_DESDE.Location = new System.Drawing.Point(2, 2);
             this.DTP_DESDE.Name = "DTP_DESDE";
-            this.DTP_DESDE.Size = new System.Drawing.Size(220, 22);
+            this.DTP_DESDE.Size = new System.Drawing.Size(219, 22);
             this.DTP_DESDE.TabIndex = 0;
             this.DTP_DESDE.ValueChanged += new System.EventHandler(this.DTP_DESDE_ValueChanged);
             // 
@@ -470,7 +470,7 @@
             this.panel12.Margin = new System.Windows.Forms.Padding(1);
             this.panel12.Name = "panel12";
             this.panel12.Padding = new System.Windows.Forms.Padding(2);
-            this.panel12.Size = new System.Drawing.Size(224, 28);
+            this.panel12.Size = new System.Drawing.Size(223, 28);
             this.panel12.TabIndex = 12;
             // 
             // DTP_HASTA
@@ -482,7 +482,7 @@
             this.DTP_HASTA.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTP_HASTA.Location = new System.Drawing.Point(2, 2);
             this.DTP_HASTA.Name = "DTP_HASTA";
-            this.DTP_HASTA.Size = new System.Drawing.Size(220, 22);
+            this.DTP_HASTA.Size = new System.Drawing.Size(219, 22);
             this.DTP_HASTA.TabIndex = 1;
             this.DTP_HASTA.ValueChanged += new System.EventHandler(this.DTP_HASTA_ValueChanged);
             // 
@@ -519,7 +519,7 @@
             this.panel19.Margin = new System.Windows.Forms.Padding(1);
             this.panel19.Name = "panel19";
             this.panel19.Padding = new System.Windows.Forms.Padding(2);
-            this.panel19.Size = new System.Drawing.Size(224, 28);
+            this.panel19.Size = new System.Drawing.Size(223, 28);
             this.panel19.TabIndex = 8;
             // 
             // CB_ESTATUS
@@ -530,7 +530,7 @@
             this.CB_ESTATUS.FormattingEnabled = true;
             this.CB_ESTATUS.Location = new System.Drawing.Point(2, 2);
             this.CB_ESTATUS.Name = "CB_ESTATUS";
-            this.CB_ESTATUS.Size = new System.Drawing.Size(220, 24);
+            this.CB_ESTATUS.Size = new System.Drawing.Size(219, 24);
             this.CB_ESTATUS.TabIndex = 9;
             this.CB_ESTATUS.SelectedIndexChanged += new System.EventHandler(this.CB_ESTATUS_SelectedIndexChanged);
             // 

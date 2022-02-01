@@ -11,26 +11,67 @@ using System.Windows.Forms;
 namespace sPago.Source.Reportes.RetISLR.GeneralRet
 {
     
-    public class Gestion: RetISLR.Reportes.IGestion
+    public class Gestion: IReportes
     {
 
-        public void Generar(Filtro.data filtros)
+        private Filtrar.IFiltrar _filtrar;
+
+
+        public Filtrar.IFiltrar Filtrar { get { return _filtrar; } }
+
+
+        public Gestion() 
         {
-            var filtro = new OOB.RetISLR.Lista.Filtro()
+            _filtrar = new Source.Reportes.RetISLR.GeneralRet.Filtro();
+        }
+
+
+        public void Generar(Filtrar.dataFiltrar data)
+        {
+            var _filtros = "";
+            DateTime? _desde = null;
+            DateTime? _hasta = null;
+            string _idProv = "";
+            var _estatus = OOB.RetISLR.Lista.Filtro.enumEstatus.SinDefinir;
+            if (data.GetFechaDesde_Habilitar)
             {
-                idProv = filtros.GetIdProveedor,
-                estatus = filtros.GetEstatus,
-                desde = filtros.GetDesde,
-                hasta = filtros.GetHasta,
+                _desde = data.GetDesde;
+                _filtros+="Desde: "+_desde.Value.ToShortDateString();
+            }
+            if (data.GetFechaHasta_Habilitar)
+            {
+                _hasta = data.GetHasta;
+                _filtros += ", Hasta: " + _hasta.Value.ToShortDateString();
+            }
+            if (data.Proveedor != null)
+            {
+                _idProv = data.Proveedor.id;
+                _filtros += ", Proveedor: " + data.Proveedor.desc;
+            }
+            if (data.Esatus != null)
+            {
+                _estatus = OOB.RetISLR.Lista.Filtro.enumEstatus.Activo;
+                if (data.Esatus.id == "02")
+                {
+                    _estatus = _estatus = OOB.RetISLR.Lista.Filtro.enumEstatus.Anulado;
+                }
+                _filtros += ", Estatus: " + data.Esatus.desc;
+            }
+            var filtroOOB = new OOB.RetISLR.Lista.Filtro()
+            {
+                desde = _desde,
+                hasta = _hasta,
                 tipoRetencion = "02",
+                idProv = _idProv,
+                estatus = _estatus,
             };
-            var r01 = Sistema.MyData.RetISLR_GetLista(filtro);
+            var r01 = Sistema.MyData.RetISLR_GetLista(filtroOOB);
             if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
-            Imprime(r01.ListaEntidad,filtros.FiltrarPor);
+            Imprime(r01.ListaEntidad,_filtros);
         }
 
         private void Imprime(List<OOB.RetISLR.Entidad.Ficha> _lst, string _filtro)
