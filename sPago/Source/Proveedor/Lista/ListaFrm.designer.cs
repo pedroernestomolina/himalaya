@@ -257,6 +257,7 @@
             this.KeyPreview = true;
             this.Name = "ListaFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.ListaFrm_Load);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

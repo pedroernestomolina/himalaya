@@ -156,6 +156,26 @@ namespace sPago.Source.Principal
             _controlador.ReporteAnalisisVencimientoProveed();
         }
 
+        private void M_CTAS_PAGAR_TOOL_PAGO_Click(object sender, EventArgs e)
+        {
+            ToolPago();
+        }
+
+        private void ToolPago()
+        {
+            _controlador.ToolPago();
+        }
+
+        private void M_MAESTRO_MEDIOS_PAGO_Click(object sender, EventArgs e)
+        {
+            MaestrosMedioPago();
+        }
+
+        private void MaestrosMedioPago()
+        {
+            _controlador.MaestrosMedioPago();
+        }
+
     }
 
 }

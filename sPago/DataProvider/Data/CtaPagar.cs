@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace sPago.DataProvider.Data
 {
 
-    public partial class Provider: IProvider
+    public partial class Provider : IProvider
     {
 
         public OOB.Resultado.Lista<OOB.CtaPagar.Lista.Ficha> CtaPagar_GetLista(OOB.CtaPagar.Lista.Filtro filtro)
@@ -41,17 +41,17 @@ namespace sPago.DataProvider.Data
                     {
                         var rg = new OOB.CtaPagar.Lista.Ficha()
                         {
-                            abonadoDoc = s.abonadoDoc,
+                            abonadoDoc = Math.Abs(s.abonadoDoc),
                             autoDoc = s.autoDoc.Trim(),
                             autoProveedor = s.autoProveedor.Trim(),
                             estatusDoc = s.estatusDoc.Trim(),
                             fechaEmisionDoc = s.fechaEmisionDoc,
                             fechaVenceDoc = s.fechaVenceDoc,
-                            importeDoc = s.importeDoc,
+                            importeDoc = Math.Abs(s.importeDoc),
                             numDoc = s.numDoc.Trim(),
                             provCiRif = s.provCiRif.Trim(),
                             provNombre = s.provNombre.Trim(),
-                            restaDoc = s.restaDoc,
+                            restaDoc = Math.Abs(s.restaDoc),
                             signoDoc = s.signoDoc,
                             detalleDoc = s.detalleDoc.Trim(),
                             tipoDoc = s.tipoDoc.Trim(),
@@ -61,6 +61,108 @@ namespace sPago.DataProvider.Data
                 }
             }
             rt.ListaEntidad = lst;
+
+            return rt;
+        }
+        public OOB.Resultado.Entidad<OOB.CtaPagar.Entidad.Ficha> CtaPagar_GetById(string id)
+        {
+            var rt = new OOB.Resultado.Entidad<OOB.CtaPagar.Entidad.Ficha>();
+
+            var r01 = MyData.CtaPagar_GetById(id);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            var s = r01.MiEntidad;
+            var rg = new OOB.CtaPagar.Entidad.Ficha()
+            {
+                autoDocRef = s.autoDocRef.Trim(),
+                autoProv = s.autoProv.Trim(),
+                codigoModuloOrigen = s.codigoModuloOrigen.Trim(),
+                estatusCanceladoDoc = s.estatusCanceladoDoc.Trim(),
+                fechaRegistro = s.fechaRegistro,
+                numeroDoc = s.numeroDoc.Trim(),
+                provCodigo = s.provCodigo.Trim(),
+                abonadoDoc = Math.Abs(s.abonadoDoc),
+                autoDoc = s.autoDoc.Trim(),
+                estatusDoc = s.estatusDoc.Trim(),
+                fechaEmisionDoc = s.fechaEmisionDoc,
+                fechaVenceDoc = s.fechaVenceDoc,
+                importeDoc = Math.Abs(s.importeDoc),
+                provCiRif = s.provCiRif.Trim(),
+                provNombre = s.provNombre.Trim(),
+                restaDoc = Math.Abs(s.restaDoc),
+                signoDoc = s.signoDoc,
+                detalleDoc = s.detalleDoc.Trim(),
+                tipoDoc = s.tipoDoc.Trim(),
+            };
+            rt.MiEntidad = rg;
+
+            return rt;
+        }
+        public OOB.Resultado.AutoId CtaPagar_Agregar(OOB.CtaPagar.Agregar.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.AutoId();
+
+            var fichaDTO = new DTO.CtaPagar.Agregar.Ficha()
+            {
+                abonadoDoc = ficha.abonadoDoc,
+                autoProv = ficha.autoProv,
+                codigoModuloOrigen = ficha.codigoModuloOrigen,
+                detalleDoc = ficha.detalleDoc,
+                estatusCanceladoDoc = ficha.estatusCanceladoDoc,
+                estatusDoc = ficha.estatusDoc,
+                fechaEmisionDoc = ficha.fechaEmisionDoc,
+                fechaVenceDoc = ficha.fechaVenceDoc,
+                importeDoc = ficha.importeDoc,
+                numeroDoc = ficha.numeroDoc,
+                provCiRif = ficha.provCiRif,
+                provCodigo = ficha.provCodigo,
+                provNombre = ficha.provNombre,
+                restaDoc = ficha.restaDoc,
+                signoDoc = ficha.signoDoc,
+                tipoDoc = ficha.tipoDoc,
+            };
+            var r01 = MyData.CtaPagar_Agregar(fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+            rt.Auto = r01.Auto;
+            rt.Id = r01.Id;
+
+            return rt;
+        }
+        public OOB.Resultado.Ficha CtaPagar_AnularDoc(OOB.CtaPagar.AnularDoc.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.Ficha();
+
+            var ss = ficha.regAuditoria;
+            var fichaDTO = new DTO.CtaPagar.AnularDoc.Ficha()
+            {
+                autoDoc = ficha.autoDoc,
+                regAuditoria = new DTO.CtaPagar.AnularDoc.Auditoria()
+                {
+                    autoDoc = ss.autoDoc,
+                    detalle = ss.detalle,
+                    equipoEstacion = ss.equipoEstacion,
+                    moduloOrigen = ss.moduloOrigen,
+                    usuCodigo = ss.usuCodigo,
+                    usuNombre = ss.usuNombre,
+                },
+            };
+            var r01 = MyData.CtaPagar_AnularDoc(fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
 
             return rt;
         }

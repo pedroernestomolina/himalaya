@@ -47,6 +47,14 @@ namespace sPago.Source.Reportes.CtaPagar.AdmLista
             {
                 DataRow rt = ds.Tables["Documento"].NewRow();
                 rt["fechaEmision"] = it.Ficha.fechaEmiDoc;
+                rt["tipoDoc"] = it.Ficha.tipoDoc;
+                rt["numDoc"] = it.Ficha.numDoc;
+                rt["fechaVto"] = it.Ficha.fechaVtoDoc;
+                rt["diasTransc"] = it.Ficha.diasTransc;
+                rt["proveedor"] = it.Ficha.provCiRif + Environment.NewLine + it.Ficha.provNombre;
+                rt["montoDebe"] = it.Ficha.montoDebe;
+                rt["montoHaber"] = it.Ficha.montoHaber;
+                rt["estatus"] = it.Ficha.EstatusDocDesc;
                 ds.Tables["Documento"].Rows.Add(rt);
             }
 

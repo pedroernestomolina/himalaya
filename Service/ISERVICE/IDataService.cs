@@ -9,7 +9,7 @@ namespace Service.ISERVICE
 {
 
     public interface IDataService: ILogin, IUsuario, IPermiso, IProveedor, IConfiguracion, 
-        IRetISLR, IEmpresa, ISistema, ICtaPagar
+        IRetISLR, IEmpresa, ISistema, ICtaPagar, IReportes, IToolPago, IMedioPago
     {
 
         DTO.Resutado.Entidad<DateTime> FechaSistema();

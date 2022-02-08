@@ -31,7 +31,10 @@ namespace sPago.Source.Reportes.CtaPagar.PagosEmitidos
             var rt = true;
 
             _lstTipoDoc.Clear();
+
             _lstEstatus.Clear();
+            _lstEstatus.Add(new Filtrar.ficha("01", "Activo"));
+            _lstEstatus.Add(new Filtrar.ficha("02", "Anulado"));
 
             return rt; ;
         }

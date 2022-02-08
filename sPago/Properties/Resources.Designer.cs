@@ -123,6 +123,26 @@ namespace sPago.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bt_editar_20 {
+            get {
+                object obj = ResourceManager.GetObject("bt_editar_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_editar_32 {
+            get {
+                object obj = ResourceManager.GetObject("bt_editar_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bt_eliminar {
             get {
                 object obj = ResourceManager.GetObject("bt_eliminar", resourceCulture);
@@ -203,6 +223,16 @@ namespace sPago.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bt_pago {
+            get {
+                object obj = ResourceManager.GetObject("bt_pago", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bt_salida_2 {
             get {
                 object obj = ResourceManager.GetObject("bt_salida_2", resourceCulture);
@@ -213,9 +243,49 @@ namespace sPago.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bt_selected {
+            get {
+                object obj = ResourceManager.GetObject("bt_selected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_sumar {
+            get {
+                object obj = ResourceManager.GetObject("bt_sumar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bt_unselected {
+            get {
+                object obj = ResourceManager.GetObject("bt_unselected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bt_usuario_2 {
             get {
                 object obj = ResourceManager.GetObject("bt_usuario_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cartera_pago {
+            get {
+                object obj = ResourceManager.GetObject("cartera_pago", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -251,12 +321,32 @@ namespace sPago.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap libro {
+            get {
+                object obj = ResourceManager.GetObject("libro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon mobile {
             get {
                 object obj = ResourceManager.GetObject("mobile", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recibo_pago {
+            get {
+                object obj = ResourceManager.GetObject("recibo_pago", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

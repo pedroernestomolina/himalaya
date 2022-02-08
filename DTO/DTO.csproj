@@ -39,16 +39,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtaPagar\Agregar\Ficha.cs" />
+    <Compile Include="CtaPagar\AnularDoc\Auditoria.cs" />
+    <Compile Include="CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Filtro.cs" />
     <Compile Include="Empresa\Entidad\Ficha.cs" />
     <Compile Include="Login\Identificacion\Ficha.cs" />
+    <Compile Include="MedioPago\Agregar\Ficha.cs" />
+    <Compile Include="MedioPago\Editar\Ficha.cs" />
+    <Compile Include="MedioPago\Entidad\Ficha.cs" />
     <Compile Include="Permiso\Solictud\Ficha.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor\Entidad\Ficha.cs" />
     <Compile Include="Proveedor\enumerados.cs" />
     <Compile Include="Proveedor\Lista\Ficha.cs" />
     <Compile Include="Proveedor\Lista\Filtro.cs" />
+    <Compile Include="Reportes\CtasPagar\baseFiltro.cs" />
+    <Compile Include="Reportes\CtasPagar\DocumentosPorPagar\Ficha.cs" />
+    <Compile Include="Reportes\CtasPagar\DocumentosPorPagar\Filtro.cs" />
+    <Compile Include="Reportes\CtasPagar\PagosEmitidos\Ficha.cs" />
+    <Compile Include="Reportes\CtasPagar\PagosEmitidos\Filtro.cs" />
+    <Compile Include="Reportes\CtasPagar\RelacionPagoDiario\Ficha.cs" />
+    <Compile Include="Reportes\CtasPagar\RelacionPagoDiario\Filtro.cs" />
     <Compile Include="Resutado\Enumerados.cs" />
     <Compile Include="Resutado\Ficha.cs" />
     <Compile Include="Resutado\AutoId.cs" />
@@ -79,6 +93,8 @@
     <Compile Include="RetISLR\Lista\Filtro.cs" />
     <Compile Include="Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="Sistema\DocAnulado\Entidad\Ficha.cs" />
+    <Compile Include="ToolPago\PendPagar\Ficha.cs" />
+    <Compile Include="ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />
   </ItemGroup>
   <ItemGroup />

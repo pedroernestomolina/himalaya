@@ -181,4 +181,31 @@
   <data name="bt_configuracion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\imagenes\bt_configuracion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cartera_pago" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\cartera_pago.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_pago" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt_pago.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_sumar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\bt_sumar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_editar_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\bt_editar_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_editar_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\bt_editar_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="libro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\libro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="recibo_pago" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recibo_pago.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt_selected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt_unselected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt_unselected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

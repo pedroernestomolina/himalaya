@@ -12,6 +12,7 @@ namespace sPago.Source.Principal
     public class Gestion
     {
 
+        //VARIABLES DE TRABAJO
         private Login.Gestion _gestionLogin;
         private RetISLR.Generar.Gestion _gestionRetIslrGenerar;
         private Seguridad.Gestion _gSeguridad;
@@ -19,10 +20,20 @@ namespace sPago.Source.Principal
         private SistemaCtrl.VerAnulacion.IGestion _gAuditoria;
         private Filtrar.IGestion _gFiltrar;
         private Filtrar.IListaProv _gListaProv;
+        private AdministradorDoc.IAdmLista _gAdmLista;
         private AdministradorDoc.Gestion _gAdmDoc;
         private CtasPagar.AdministradorDoc.Gestion _gAdmDocCtaPagar;
         private RetISLR.AdministradorDoc.Gestion _gAdmDocRetIslr;
         private Reportes.Gestion _gReport;
+        private ToolPago.Gestion _gToolPago;
+        private Maestro.IGestion _gMaestro;
+        private Maestro.IMaestro _gMedioPago;
+        private Maestro.ILista _gListaMaestro;
+        private Maestro.MedioPago.AgregarEditar.IAgregarEditar _gAgregEditMedioPago;
+        private ToolPago.PorPagar.IGestion _gPorPagar;
+        private ToolPago.GenerarPago.IListaDocPagar _gListaDocPago;
+        private ToolPago.GenerarPago.IMetodosPago _gMetodoPago;
+        private ToolPago.GenerarPago.IGestion _gGeneradorPago;
 
 
         public string Host { get { return Sistema.Instancia + "/" + Sistema.BaseDatos; } }
@@ -33,20 +44,30 @@ namespace sPago.Source.Principal
         public Gestion() 
         {
             _gestionLogin = new Login.Gestion();
-            _gestionRetIslrGenerar = new RetISLR.Generar.Gestion();
             _gSeguridad = new Seguridad.Gestion();
             _gAnular = new Anular.Gestion();
             _gAuditoria = new SistemaCtrl.VerAnulacion.Gestion();
             _gListaProv = new Proveedor.Lista.Gestion();
             _gFiltrar = new Filtrar.Gestion(_gListaProv);
-
+            _gAdmLista = new AdministradorDoc.GestionLista();
+            _gListaMaestro = new Maestro.Lista();
+            _gMaestro = new Maestro.Gestion(_gListaMaestro);
+            _gAgregEditMedioPago = new Maestro.MedioPago.AgregarEditar.AgregarEditar();
+            _gMedioPago = new Maestro.MedioPago.Gestion(_gAgregEditMedioPago);
+            _gPorPagar = new ToolPago.PorPagar.Gestion();
+            _gListaDocPago = new ToolPago.GenerarPago.ListaDocPagar();
+            _gMetodoPago = new ToolPago.GenerarPago.MetodosPago.Gestion();
+            _gGeneradorPago = new ToolPago.GenerarPago.Gestion(_gListaDocPago, _gMetodoPago);
+            //
             _gReport = new Reportes.Gestion(_gFiltrar);
-            _gAdmDoc = new AdministradorDoc.Gestion(_gSeguridad, _gAnular, _gAuditoria, _gFiltrar);
+            _gestionRetIslrGenerar = new RetISLR.Generar.Gestion(_gListaProv);
+            _gAdmDoc = new AdministradorDoc.Gestion(_gSeguridad, _gAnular, _gAuditoria, _gFiltrar, _gAdmLista);
             _gAdmDocCtaPagar = new CtasPagar.AdministradorDoc.Gestion();
             _gAdmDocRetIslr = new RetISLR.AdministradorDoc.Gestion();
+            _gToolPago = new ToolPago.Gestion(_gListaProv, _gPorPagar, _gGeneradorPago);
         }
 
-
+        //INICIO DEL PROGRAMA
         Principal.MainFrm frm;
         public void Inicia() 
         {
@@ -66,7 +87,7 @@ namespace sPago.Source.Principal
             }
         }
 
-
+        //CARGA DATOS INICIALES DEL PROCESO
         private bool CargarData()
         {
             var r01 = Helpers.XML.CargarXml();
@@ -251,6 +272,19 @@ namespace sPago.Source.Principal
             _gReport.setGestion(ctr);
             _gReport.Inicializa();
             _gReport.Inicia();
+        }
+
+        public void ToolPago()
+        {
+            _gToolPago.Inicializa();
+            _gToolPago.Inicia();
+        }
+
+        public void MaestrosMedioPago()
+        {
+            _gMaestro.setGestion(_gMedioPago);
+            _gMaestro.Inicializa();
+            _gMaestro.Inicia();
         }
 
     }

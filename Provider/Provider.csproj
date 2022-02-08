@@ -53,21 +53,27 @@
     <Compile Include="DATASQL\CtaPagar.cs" />
     <Compile Include="DATASQL\Empresa.cs" />
     <Compile Include="DATASQL\Login.cs" />
+    <Compile Include="DATASQL\MedioPago.cs" />
     <Compile Include="DATASQL\Permiso.cs" />
     <Compile Include="DATASQL\Proveedor.cs" />
     <Compile Include="DATASQL\Provider.cs" />
+    <Compile Include="DATASQL\Reportes.cs" />
     <Compile Include="DATASQL\RetISLR.cs" />
     <Compile Include="DATASQL\Sistema.cs" />
+    <Compile Include="DATASQL\ToolPago.cs" />
     <Compile Include="DATASQL\Usuario.cs" />
     <Compile Include="IDATA\IConfiguracion.cs" />
     <Compile Include="IDATA\ICtaPagar.cs" />
     <Compile Include="IDATA\IEmpresa.cs" />
     <Compile Include="IDATA\ILogin.cs" />
+    <Compile Include="IDATA\IMedioPago.cs" />
     <Compile Include="IDATA\IPermiso.cs" />
     <Compile Include="IDATA\IProveedor.cs" />
     <Compile Include="IDATA\IProvider.cs" />
+    <Compile Include="IDATA\IReportes.cs" />
     <Compile Include="IDATA\IRetISLR.cs" />
     <Compile Include="IDATA\ISistema.cs" />
+    <Compile Include="IDATA\IToolPago.cs" />
     <Compile Include="IDATA\IUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

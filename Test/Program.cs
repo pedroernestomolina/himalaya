@@ -78,6 +78,14 @@ namespace Test
             // };
             //var r19 = dataProv.CtaPagar_GetLista(ficha19);
 
+             //var ficha20 = new DTO.Reportes.CtasPagar.PagosEmitidos.Filtro()
+             //{
+             //};
+             //var r20 = dataProv.Reportes_CtaPagar_PagosEmitidos (ficha20);
+
+             //var r21 = dataProv.ToolsPago_ResumenPendPagar_GetLista();
+
+            //var r22 = dataProv.CtaPagar_GetById ("0000000040");
         }
 
     }

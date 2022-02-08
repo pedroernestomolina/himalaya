@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace sPago.Source.CtasPagar.AdministradorDoc
@@ -153,17 +154,74 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                 Helpers.Msg.Error(r00.Mensaje);
                 return;
             }
+            var r01 = Sistema.MyData.CtaPagar_GetById(ItemActual.autoDoc);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            if (r01.MiEntidad.codigoModuloOrigen != "05")
+            {
+                Helpers.Msg.Error("DOCUMENTO A ANULAR NO APLICA PARA ESTE MODULO");
+                return;
+            }
+            if (r01.MiEntidad.isAnulado)
+            {
+                Helpers.Msg.Error("DOCUMENTO YA ANULADO");
+                return;
+            }
 
             _gSeguridad.Inicializa();
             _gSeguridad.Verifica(r00.MiEntidad);
             if (_gSeguridad.IsOk)
             {
-                if (ItemActual.tipoDoc == "PAG")
+                _gAnular.Inicializa();
+                _gAnular.Inicia();
+                if (_gAnular.ProcesarIsOK)
                 {
-                    Helpers.Msg.Alerta("ANULANDO DOCUMENTO");
-                    _anularItemIsOk = true;
+                    if (ItemActual.tipoDoc != "PAG")
+                    {
+                        AnularDoc(ItemActual.autoDoc, _gAnular.Motivo);
+                    }
+                    else
+                    {
+                        Helpers.Msg.Alerta("ANULANDO DOCUMENTO");
+                        _anularItemIsOk = true;
+                    }
                 }
             }
+        }
+
+        private void AnularDoc(string aDoc, string mot)
+        {
+            var xms = "Anular Documento ?";
+            var msg = MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (msg == DialogResult.No)
+            {
+                return;
+            }
+
+            var ficha = new OOB.CtaPagar.AnularDoc.Ficha()
+            {
+                autoDoc = aDoc,
+                regAuditoria = new OOB.CtaPagar.AnularDoc.Auditoria()
+                {
+                    autoDoc = aDoc,
+                    detalle = mot,
+                    equipoEstacion = Sistema.EquipoEstacion,
+                    moduloOrigen = "05",
+                    usuCodigo = Sistema.Usuario.codigoUsu,
+                    usuNombre = Sistema.Usuario.nombreUsu,
+                },
+            };
+            var r01 = Sistema.MyData.CtaPagar_AnularDoc(ficha);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            _anularItemIsOk = true;
+            Helpers.Msg.EliminarOk();
         }
 
         public void VisualizarDocumento(data ItemActual)

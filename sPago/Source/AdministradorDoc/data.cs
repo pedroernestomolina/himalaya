@@ -28,7 +28,28 @@ namespace sPago.Source.AdministradorDoc
         public string provNombre { get; set; }
         public string estatusDoc { get; set; }
         public decimal abonadoDoc { get; set; }
-        public int diasTransc { get { return DateTime.Now.Date.Subtract(fechaVtoDoc).Days; } }
+        public int diasTransc 
+        {
+            get 
+            {
+                var rt = 0;
+                rt = DateTime.Now.Date.Subtract(fechaVtoDoc).Days;
+                if (rt <= 0)
+                    rt = 0;
+                return rt;
+            } 
+        }
+        public int diasPend 
+        {
+            get 
+            {
+                var rt = 0;
+                rt = DateTime.Now.Date.Subtract(fechaVtoDoc).Days;
+                if (rt > 0)
+                    rt = 0;
+                return Math.Abs(rt);
+            } 
+        }
         public bool isAnulado { get { return estatusDoc == "1" ? true : false; } }
         public string EstatusDocDesc { get { return estatusDoc == "1" ? "ANULADO" : ""; } }
         public decimal montoDebe { get { return _montoDebe; } }

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace sPago.Source.AdministradorDoc
 {
     
-    public class GestionLista
+    public class GestionLista: IAdmLista
     {
         
         private List<data> _lst;

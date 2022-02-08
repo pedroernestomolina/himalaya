@@ -63,21 +63,27 @@
     <Compile Include="DataProvider\Data\CtaPagar.cs" />
     <Compile Include="DataProvider\Data\Empresa.cs" />
     <Compile Include="DataProvider\Data\Login.cs" />
+    <Compile Include="DataProvider\Data\MedioPago.cs" />
     <Compile Include="DataProvider\Data\Permiso.cs" />
     <Compile Include="DataProvider\Data\Proveedor.cs" />
     <Compile Include="DataProvider\Data\Provider.cs" />
+    <Compile Include="DataProvider\Data\Reportes.cs" />
     <Compile Include="DataProvider\Data\RetISLR.cs" />
     <Compile Include="DataProvider\Data\Sistema.cs" />
+    <Compile Include="DataProvider\Data\ToolPago.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
     <Compile Include="DataProvider\IData\IConfiguracion.cs" />
     <Compile Include="DataProvider\IData\ICtaPagar.cs" />
     <Compile Include="DataProvider\IData\IEmpresa.cs" />
     <Compile Include="DataProvider\IData\ILogin.cs" />
+    <Compile Include="DataProvider\IData\IMedioPago.cs" />
     <Compile Include="DataProvider\IData\IPermiso.cs" />
     <Compile Include="DataProvider\IData\IProveedor.cs" />
     <Compile Include="DataProvider\IData\IProvider.cs" />
+    <Compile Include="DataProvider\IData\IReportes.cs" />
     <Compile Include="DataProvider\IData\IRetISLR.cs" />
     <Compile Include="DataProvider\IData\ISistema.cs" />
+    <Compile Include="DataProvider\IData\IToolPago.cs" />
     <Compile Include="DataProvider\IData\IUsuario.cs" />
     <Compile Include="Helpers\Msg.cs" />
     <Compile Include="Helpers\Utils.cs" />
@@ -87,9 +93,24 @@
     <Compile Include="LibControl\NumeroEnt.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="OOB\CtaPagar\Agregar\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\AnularDoc\Auditoria.cs" />
+    <Compile Include="OOB\CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Filtro.cs" />
     <Compile Include="OOB\Empresa\Entidad\Ficha.cs" />
+    <Compile Include="OOB\MedioPago\Agregar\Ficha.cs" />
+    <Compile Include="OOB\MedioPago\Editar\Ficha.cs" />
+    <Compile Include="OOB\MedioPago\Entidad\Ficha.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\AnalisisVencimiento\Ficha.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\baseFiltro.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\DocumentosPorPagar\Ficha.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\DocumentosPorPagar\Filtro.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\PagosEmitidos\Ficha.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\PagosEmitidos\Filtro.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\RelacionPagoDiario\Ficha.cs" />
+    <Compile Include="OOB\Reportes\CtasPagar\RelacionPagoDiario\Filtro.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocCompraAplicaRetencion.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocRegistro.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\Ficha.cs" />
@@ -100,9 +121,12 @@
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Entidad\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\PendPagar\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Source\AdministradorDoc\data.cs" />
     <Compile Include="Source\AdministradorDoc\Enumerados.cs" />
     <Compile Include="Source\AdministradorDoc\GestionLista.cs" />
+    <Compile Include="Source\AdministradorDoc\IAdmLista.cs" />
     <Compile Include="Source\Anular\AnularFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +157,28 @@
     <Compile Include="Source\Filtrar\IFiltrar.cs" />
     <Compile Include="Source\Filtrar\IGestion.cs" />
     <Compile Include="Source\Filtrar\IListaProv.cs" />
+    <Compile Include="Source\Maestro\data.cs" />
+    <Compile Include="Source\Maestro\Gestion.cs" />
+    <Compile Include="Source\Maestro\Lista.cs" />
+    <Compile Include="Source\Maestro\IGestion.cs" />
+    <Compile Include="Source\Maestro\ILista.cs" />
+    <Compile Include="Source\Maestro\IMaestro.cs" />
+    <Compile Include="Source\Maestro\MaestroFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Maestro\MaestroFrm.designer.cs">
+      <DependentUpon>MaestroFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Maestro\MedioPago\AgregarEditar\AgregarEditar.cs" />
+    <Compile Include="Source\Maestro\MedioPago\AgregarEditar\AgregarEditarFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Maestro\MedioPago\AgregarEditar\AgregarEditarFrm.designer.cs">
+      <DependentUpon>AgregarEditarFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Maestro\MedioPago\AgregarEditar\data.cs" />
+    <Compile Include="Source\Maestro\MedioPago\AgregarEditar\IAgregarEditar.cs" />
+    <Compile Include="Source\Maestro\MedioPago\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\data.cs" />
     <Compile Include="Source\Proveedor\Lista\Gestion.cs" />
     <Compile Include="Source\Proveedor\Lista\ListaFrm.cs">
@@ -253,6 +299,54 @@
     <Compile Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.designer.cs">
       <DependentUpon>VisualizarFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\data.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\GenerarPagoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\GenerarPagoFrm.Designer.cs">
+      <DependentUpon>GenerarPagoFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\Gestion.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\IGestion.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\IListaDocPagar.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\IMetodosPago.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\item.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\ListaDocPagar.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\Gestion.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\MetodosPagoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\MetodosPagoFrm.Designer.cs">
+      <DependentUpon>MetodosPagoFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ToolPago\Gestion.cs" />
+    <Compile Include="Source\ToolPago\Lista\data.cs" />
+    <Compile Include="Source\ToolPago\Lista\Gestion.cs" />
+    <Compile Include="Source\ToolPago\NuevoDcoumento\AgregarDocFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\NuevoDcoumento\AgregarDocFrm.Designer.cs">
+      <DependentUpon>AgregarDocFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ToolPago\NuevoDcoumento\data.cs" />
+    <Compile Include="Source\ToolPago\NuevoDcoumento\ficha.cs" />
+    <Compile Include="Source\ToolPago\NuevoDcoumento\Gestion.cs" />
+    <Compile Include="Source\ToolPago\NuevoDcoumento\IGestion.cs" />
+    <Compile Include="Source\ToolPago\PorPagar\data.cs" />
+    <Compile Include="Source\ToolPago\PorPagar\Gestion.cs" />
+    <Compile Include="Source\ToolPago\PorPagar\IGestion.cs" />
+    <Compile Include="Source\ToolPago\PorPagar\PorPagarFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\PorPagar\PorPagarFrm.Designer.cs">
+      <DependentUpon>PorPagarFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ToolPago\PrincipalFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\PrincipalFrm.Designer.cs">
+      <DependentUpon>PrincipalFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,10 +356,25 @@
     <EmbeddedResource Include="Source\Filtrar\FiltroFrm.resx">
       <DependentUpon>FiltroFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Maestro\MaestroFrm.resx">
+      <DependentUpon>MaestroFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Maestro\MedioPago\AgregarEditar\AgregarEditarFrm.resx">
+      <DependentUpon>AgregarEditarFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Proveedor\Lista\ListaFrm.resx">
       <DependentUpon>ListaFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\AnalisisVence.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\DocPagar.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\CtaPagar\LIstaDoc.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\RelPago.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\ReporteFrm.resx">
@@ -296,6 +405,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.resx">
       <DependentUpon>VisualizarFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\GenerarPago\GenerarPagoFrm.resx">
+      <DependentUpon>GenerarPagoFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\GenerarPago\MetodosPago\MetodosPagoFrm.resx">
+      <DependentUpon>MetodosPagoFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\NuevoDcoumento\AgregarDocFrm.resx">
+      <DependentUpon>AgregarDocFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\PorPagar\PorPagarFrm.resx">
+      <DependentUpon>PorPagarFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\PrincipalFrm.resx">
+      <DependentUpon>PrincipalFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -391,6 +515,7 @@
     <Content Include="Imagenes\bt_notificacion.png" />
     <Content Include="Imagenes\bt_ok_2.png" />
     <Content Include="Imagenes\bt_ok_3.png" />
+    <Content Include="Imagenes\bt_pago.png" />
     <Content Include="Imagenes\bt_price.png" />
     <Content Include="Imagenes\bt_proceso.png" />
     <Content Include="Imagenes\bt_proveedor.png" />
@@ -399,15 +524,18 @@
     <Content Include="Imagenes\bt_reposo.png" />
     <Content Include="Imagenes\bt_salida.png" />
     <Content Include="Imagenes\bt_salida_2.png" />
+    <Content Include="Imagenes\bt_selected.png" />
     <Content Include="Imagenes\bt_setup.png" />
     <Content Include="Imagenes\bt_status.png" />
     <Content Include="Imagenes\bt_sumar.png" />
     <Content Include="Imagenes\bt_sumar_2.png" />
+    <Content Include="Imagenes\bt_unselected.png" />
     <Content Include="Imagenes\bt_usuario_2.png" />
     <Content Include="Imagenes\bt_usuario.png" />
     <Content Include="Imagenes\bt_visor.png" />
     <Content Include="Imagenes\bt_warehouse.png" />
     <Content Include="Imagenes\carpeta.png" />
+    <Content Include="Imagenes\cartera_pago.png" />
     <Content Include="Imagenes\dollar.png" />
     <Content Include="Imagenes\fecha_derecha.png" />
     <Content Include="Imagenes\flecha_izquierda.png" />
@@ -424,10 +552,15 @@
     <Content Include="Imagenes\Machine-learning-1024x682.jpg" />
     <Content Include="Imagenes\mobile.ico" />
     <Content Include="Imagenes\plataforma-efosearch.jpg" />
+    <Content Include="Imagenes\recibo_pago.png" />
     <Content Include="Imagenes\sinImagen.png" />
     <Content Include="Imagenes\TOOLS.ico" />
     <Content Include="Imagenes\transferencia.png" />
     <Content Include="Imagenes\warehouse.png" />
+    <None Include="Resources\bt_selected.png" />
+    <None Include="Resources\bt_unselected.png" />
+    <None Include="Resources\recibo_pago.png" />
+    <None Include="Resources\BT_PAGO.png" />
     <None Include="Resources\gestionPago_03.png" />
     <None Include="Resources\gestionPago_02.png" />
     <None Include="Resources\gestionPago_01.png" />

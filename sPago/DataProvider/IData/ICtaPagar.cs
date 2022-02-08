@@ -12,6 +12,9 @@ namespace sPago.DataProvider.IData
     {
 
         OOB.Resultado.Lista<OOB.CtaPagar.Lista.Ficha> CtaPagar_GetLista(OOB.CtaPagar.Lista.Filtro filtro);
+        OOB.Resultado.Entidad<OOB.CtaPagar.Entidad.Ficha> CtaPagar_GetById(string id);
+        OOB.Resultado.AutoId CtaPagar_Agregar(OOB.CtaPagar.Agregar.Ficha ficha);
+        OOB.Resultado.Ficha CtaPagar_AnularDoc(OOB.CtaPagar.AnularDoc.Ficha ficha);
 
     }
 

@@ -79,13 +79,24 @@ namespace sPago.Source.AdministradorDoc
             xc4.Width = 80;
             xc4.HeaderCell.Style.Font = f;
             xc4.DefaultCellStyle.Font = f1;
+            xc4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            var xcB = new DataGridViewTextBoxColumn();
+            xcB.DataPropertyName = "DiasPend";
+            xcB.HeaderText = "Dias/Pend";
+            xcB.Name = "DIASPEND_CTAPAGAR";
+            xcB.Visible = true;
+            xcB.Width = 80;
+            xcB.HeaderCell.Style.Font = f;
+            xcB.DefaultCellStyle.Font = f1;
+            xcB.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             var xc5 = new DataGridViewTextBoxColumn();
             xc5.DataPropertyName = "DiasTransc";
-            xc5.HeaderText = "Dias";
+            xc5.HeaderText = "Dias/Transc";
             xc5.Name = "DIAS_CTAPAGAR";
             xc5.Visible = true;
-            xc5.Width = 40;
+            xc5.Width = 80;
             xc5.HeaderCell.Style.Font = f;
             xc5.DefaultCellStyle.Font = f1;
             xc5.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -165,6 +176,7 @@ namespace sPago.Source.AdministradorDoc
             DGV.Columns.Add(xc2);
             DGV.Columns.Add(xc3);
             DGV.Columns.Add(xc4);
+            DGV.Columns.Add(xcB);
             DGV.Columns.Add(xc5);
             DGV.Columns.Add(xc6);
             DGV.Columns.Add(xc7);
@@ -202,6 +214,7 @@ namespace sPago.Source.AdministradorDoc
             DGV.Columns["HABER_CTAPAGAR"].Visible = true;
             DGV.Columns["TASARET_ISLR"].Visible = true;
             DGV.Columns["MONTORET_ISLR"].Visible = true;
+            DGV.Columns["DIASPEND_CTAPAGAR"].Visible = true;
             if (_controlador.TipoAdminstrador == Enumerados.EnumTipoAdministrador.RetencionISLR)
             {            
                 DGV.Columns["TIPODOC_CTAPAGAR"].Visible = false;
@@ -209,6 +222,7 @@ namespace sPago.Source.AdministradorDoc
                 DGV.Columns["DIAS_CTAPAGAR"].Visible = false;
                 DGV.Columns["DEBE_CTAPAGAR"].Visible = false;
                 DGV.Columns["HABER_CTAPAGAR"].Visible = false;
+                DGV.Columns["DIASPEND_CTAPAGAR"].Visible = false;
             }
             else if (_controlador.TipoAdminstrador == Enumerados.EnumTipoAdministrador.CtasxPagar)
             {

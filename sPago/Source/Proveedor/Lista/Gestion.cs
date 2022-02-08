@@ -20,7 +20,6 @@ namespace sPago.Source.Proveedor.Lista
 
         public string ItemsEncontrados { get { return string.Format("{0}", _bs.Count); } }
         public BindingSource Source { get { return _bs; } }
-        public data ItemSeleccionado { get { return _itemSeleccionado; } }
         public bool ItemSeleccionadoIsOk { get { return _itemSeleccionado!=null; } }
         public OOB.Proveedor.Entidad.Ficha ProveedorSeleccionado { get { return _itemSeleccionado.Ficha; } }
 
@@ -89,8 +88,8 @@ namespace sPago.Source.Proveedor.Lista
             {
                 if (!it.isActivo)
                 {
-                    Helpers.Msg.Alerta("PROVEEDOR EN ESTADO INACTIVO");
-                    return;
+                    //Helpers.Msg.Alerta("PROVEEDOR EN ESTADO INACTIVO");
+                    //return;
                 }
                 _itemSeleccionado = it;
             }

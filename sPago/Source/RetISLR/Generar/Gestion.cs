@@ -22,7 +22,6 @@ namespace sPago.Source.RetISLR.Generar
         private DateTime _fechaSistema;
         private int _ultRetISLR;
         private data _data;
-        private Proveedor.Lista.Gestion _gestionListaProv;
         private List<data_1> _lst_1;
         private BindingList<data_1> _bl_1;
         private BindingSource _bs_1;
@@ -35,6 +34,8 @@ namespace sPago.Source.RetISLR.Generar
         private string _autoRetencionGenerada;
         //
         private bool _activarBusquedaIsOk;
+        //
+        private Filtrar.IListaProv _gProvLista;
 
 
         public enumPrefBusqueda PrefBusqueda { get { return _prefBusqueda; } }
@@ -52,8 +53,10 @@ namespace sPago.Source.RetISLR.Generar
         public string AutoRetencionGenerada { get { return _autoRetencionGenerada; } }
 
 
-        public Gestion() 
+        public Gestion(Filtrar.IListaProv ctrProvLista) 
         {
+            _gProvLista = ctrProvLista;
+
             _activarBusquedaIsOk = true;
             _abandonarIsOk = false;
             _procesarRetencionIsOK = false;
@@ -62,7 +65,6 @@ namespace sPago.Source.RetISLR.Generar
             _prefBusPrv = "";
             _prefBusqueda = enumPrefBusqueda.SinDefinir;
             _cadenaBuscar = "";
-            _gestionListaProv = new Proveedor.Lista.Gestion();
             _lst_1 = new List<data_1>();
             _bl_1 = new BindingList<data_1>(_lst_1);
             _bs_1 = new BindingSource();
@@ -85,7 +87,7 @@ namespace sPago.Source.RetISLR.Generar
             _prefBusPrv = "";
             _prefBusqueda = enumPrefBusqueda.SinDefinir;
             _cadenaBuscar = "";
-            _gestionListaProv.Inicializa();
+            _gProvLista.Inicializa();
             //
             _bl_1.Clear();
             //
@@ -190,12 +192,12 @@ namespace sPago.Source.RetISLR.Generar
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
-            _gestionListaProv.Inicializa();
-            _gestionListaProv.setLista(r01.ListaEntidad);
-            _gestionListaProv.Inicia();
-            if (_gestionListaProv.ItemSeleccionadoIsOk)
+            _gProvLista.Inicializa();
+            _gProvLista.setLista(r01.ListaEntidad);
+            _gProvLista.Inicia();
+            if (_gProvLista.ItemSeleccionadoIsOk)
             {
-                CargarProveedor(_gestionListaProv.ItemSeleccionado.auto);
+                CargarProveedor(_gProvLista.ProveedorSeleccionado.id);
             }
         }
 

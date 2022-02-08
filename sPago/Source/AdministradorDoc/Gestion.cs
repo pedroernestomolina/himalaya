@@ -14,7 +14,7 @@ namespace sPago.Source.AdministradorDoc
 
         private IGestion _gestion;
         private Filtrar.IGestion _gFiltrar;
-        private GestionLista _gLista;
+        private IAdmLista _gLista;
         private Seguridad.IGestion _gSeguridad;
         private Anular.IGestion _gAnular;
         private SistemaCtrl.VerAnulacion.IGestion _gAuditoria;
@@ -35,13 +35,13 @@ namespace sPago.Source.AdministradorDoc
         public Gestion(Seguridad.IGestion ctrSeguridad, 
             Anular.IGestion ctrAnular, 
             SistemaCtrl.VerAnulacion.IGestion ctrAuditoria,
-            Filtrar.IGestion ctrFiltrar) 
+            Filtrar.IGestion ctrFiltrar, IAdmLista ctrLista) 
         {
             _gSeguridad = ctrSeguridad;
             _gAnular = ctrAnular;
             _gAuditoria = ctrAuditoria;
             _gFiltrar = ctrFiltrar;
-            _gLista = new GestionLista();
+            _gLista = ctrLista;
         }
 
 

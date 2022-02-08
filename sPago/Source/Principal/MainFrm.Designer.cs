@@ -57,13 +57,15 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSM_ARCHIVO_SALIR = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.maestrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_MAESTRO_MEDIOS_PAGO = new System.Windows.Forms.ToolStripMenuItem();
             this.pagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.M_PAGO_ELABORAR_RETENCION_ISLR = new System.Windows.Forms.ToolStripMenuItem();
             this.M_PAGO_ADMINISTRADOR_RETENCION_ISLR = new System.Windows.Forms.ToolStripMenuItem();
             this.M_PAGO_REPORTE_RETENCION_ISL = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.ctasPorPagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsDeCuentaPorPagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.M_CTAS_PAGAR_TOOL_PAGO = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.M_CTAS_PAGAR_ADMINISTRADOR = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -153,11 +155,11 @@
             // 
             this.panel2.Controls.Add(this.BT_SALIR);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(663, 1);
+            this.panel2.Location = new System.Drawing.Point(658, 1);
             this.panel2.Margin = new System.Windows.Forms.Padding(1);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(220, 52);
+            this.panel2.Size = new System.Drawing.Size(225, 52);
             this.panel2.TabIndex = 0;
             // 
             // BT_SALIR
@@ -168,7 +170,7 @@
             this.BT_SALIR.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.BT_SALIR.Location = new System.Drawing.Point(2, 2);
             this.BT_SALIR.Name = "BT_SALIR";
-            this.BT_SALIR.Size = new System.Drawing.Size(216, 48);
+            this.BT_SALIR.Size = new System.Drawing.Size(221, 48);
             this.BT_SALIR.TabIndex = 0;
             this.BT_SALIR.Text = "Salir";
             this.BT_SALIR.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -183,7 +185,7 @@
             this.panel7.Margin = new System.Windows.Forms.Padding(1);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(2);
-            this.panel7.Size = new System.Drawing.Size(343, 52);
+            this.panel7.Size = new System.Drawing.Size(339, 52);
             this.panel7.TabIndex = 1;
             // 
             // tableLayoutPanel6
@@ -202,7 +204,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(339, 48);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(335, 48);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // panel13
@@ -236,7 +238,7 @@
             this.panel14.Margin = new System.Windows.Forms.Padding(1);
             this.panel14.Name = "panel14";
             this.panel14.Padding = new System.Windows.Forms.Padding(2);
-            this.panel14.Size = new System.Drawing.Size(257, 22);
+            this.panel14.Size = new System.Drawing.Size(253, 22);
             this.panel14.TabIndex = 3;
             // 
             // L_FECHA
@@ -246,7 +248,7 @@
             this.L_FECHA.ForeColor = System.Drawing.Color.Yellow;
             this.L_FECHA.Location = new System.Drawing.Point(2, 2);
             this.L_FECHA.Name = "L_FECHA";
-            this.L_FECHA.Size = new System.Drawing.Size(253, 18);
+            this.L_FECHA.Size = new System.Drawing.Size(249, 18);
             this.L_FECHA.TabIndex = 5;
             this.L_FECHA.Text = "Hoy";
             this.L_FECHA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -282,7 +284,7 @@
             this.panel16.Margin = new System.Windows.Forms.Padding(1);
             this.panel16.Name = "panel16";
             this.panel16.Padding = new System.Windows.Forms.Padding(2);
-            this.panel16.Size = new System.Drawing.Size(257, 22);
+            this.panel16.Size = new System.Drawing.Size(253, 22);
             this.panel16.TabIndex = 4;
             // 
             // L_HOST
@@ -292,7 +294,7 @@
             this.L_HOST.ForeColor = System.Drawing.Color.Yellow;
             this.L_HOST.Location = new System.Drawing.Point(2, 2);
             this.L_HOST.Name = "L_HOST";
-            this.L_HOST.Size = new System.Drawing.Size(253, 18);
+            this.L_HOST.Size = new System.Drawing.Size(249, 18);
             this.L_HOST.TabIndex = 4;
             this.L_HOST.Text = "label2";
             this.L_HOST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -301,7 +303,7 @@
             // 
             this.panel17.Controls.Add(this.tableLayoutPanel7);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(346, 1);
+            this.panel17.Location = new System.Drawing.Point(342, 1);
             this.panel17.Margin = new System.Windows.Forms.Padding(1);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(200, 52);
@@ -373,11 +375,11 @@
             // 
             this.panel20.Controls.Add(this.tableLayoutPanel8);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel20.Location = new System.Drawing.Point(548, 1);
+            this.panel20.Location = new System.Drawing.Point(544, 1);
             this.panel20.Margin = new System.Windows.Forms.Padding(1);
             this.panel20.Name = "panel20";
             this.panel20.Padding = new System.Windows.Forms.Padding(2);
-            this.panel20.Size = new System.Drawing.Size(113, 52);
+            this.panel20.Size = new System.Drawing.Size(112, 52);
             this.panel20.TabIndex = 3;
             // 
             // tableLayoutPanel8
@@ -393,7 +395,7 @@
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(109, 48);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(108, 48);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // panel21
@@ -404,7 +406,7 @@
             this.panel21.Margin = new System.Windows.Forms.Padding(1);
             this.panel21.Name = "panel21";
             this.panel21.Padding = new System.Windows.Forms.Padding(2);
-            this.panel21.Size = new System.Drawing.Size(99, 46);
+            this.panel21.Size = new System.Drawing.Size(98, 46);
             this.panel21.TabIndex = 0;
             // 
             // L_HORA
@@ -414,7 +416,7 @@
             this.L_HORA.ForeColor = System.Drawing.Color.Black;
             this.L_HORA.Location = new System.Drawing.Point(2, 2);
             this.L_HORA.Name = "L_HORA";
-            this.L_HORA.Size = new System.Drawing.Size(95, 42);
+            this.L_HORA.Size = new System.Drawing.Size(94, 42);
             this.L_HORA.TabIndex = 6;
             this.L_HORA.Text = "Hoy";
             this.L_HORA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -424,6 +426,7 @@
             this.menuStrip1.BackColor = System.Drawing.Color.Yellow;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
+            this.maestrosToolStripMenuItem,
             this.pagoToolStripMenuItem,
             this.ctasPorPagarToolStripMenuItem,
             this.configuracionToolStripMenuItem});
@@ -455,6 +458,22 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(93, 6);
             // 
+            // maestrosToolStripMenuItem
+            // 
+            this.maestrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.M_MAESTRO_MEDIOS_PAGO});
+            this.maestrosToolStripMenuItem.Name = "maestrosToolStripMenuItem";
+            this.maestrosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.maestrosToolStripMenuItem.Text = "Maestros";
+            // 
+            // M_MAESTRO_MEDIOS_PAGO
+            // 
+            this.M_MAESTRO_MEDIOS_PAGO.Image = global::sPago.Properties.Resources.libro;
+            this.M_MAESTRO_MEDIOS_PAGO.Name = "M_MAESTRO_MEDIOS_PAGO";
+            this.M_MAESTRO_MEDIOS_PAGO.Size = new System.Drawing.Size(143, 22);
+            this.M_MAESTRO_MEDIOS_PAGO.Text = "Medios Pago";
+            this.M_MAESTRO_MEDIOS_PAGO.Click += new System.EventHandler(this.M_MAESTRO_MEDIOS_PAGO_Click);
+            // 
             // pagoToolStripMenuItem
             // 
             this.pagoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -468,6 +487,7 @@
             // 
             // M_PAGO_ELABORAR_RETENCION_ISLR
             // 
+            this.M_PAGO_ELABORAR_RETENCION_ISLR.Image = global::sPago.Properties.Resources.bt_bombillo;
             this.M_PAGO_ELABORAR_RETENCION_ISLR.Name = "M_PAGO_ELABORAR_RETENCION_ISLR";
             this.M_PAGO_ELABORAR_RETENCION_ISLR.Size = new System.Drawing.Size(299, 22);
             this.M_PAGO_ELABORAR_RETENCION_ISLR.Text = "Elaborar Retención ISLR";
@@ -497,7 +517,7 @@
             // ctasPorPagarToolStripMenuItem
             // 
             this.ctasPorPagarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsDeCuentaPorPagarToolStripMenuItem,
+            this.M_CTAS_PAGAR_TOOL_PAGO,
             this.toolStripMenuItem4,
             this.M_CTAS_PAGAR_ADMINISTRADOR,
             this.toolStripMenuItem3,
@@ -506,12 +526,13 @@
             this.ctasPorPagarToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.ctasPorPagarToolStripMenuItem.Text = "Ctas por Pagar";
             // 
-            // toolsDeCuentaPorPagarToolStripMenuItem
+            // M_CTAS_PAGAR_TOOL_PAGO
             // 
-            this.toolsDeCuentaPorPagarToolStripMenuItem.Image = global::sPago.Properties.Resources.bt_bombillo;
-            this.toolsDeCuentaPorPagarToolStripMenuItem.Name = "toolsDeCuentaPorPagarToolStripMenuItem";
-            this.toolsDeCuentaPorPagarToolStripMenuItem.Size = new System.Drawing.Size(333, 22);
-            this.toolsDeCuentaPorPagarToolStripMenuItem.Text = "Tools Pago a Proveedores";
+            this.M_CTAS_PAGAR_TOOL_PAGO.Image = global::sPago.Properties.Resources.bt_bombillo;
+            this.M_CTAS_PAGAR_TOOL_PAGO.Name = "M_CTAS_PAGAR_TOOL_PAGO";
+            this.M_CTAS_PAGAR_TOOL_PAGO.Size = new System.Drawing.Size(333, 22);
+            this.M_CTAS_PAGAR_TOOL_PAGO.Text = "Tools Pago a Proveedores";
+            this.M_CTAS_PAGAR_TOOL_PAGO.Click += new System.EventHandler(this.M_CTAS_PAGAR_TOOL_PAGO_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -535,8 +556,8 @@
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MENU_CTAPAGAR_REPORTES_DOCUMENTO_POR_PAGAR,
-            this.MENU_CTAPAGAR_REPORTES_PAGOS_EMITIDOS,
             this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO,
+            this.MENU_CTAPAGAR_REPORTES_PAGOS_EMITIDOS,
             this.MENU_CTAPAGAR_REPORTES_ANALISIS_VENCIMIENTO});
             this.reportesToolStripMenuItem.Image = global::sPago.Properties.Resources.bt_imprimir_3;
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
@@ -564,7 +585,7 @@
             this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Image = ((System.Drawing.Image)(resources.GetObject("MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Image")));
             this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Name = "MENU_CTAPAGAR_REPORTES_RELACION_PAGO";
             this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Size = new System.Drawing.Size(341, 22);
-            this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Text = "Relación de Pagos a Proveedores";
+            this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Text = "Relación de Pagos";
             this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO.Click += new System.EventHandler(this.MENU_CTAPAGAR_REPORTES_RELACION_PAGO_Click);
             // 
             // MENU_CTAPAGAR_REPORTES_ANALISIS_VENCIMIENTO
@@ -883,7 +904,7 @@
         private System.Windows.Forms.ToolStripMenuItem M_PAGO_REPORTE_RETENCION_ISL;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem ctasPorPagarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsDeCuentaPorPagarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem M_CTAS_PAGAR_TOOL_PAGO;
         private System.Windows.Forms.ToolStripMenuItem M_CTAS_PAGAR_ADMINISTRADOR;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
@@ -892,5 +913,7 @@
         private System.Windows.Forms.ToolStripMenuItem MENU_CTAPAGAR_REPORTES_RELACION_PAGO;
         private System.Windows.Forms.ToolStripMenuItem MENU_CTAPAGAR_REPORTES_ANALISIS_VENCIMIENTO;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem maestrosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem M_MAESTRO_MEDIOS_PAGO;
     }
 }
