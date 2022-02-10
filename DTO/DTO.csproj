@@ -42,6 +42,9 @@
     <Compile Include="CtaPagar\Agregar\Ficha.cs" />
     <Compile Include="CtaPagar\AnularDoc\Auditoria.cs" />
     <Compile Include="CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="CtaPagar\AnullarPago\Auditoria.cs" />
+    <Compile Include="CtaPagar\AnullarPago\CtaPagarActualizar.cs" />
+    <Compile Include="CtaPagar\AnullarPago\Ficha.cs" />
     <Compile Include="CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Filtro.cs" />
@@ -93,6 +96,12 @@
     <Compile Include="RetISLR\Lista\Filtro.cs" />
     <Compile Include="Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="Sistema\DocAnulado\Entidad\Ficha.cs" />
+    <Compile Include="ToolPago\GenerarPago\CxP.cs" />
+    <Compile Include="ToolPago\GenerarPago\DocActualizarSaldoCxP.cs" />
+    <Compile Include="ToolPago\GenerarPago\DocInvRecibo.cs" />
+    <Compile Include="ToolPago\GenerarPago\Ficha.cs" />
+    <Compile Include="ToolPago\GenerarPago\FormaPago.cs" />
+    <Compile Include="ToolPago\GenerarPago\Recibo.cs" />
     <Compile Include="ToolPago\PendPagar\Ficha.cs" />
     <Compile Include="ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />

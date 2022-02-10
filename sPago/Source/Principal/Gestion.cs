@@ -33,6 +33,7 @@ namespace sPago.Source.Principal
         private ToolPago.PorPagar.IGestion _gPorPagar;
         private ToolPago.GenerarPago.IListaDocPagar _gListaDocPago;
         private ToolPago.GenerarPago.IMetodosPago _gMetodoPago;
+        private ToolPago.GenerarPago.IDetalleMonto _gDetalleMontoPago;
         private ToolPago.GenerarPago.IGestion _gGeneradorPago;
 
 
@@ -57,7 +58,8 @@ namespace sPago.Source.Principal
             _gPorPagar = new ToolPago.PorPagar.Gestion();
             _gListaDocPago = new ToolPago.GenerarPago.ListaDocPagar();
             _gMetodoPago = new ToolPago.GenerarPago.MetodosPago.Gestion();
-            _gGeneradorPago = new ToolPago.GenerarPago.Gestion(_gListaDocPago, _gMetodoPago);
+            _gDetalleMontoPago = new ToolPago.GenerarPago.DetalleMonto.Gestion();
+            _gGeneradorPago = new ToolPago.GenerarPago.Gestion(_gListaDocPago, _gMetodoPago, _gDetalleMontoPago);
             //
             _gReport = new Reportes.Gestion(_gFiltrar);
             _gestionRetIslrGenerar = new RetISLR.Generar.Gestion(_gListaProv);

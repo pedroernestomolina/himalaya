@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace sPago.Helpers
@@ -86,6 +87,11 @@ namespace sPago.Helpers
             frp.prmts = pmt;
             frp.Path = pt;
             frp.ShowDialog();
+        }
+
+        public static void VisualizarReciboPago(OOB.ToolPago.ReciboPago.Ficha ficha)
+        {
+            MessageBox.Show("VISUALIZANDO PAGO");
         }
 
     }

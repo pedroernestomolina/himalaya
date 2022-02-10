@@ -15,6 +15,8 @@ namespace Service.ISERVICE
         DTO.Resutado.Entidad<DTO.CtaPagar.Entidad.Ficha> CtaPagar_GetById(string idDoc);
         DTO.Resutado.AutoId CtaPagar_Agregar(DTO.CtaPagar.Agregar.Ficha ficha);
         DTO.Resutado.Ficha CtaPagar_AnularDoc(DTO.CtaPagar.AnularDoc.Ficha ficha);
+        DTO.Resutado.Lista<DTO.CtaPagar.AnularPago.CtaPagarActualizar> CtaPagar_AnularPago_DocumentosInvolucrados(string autoCxP);
+        DTO.Resutado.Ficha CtaPagar_AnularPago(DTO.CtaPagar.AnularPago.Ficha ficha);
 
     }
 

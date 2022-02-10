@@ -370,6 +370,165 @@ namespace Provider.DATASQL
 
             return rt;
         }
+        public DTO.Resutado.Ficha CtaPagar_AnularPago(DTO.CtaPagar.AnularPago.Ficha ficha)
+        {
+            var rt = new DTO.Resutado.Ficha();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    using (var ts = new TransactionScope())
+                    {
+                        var fechaSistema = cn.Database.SqlQuery<DateTime>("select getDate()").FirstOrDefault();
+
+                        var ent = cn.cxp.Find(ficha.autoCxP);
+                        if (ent == null)
+                        {
+                            rt.Mensaje = "ID DOCUMENTO NO ENCONTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (ent.estatus == "1")
+                        {
+                            rt.Mensaje = "DOCUMENTO YA ANULADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (ent.tipo_documento.Trim().ToUpper()!="PAG")
+                        {
+                            rt.Mensaje = "TIPO DOCUMENTO INCORRECTO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        if (ent.modulo_origen != "05")
+                        {
+                            rt.Mensaje = "DOCUMENTO NO APLICA PARA ESTE MODULO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        ent.estatus = "1";
+                        cn.SaveChanges();
+
+
+                        var sql = "update contadores set a_documentos_anulados=a_documentos_anulados+1";
+                        cn.Database.ExecuteSqlCommand(sql);
+                        cn.SaveChanges();
+
+                        sql = "select a_documentos_anulados from contadores";
+                        var aDoc = cn.Database.SqlQuery<int>(sql).FirstOrDefault();
+                        var autoDoc = aDoc.ToString().Trim().PadLeft(10, '0');
+
+                        var anu = ficha.regAuditoria;
+                        var tp1 = new SqlParameter("@codigo", anu.moduloOrigen);
+                        var tp2 = new SqlParameter("@fecha", fechaSistema.Date);
+                        var tp3 = new SqlParameter("@hora", fechaSistema.ToShortTimeString());
+                        var tp4 = new SqlParameter("@detalle", anu.detalle);
+                        var tp5 = new SqlParameter("@estacion", anu.equipoEstacion);
+                        var tp6 = new SqlParameter("@usuario", anu.usuNombre);
+                        var tp7 = new SqlParameter("@codigo_usuario ", anu.usuCodigo);
+                        var tp8 = new SqlParameter("@auto ", autoDoc);
+                        var tp9 = new SqlParameter("@auto_documento", anu.autoDoc);
+                        sql = @"INSERT INTO documentos_anulados
+                                (codigo ,fecha ,hora ,detalle ,estacion ,usuario ,codigo_usuario ,auto ,auto_documento)
+                                VALUES
+                                (@codigo ,@fecha ,@hora ,@detalle ,@estacion ,@usuario ,@codigo_usuario ,@auto ,@auto_documento)";
+                        cn.Database.ExecuteSqlCommand(sql, tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp9);
+                        cn.SaveChanges();
+
+                        //RECIBO DE PAGO: ANULAR
+                        var entRecibo = cn.cxp_recibos.Find(ficha.autoRecibo);
+                        if (entRecibo == null) 
+                        {
+                            rt.Mensaje = "RECIBO DE PAGO NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entRecibo.estatus = "1";
+                        cn.SaveChanges();
+
+                        //MODO DE PAGO: ANULAR
+                        var p1 = new SqlParameter("@aRecibo", ficha.autoRecibo);
+                        sql = @"update cxp_modo_pago set estatus_anulado='1' where auto_recibo=@aRecibo";
+                        cn.Database.ExecuteSqlCommand(sql, p1);
+                        cn.SaveChanges();
+
+                        //ACTUALIZAR SALDO DOCUMENTOS CXP
+                        foreach (var rg in ficha.ctasActualizar) 
+                        {
+                            var entCta = cn.cxp.Find(rg.autoCxP);
+                            if (entCta == null) 
+                            {
+                                rt.Mensaje = "DOCUMENTO A ACTUALIZAR SALDO NO REGISTRADO";
+                                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            }
+                            entCta.acumulado -= rg.monto;
+                            entCta.resta += rg.monto;
+                            entCta.cancelado = "0";
+                            cn.SaveChanges();
+                        }
+
+                        ts.Complete();
+                    }
+                }
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                var dbUpdateEx = ex as System.Data.Entity.Infrastructure.DbUpdateException;
+                var sqlEx = dbUpdateEx.InnerException;
+                if (sqlEx != null)
+                {
+                    var exx = (SqlException)sqlEx.InnerException;
+                    if (exx != null)
+                    {
+                        if (exx.Number == 1452)
+                        {
+                            rt.Mensaje = "PROBLEMA DE CLAVE FORANEA" + Environment.NewLine + exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        else
+                        {
+                            rt.Mensaje = exx.Message;
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                    }
+                }
+                rt.Mensaje = ex.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Lista<DTO.CtaPagar.AnularPago.CtaPagarActualizar> CtaPagar_AnularPago_DocumentosInvolucrados(string autoCxP)
+        {
+            var rt = new DTO.Resutado.Lista<DTO.CtaPagar.AnularPago.CtaPagarActualizar>();
+
+            try
+            {
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("@autoPago", autoCxP);
+                    var sql = "select monto, auto_cxp as autoCxP from cxp_documentos where auto_cxp_pago=@autoPago";
+                    var lst = cn.Database.SqlQuery<DTO.CtaPagar.AnularPago.CtaPagarActualizar>(sql, p1).ToList();
+                    rt.ListaEntidad = lst;
+                    return rt;
+                }
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
 
         //
 

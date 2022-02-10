@@ -11,7 +11,7 @@ namespace sPago.Source.ToolPago.GenerarPago
     public interface IMetodosPago
     {
 
-        object ListaMetodosPago { get; }
+        List<GenerarPago.MetodosPago.data> ListaMetodosPago { get; }
         bool ProcesarIsOk { get; }
 
 

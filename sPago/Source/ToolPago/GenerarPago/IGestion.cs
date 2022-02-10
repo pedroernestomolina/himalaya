@@ -11,6 +11,7 @@ namespace sPago.Source.ToolPago.GenerarPago
     public interface IGestion
     {
 
+        string IdReciboPago { get; }
         bool GenerarPagIsOk { get; }
 
 

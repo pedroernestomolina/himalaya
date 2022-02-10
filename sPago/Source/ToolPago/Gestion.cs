@@ -149,9 +149,21 @@ namespace sPago.Source.ToolPago
                 _gGenerarPago.Inicia();
                 if (_gGenerarPago.GenerarPagIsOk) 
                 {
+                    ReciboPago(_gGenerarPago.IdReciboPago);
                     ActualizarData(idProv);
                 }
             }
+        }
+
+        private void ReciboPago(string p)
+        {
+            var r01 = Sistema.MyData.ToolPago_ReciboPago_GetByAutoRecibo(p);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            Helpers.Utils.VisualizarReciboPago(r01.MiEntidad);
         }
         
         private void ActualizarData(string idProv)

@@ -115,6 +115,111 @@ namespace sPago.DataProvider.Data
 
             return rt;
         }
+        public OOB.Resultado.AutoId ToolPago_GenerarPago(OOB.ToolPago.GenerarPago.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.AutoId();
+
+            var fichaDTO = new DTO.ToolPago.GenerarPago.Ficha();
+            fichaDTO.docActualizarSaldoCxP = ficha.docActualizarSaldoCxP.Select(s =>
+            {
+                var nr = new DTO.ToolPago.GenerarPago.DocActualizarSaldoCxP()
+                {
+                    idDocCxP = s.idDocCxP,
+                    montoAbonado = s.montoAbonado,
+                };
+                return nr;
+            }).ToList();
+            var e2 = ficha.cxp;
+            fichaDTO.cxp = new DTO.ToolPago.GenerarPago.CxP()
+            {
+                acumulado = e2.acumulado,
+                autoProv = e2.autoProv,
+                ciRifProv = e2.ciRifProv,
+                codigoProv = e2.codigoProv,
+                detalle = e2.detalle,
+                estatusAnulado = e2.estatusAnulado,
+                estatusPagado = e2.estatusPagado,
+                importe = e2.importe,
+                moduloOrigen = e2.moduloOrigen,
+                montoResta = e2.montoResta,
+                nombreRazonSocialProv = e2.nombreRazonSocialProv,
+                signo = e2.signo,
+                tipoDocGen = e2.tipoDocGen,
+            };
+            var e3 = ficha.recibo;
+            fichaDTO.recibo = new DTO.ToolPago.GenerarPago.Recibo()
+            {
+                autoProv = e3.autoProv,
+                autoUsuario = e3.autoUsuario,
+                cantDocInvolucrado = e3.cantDocInvolucrado,
+                ciRifProv = e3.ciRifProv,
+                codigoProv = e3.codigoProv,
+                dirFiscalProv = e3.dirFiscalProv,
+                estatusAnulado = e3.estatusAnulado,
+                importe = e3.importe,
+                montoCambio = e3.montoCambio,
+                montoRecibido = e3.montoRecibido,
+                nombreRazonSocialProv = e3.nombreRazonSocialProv,
+                nombreUsuario = e3.nombreUsuario,
+                notas = e3.notas,
+                telefonoProv = e3.telefonoProv,
+                detalle = e3.detalle,
+                tipoPagoOrigen = e3.tipoPagoOrigen,
+            };
+            fichaDTO.docInvRecibo = ficha.docInvRecibo.Select(s =>
+            {
+                var nr = new DTO.ToolPago.GenerarPago.DocInvRecibo()
+                {
+                    autoCxPDocInv = s.autoCxPDocInv,
+                    detalle = s.detalle,
+                    fechaDocInv = s.fechaDocInv,
+                    montoImporte = s.montoImporte,
+                    nItem = s.nItem,
+                    numDocInv = s.numDocInv,
+                    operacionEjecutar = s.operacionEjecutar,
+                    tipoDocInv = s.tipoDocInv,
+                    nombreDocInv = s.nombreDocInv,
+                };
+                return nr;
+            }).ToList();
+            fichaDTO.formasPago = ficha.formasPago.Select(s=> 
+            {
+                var nr = new DTO.ToolPago.GenerarPago.FormaPago()
+                {
+                    codigoMedioPago = s.codigoMedioPago,
+                    descMedioPago = s.descMedioPago,
+                    estatusAnulado = s.estatusAnulado,
+                    importe = s.importe,
+                    montoRecibido = s.montoRecibido,
+                    aplicaFactorCambio = s.aplicaFactorCambio,
+                    banco = s.banco,
+                    detalleOperacion = s.detalleOperacion,
+                    factorCambio = s.factorCambio,
+                    fechaOperacion = s.fechaOperacion,
+                    numeroChequeRef = s.numeroChequeRef,
+                    numeroCta = s.numeroCta,
+                };
+                return nr;
+            }).ToList();
+
+            var r01 = MyData.ToolsPago_GenerarPago(fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+            rt.Auto = r01.Auto;
+            rt.Id = r01.Id;
+
+            return rt;
+        }
+        public OOB.Resultado.Entidad<OOB.ToolPago.ReciboPago.Ficha> ToolPago_ReciboPago_GetByAutoRecibo(string autoRecibo)
+        {
+            var rt = new OOB.Resultado.Entidad<OOB.ToolPago.ReciboPago.Ficha>();
+
+            return rt;
+        }
 
     }
 

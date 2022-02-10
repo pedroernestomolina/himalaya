@@ -183,6 +183,10 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                     {
                         AnularDoc(ItemActual.autoDoc, _gAnular.Motivo);
                     }
+                    else if(ItemActual.tipoDoc == "PAG")
+                    {
+                        AnularPago(r01.MiEntidad, _gAnular.Motivo);
+                    }
                     else
                     {
                         Helpers.Msg.Alerta("ANULANDO DOCUMENTO");
@@ -190,6 +194,60 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                     }
                 }
             }
+        }
+
+        private void AnularPago(OOB.CtaPagar.Entidad.Ficha fichaCxP, string motivo)
+        {
+            var xms = "Anular Documento ?";
+            var msg = MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (msg == DialogResult.No)
+            {
+                return;
+            }
+
+            var r01 = Sistema.MyData.CtaPagar_AnularPago_DocumentosInvolucrados(fichaCxP.autoDoc);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            if (r01.ListaEntidad.Count == 0) 
+            {
+                Helpers.Msg.Error("NO HAY DOCUMENTOS INVOLUCRADOS");
+                return;
+            }
+
+            var ficha = new OOB.CtaPagar.AnularPago.Ficha()
+            {
+                autoCxP = fichaCxP.autoDoc,
+                autoRecibo = fichaCxP.autoDocRef,
+                ctasActualizar = r01.ListaEntidad.Select(s =>
+                {
+                    var nr = new OOB.CtaPagar.AnularPago.CtaPagarActualizar()
+                    {
+                        autoCxP = s.autoCxP,
+                        monto = s.monto,
+                    };
+                    return nr;
+                }).ToList(),
+                regAuditoria = new OOB.CtaPagar.AnularPago.Auditoria()
+                {
+                    autoDoc = fichaCxP.autoDoc,
+                    detalle = motivo,
+                    equipoEstacion = Sistema.EquipoEstacion,
+                    moduloOrigen = "05",
+                    usuCodigo = Sistema.Usuario.codigoUsu,
+                    usuNombre = Sistema.Usuario.nombreUsu,
+                },
+            };
+            var r02 = Sistema.MyData.CtaPagar_AnularPago(ficha);
+            if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r02.Mensaje);
+                return;
+            }
+            _anularItemIsOk = true;
+            Helpers.Msg.EliminarOk();
         }
 
         private void AnularDoc(string aDoc, string mot)
@@ -226,9 +284,27 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
 
         public void VisualizarDocumento(data ItemActual)
         {
-            if (ItemActual.tipoDoc == "PAG")
+            var r01 = Sistema.MyData.CtaPagar_GetById(ItemActual.autoDoc);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
             {
-                Helpers.Msg.Alerta("VISUALIZANDO DOCUMENTO");
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            if (r01.MiEntidad.codigoModuloOrigen != "05")
+            {
+                Helpers.Msg.Error("DOCUMENTO A VISUALIZAR NO APLICA PARA ESTE MODULO");
+                return;
+            }
+            if (r01.MiEntidad.tipoDoc == "PAG")
+            {
+                var autoRecibo = r01.MiEntidad.autoDocRef;
+                var r02 = Sistema.MyData.ToolPago_ReciboPago_GetByAutoRecibo(autoRecibo);
+                if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                {
+                    Helpers.Msg.Error(r02.Mensaje);
+                    return;
+                }
+                Helpers.Utils.VisualizarReciboPago(r02.MiEntidad);
             }
         }
 

@@ -24,6 +24,10 @@ namespace Service.SERVICE
         {
             return ServiceProv.ToolPago_PendPagar_GetByIdProv(idProv);
         }
+        public DTO.Resutado.AutoId ToolsPago_GenerarPago(DTO.ToolPago.GenerarPago.Ficha ficha)
+        {
+            return ServiceProv.ToolPago_GenerarPago(ficha);
+        }
 
     }
 

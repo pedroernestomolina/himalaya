@@ -31,6 +31,46 @@ namespace sPago.OOB.ToolPago.PendPagar
                 return rt;
             }
         }
+        public string CodigoDoc 
+        {
+            get 
+            {
+                var rt = "";
+                switch (tipoDoc.Trim().ToUpper()) 
+                {
+                    case "FAC":
+                        rt = "01";
+                        break;
+                    case "NDF":
+                        rt = "02";
+                        break;
+                    case "NCF":
+                        rt = "03";
+                        break;
+                }
+                return rt;
+            }
+        }
+        public string NombreDoc 
+        {
+            get 
+            {
+                var rt = "";
+                switch (tipoDoc.Trim().ToUpper()) 
+                {
+                    case "FAC":
+                        rt = "FACTURA";
+                        break;
+                    case "NDF":
+                        rt = "NOTA DEBITO";
+                        break;
+                    case "NCF":
+                        rt = "NOTA CREDITO";
+                        break;
+                }
+                return rt;
+            }
+        }
 
 
         public Ficha()

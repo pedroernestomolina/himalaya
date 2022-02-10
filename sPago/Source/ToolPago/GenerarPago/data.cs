@@ -13,8 +13,12 @@ namespace sPago.Source.ToolPago.GenerarPago
 
         private OOB.Proveedor.Entidad.Ficha _proveedor;
         private List<item> _listaDocPagar;
+        private List<MetodosPago.data> _listMetodosPago;
 
 
+        public OOB.Proveedor.Entidad.Ficha Proveedor { get { return _proveedor; } }
+        public List<item> DocumentosPagar { get { return _listaDocPagar; } }
+        public List<MetodosPago.data> MetodosPago { get { return _listMetodosPago; } }
         public string DataProveedor 
         {
             get 
@@ -33,6 +37,7 @@ namespace sPago.Source.ToolPago.GenerarPago
         {
             _proveedor = null;
             _listaDocPagar = null;
+            _listMetodosPago = null;
         }
 
 
@@ -50,6 +55,7 @@ namespace sPago.Source.ToolPago.GenerarPago
         {
             _proveedor = null;
             _listaDocPagar = null;
+            _listMetodosPago = null;
         }
 
         public void setItemsPagar(List<item> list)
@@ -57,11 +63,11 @@ namespace sPago.Source.ToolPago.GenerarPago
             _listaDocPagar = list;
         }
 
-
-        internal void setMetodoPago(object p)
+        public void setMetodoPago(List<MetodosPago.data> list)
         {
-            throw new NotImplementedException();
+            _listMetodosPago = list;
         }
+
     }
 
 }

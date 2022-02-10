@@ -177,6 +177,10 @@ namespace sPago.Source.ToolPago.GenerarPago
         private void ProcesarPago()
         {
             _controlador.ProcesarPago();
+            if (_controlador.ProcesarPagoIsOk)
+            {
+                Salir();
+            }
         }
 
         private void BT_SALIR_Click(object sender, EventArgs e)
@@ -187,6 +191,15 @@ namespace sPago.Source.ToolPago.GenerarPago
         private void Abandonar()
         {
             _controlador.Abandonar();
+            if (_controlador.AbandonarIsOk) 
+            {
+                Salir();
+            }
+        }
+
+        private void Salir()
+        {
+            this.Close();
         }
 
         private void BT_MARCAR_Click(object sender, EventArgs e)
@@ -219,7 +232,7 @@ namespace sPago.Source.ToolPago.GenerarPago
         private void GenerarPagoFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            if (_controlador.AbandonarIsOk)
+            if (_controlador.AbandonarIsOk || _controlador.ProcesarPagoIsOk)
             {
                 e.Cancel = false;
             }

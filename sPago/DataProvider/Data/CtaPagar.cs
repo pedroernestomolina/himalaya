@@ -166,6 +166,75 @@ namespace sPago.DataProvider.Data
 
             return rt;
         }
+        public OOB.Resultado.Lista<OOB.CtaPagar.AnularPago.CtaPagarActualizar> CtaPagar_AnularPago_DocumentosInvolucrados(string autoCxP)
+        {
+            var rt = new OOB.Resultado.Lista<OOB.CtaPagar.AnularPago.CtaPagarActualizar>() ;
+
+            var r01 = MyData.CtaPagar_AnularPago_DocumentosInvolucrados (autoCxP);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+            var lst = new List<OOB.CtaPagar.AnularPago.CtaPagarActualizar>();
+            if (r01.ListaEntidad != null)
+            {
+                if (r01.ListaEntidad.Count > 0)
+                {
+                    lst = r01.ListaEntidad.Select(s =>
+                    {
+                        var rg = new OOB.CtaPagar.AnularPago.CtaPagarActualizar()
+                        {
+                            autoCxP = s.autoCxP,
+                            monto = s.monto,
+                        };
+                        return rg;
+                    }).ToList();
+                }
+            }
+            rt.ListaEntidad = lst;
+
+            return rt;
+        }
+        public OOB.Resultado.Ficha CtaPagar_AnularPago(OOB.CtaPagar.AnularPago.Ficha ficha)
+        {
+            var rt = new OOB.Resultado.Ficha();
+
+            var ss = ficha.regAuditoria;
+            var fichaDTO = new DTO.CtaPagar.AnularPago.Ficha()
+            {
+                autoCxP = ficha.autoCxP,
+                autoRecibo = ficha.autoRecibo,
+                regAuditoria = new DTO.CtaPagar.AnularPago.Auditoria()
+                {
+                    autoDoc = ss.autoDoc,
+                    detalle = ss.detalle,
+                    equipoEstacion = ss.equipoEstacion,
+                    moduloOrigen = ss.moduloOrigen,
+                    usuCodigo = ss.usuCodigo,
+                    usuNombre = ss.usuNombre,
+                },
+                ctasActualizar = ficha.ctasActualizar.Select(s =>
+                {
+                    var nr = new DTO.CtaPagar.AnularPago.CtaPagarActualizar()
+                    {
+                        autoCxP = s.autoCxP,
+                        monto = s.monto,
+                    };
+                    return nr;
+                }).ToList(),
+            };
+            var r01 = MyData.CtaPagar_AnularPago(fichaDTO);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            return rt;
+        }
 
     }
 

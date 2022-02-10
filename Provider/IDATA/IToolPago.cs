@@ -14,6 +14,7 @@ namespace Provider.IDATA
         DTO.Resutado.Lista<DTO.ToolPago.ResumenPendPagar.Ficha> ToolPago_ResumenPendPagar_GetLista();
         DTO.Resutado.Entidad<DTO.ToolPago.ResumenPendPagar.Ficha> ToolPago_ResumenPendPagar_GetByIdProveedor(string idProv);
         DTO.Resutado.Lista<DTO.ToolPago.PendPagar.Ficha> ToolPago_PendPagar_GetByIdProv(string idProv);
+        DTO.Resutado.AutoId ToolPago_GenerarPago(DTO.ToolPago.GenerarPago.Ficha ficha);
 
     }
 

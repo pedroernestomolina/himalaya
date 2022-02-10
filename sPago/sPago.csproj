@@ -96,6 +96,9 @@
     <Compile Include="OOB\CtaPagar\Agregar\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\AnularDoc\Auditoria.cs" />
     <Compile Include="OOB\CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\AnularPago\Auditoria.cs" />
+    <Compile Include="OOB\CtaPagar\AnularPago\CtaPagarActualizar.cs" />
+    <Compile Include="OOB\CtaPagar\AnularPago\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Filtro.cs" />
@@ -121,7 +124,14 @@
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Entidad\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\CxP.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\DocActualizarSaldoCxP.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\DocInvRecibo.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\FormaPago.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\Recibo.cs" />
     <Compile Include="OOB\ToolPago\PendPagar\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\ReciboPago\Ficha.cs" />
     <Compile Include="OOB\ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Source\AdministradorDoc\data.cs" />
     <Compile Include="Source\AdministradorDoc\Enumerados.cs" />
@@ -300,6 +310,13 @@
       <DependentUpon>VisualizarFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\ToolPago\GenerarPago\data.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\DetalleMonto\DetalleMontoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\DetalleMonto\DetalleMontoFrm.Designer.cs">
+      <DependentUpon>DetalleMontoFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ToolPago\GenerarPago\DetalleMonto\Gestion.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\GenerarPagoFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,11 +324,14 @@
       <DependentUpon>GenerarPagoFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\ToolPago\GenerarPago\Gestion.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\IDetalleMonto.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\IGestion.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\IListaDocPagar.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\IMetodosPago.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\item.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\ListaDocPagar.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\data.cs" />
+    <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\ficha.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\Gestion.cs" />
     <Compile Include="Source\ToolPago\GenerarPago\MetodosPago\MetodosPagoFrm.cs">
       <SubType>Form</SubType>
@@ -405,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\SistemaCtrl\VerAnulacion\VisualizarFrm.resx">
       <DependentUpon>VisualizarFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\GenerarPago\DetalleMonto\DetalleMontoFrm.resx">
+      <DependentUpon>DetalleMontoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\ToolPago\GenerarPago\GenerarPagoFrm.resx">
       <DependentUpon>GenerarPagoFrm.cs</DependentUpon>

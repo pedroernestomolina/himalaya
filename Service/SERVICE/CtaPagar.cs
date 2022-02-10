@@ -61,6 +61,14 @@ namespace Service.SERVICE
 
             return ServiceProv.CtaPagar_AnularDoc(ficha);
         }
+        public DTO.Resutado.Ficha CtaPagar_AnularPago(DTO.CtaPagar.AnularPago.Ficha ficha)
+        {
+            return ServiceProv.CtaPagar_AnularPago(ficha);
+        }
+        public DTO.Resutado.Lista<DTO.CtaPagar.AnularPago.CtaPagarActualizar> CtaPagar_AnularPago_DocumentosInvolucrados(string autoCxP)
+        {
+            return ServiceProv.CtaPagar_AnularPago_DocumentosInvolucrados(autoCxP);
+        }
 
     }
 

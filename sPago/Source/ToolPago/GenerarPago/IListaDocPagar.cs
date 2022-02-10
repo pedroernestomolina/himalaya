@@ -21,7 +21,7 @@ namespace sPago.Source.ToolPago.GenerarPago
 
         void Inicializa();
         void setLista(List<OOB.ToolPago.PendPagar.Ficha> list);
-        void setPagarActivar(decimal _xmonto);
+        void setPagarActivar(decimal monto , string detalle);
 
     }
 

@@ -13,7 +13,9 @@ namespace sPago.DataProvider.IData
 
         OOB.Resultado.Lista<OOB.ToolPago.ResumenPendPagar.Ficha> ToolPago_ResumenPendPagar_GetLista();
         OOB.Resultado.Entidad<OOB.ToolPago.ResumenPendPagar.Ficha> ToolPago_ResumenPendPagar_GetByIdProv(string idProv);
-        OOB.Resultado.Lista<OOB.ToolPago.PendPagar.Ficha> ToolPago_PendPagar_GetByIdProv(string _idProv);
+        OOB.Resultado.Lista<OOB.ToolPago.PendPagar.Ficha> ToolPago_PendPagar_GetByIdProv(string idProv);
+        OOB.Resultado.AutoId ToolPago_GenerarPago(OOB.ToolPago.GenerarPago.Ficha ficha);
+        OOB.Resultado.Entidad<OOB.ToolPago.ReciboPago.Ficha> ToolPago_ReciboPago_GetByAutoRecibo(string autoRecibo);
 
     }
 

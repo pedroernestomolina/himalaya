@@ -49,9 +49,9 @@ namespace sPago.Source.ToolPago.GenerarPago
             }
         }
 
-        public void setPagarActivar(decimal xmonto)
+        public void setPagarActivar(decimal monto, string detalle)
         {
-            ItemActual.setActivarPagar(xmonto);
+            ItemActual.setActivarPagar(monto, detalle);
             _bs.CurrencyManager.Refresh();
         }
 

@@ -14,6 +14,7 @@ namespace sPago.Source.ToolPago.GenerarPago
         private OOB.ToolPago.PendPagar.Ficha _ficha;
         private decimal _montoPagar;
         private bool _isPagarActiva;
+        private string _detallePago;
 
 
         public decimal MontoPagar { get { return _montoPagar; } }
@@ -26,6 +27,8 @@ namespace sPago.Source.ToolPago.GenerarPago
         public decimal AcumuladoDoc { get { return _ficha.acumuladoDoc; } }
         public decimal RestaDoc { get { return _ficha.restaDoc; } }
         public bool IsPagarActiva { get { return _isPagarActiva; } }
+        public OOB.ToolPago.PendPagar.Ficha Ficha { get { return _ficha; } }
+        public string DetallePago { get { return _detallePago; } }
 
 
         public item(OOB.ToolPago.PendPagar.Ficha ficha)
@@ -35,14 +38,16 @@ namespace sPago.Source.ToolPago.GenerarPago
             this._ficha  = ficha;
         }
 
-        public void setActivarPagar(decimal xmonto)
+        public void setActivarPagar(decimal monto, string detalle)
         {
             _isPagarActiva = false;
             _montoPagar = 0m;
-            if (xmonto > 0)
+            _detallePago = "";
+            if (monto > 0)
             {
                 _isPagarActiva = true;
-                _montoPagar = xmonto * _ficha.signoDoc;
+                _montoPagar = monto * _ficha.signoDoc;
+                _detallePago = detalle;
             }
         }
 
