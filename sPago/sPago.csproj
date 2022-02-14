@@ -94,11 +94,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="OOB\CtaPagar\Agregar\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\Agregar\ProvActualizar.cs" />
     <Compile Include="OOB\CtaPagar\AnularDoc\Auditoria.cs" />
     <Compile Include="OOB\CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\AnularDoc\ProvActualizar.cs" />
     <Compile Include="OOB\CtaPagar\AnularPago\Auditoria.cs" />
     <Compile Include="OOB\CtaPagar\AnularPago\CtaPagarActualizar.cs" />
     <Compile Include="OOB\CtaPagar\AnularPago\Ficha.cs" />
+    <Compile Include="OOB\CtaPagar\AnularPago\ProvActualizar.cs" />
     <Compile Include="OOB\CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Ficha.cs" />
     <Compile Include="OOB\CtaPagar\Lista\Filtro.cs" />
@@ -117,10 +120,12 @@
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocCompraAplicaRetencion.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\DocRegistro.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\Anular\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\AnularRetencion\Anular\ProvActualizar.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\CapturarData\DocCompraAplicaRetencion.cs" />
     <Compile Include="OOB\RetISLR\AnularRetencion\CapturarData\Ficha.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Detalle.cs" />
     <Compile Include="OOB\RetISLR\Entidad\Ficha.cs" />
+    <Compile Include="OOB\RetISLR\GenerarRetencion\ProvActualizar.cs" />
     <Compile Include="OOB\RetISLR\Lista\Filtro.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Buscar\Ficha.cs" />
     <Compile Include="OOB\Sistema\DocAnulado\Entidad\Ficha.cs" />
@@ -129,9 +134,13 @@
     <Compile Include="OOB\ToolPago\GenerarPago\DocInvRecibo.cs" />
     <Compile Include="OOB\ToolPago\GenerarPago\Ficha.cs" />
     <Compile Include="OOB\ToolPago\GenerarPago\FormaPago.cs" />
+    <Compile Include="OOB\ToolPago\GenerarPago\ProvActualizar.cs" />
     <Compile Include="OOB\ToolPago\GenerarPago\Recibo.cs" />
     <Compile Include="OOB\ToolPago\PendPagar\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\ReciboPago\Documento.cs" />
     <Compile Include="OOB\ToolPago\ReciboPago\Ficha.cs" />
+    <Compile Include="OOB\ToolPago\ReciboPago\MetodoPago.cs" />
+    <Compile Include="OOB\ToolPago\ReciboPago\Recibo.cs" />
     <Compile Include="OOB\ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Source\AdministradorDoc\data.cs" />
     <Compile Include="Source\AdministradorDoc\Enumerados.cs" />
@@ -155,6 +164,7 @@
     <Compile Include="Source\Anular\IGestion.cs" />
     <Compile Include="Source\CtasPagar\AdministradorDoc\Gestion.cs" />
     <Compile Include="Source\CtasPagar\AdministradorDoc\GestionFiltro.cs" />
+    <Compile Include="Source\CtasPagar\AdministradorDoc\IVerDocumento.cs" />
     <Compile Include="Source\Filtrar\dataFiltrar.cs" />
     <Compile Include="Source\Filtrar\ficha.cs" />
     <Compile Include="Source\Filtrar\FiltroFrm.cs">
@@ -207,7 +217,7 @@
     <Compile Include="Source\Reportes\CtaPagar\PagosEmitidos\Gestion.cs" />
     <Compile Include="Source\Reportes\CtaPagar\RelacionPagoProveedor\Filtro.cs" />
     <Compile Include="Source\Reportes\CtaPagar\RelacionPagoProveedor\Gestion.cs" />
-    <Compile Include="Source\Reportes\DS_CTAPAGAR.Designer.cs">
+    <Compile Include="Source\Reportes\DS_CTAPAGAR1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DS_CTAPAGAR.xsd</DependentUpon>
@@ -367,6 +377,13 @@
     <Compile Include="Source\ToolPago\PrincipalFrm.Designer.cs">
       <DependentUpon>PrincipalFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\ToolPago\VisualizarDocumento\Gestion.cs" />
+    <Compile Include="Source\ToolPago\VisualizarDocumento\VerDocumentoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ToolPago\VisualizarDocumento\VerDocumentoFrm.Designer.cs">
+      <DependentUpon>VerDocumentoFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,6 +409,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\CtaPagar\LIstaDoc.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\PagoProveedor.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Reportes\CtaPagar\ReciboPago.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Reportes\CtaPagar\RelPago.rdlc">
@@ -444,6 +467,9 @@
     <EmbeddedResource Include="Source\ToolPago\PrincipalFrm.resx">
       <DependentUpon>PrincipalFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\ToolPago\VisualizarDocumento\VerDocumentoFrm.resx">
+      <DependentUpon>VerDocumentoFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -460,7 +486,7 @@
     <None Include="Source\Reportes\DS_CTAPAGAR.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DS_CTAPAGAR.Designer.cs</LastGenOutput>
+      <LastGenOutput>DS_CTAPAGAR1.Designer.cs</LastGenOutput>
     </None>
     <None Include="Source\Reportes\DS_CTAPAGAR.xss">
       <DependentUpon>DS_CTAPAGAR.xsd</DependentUpon>

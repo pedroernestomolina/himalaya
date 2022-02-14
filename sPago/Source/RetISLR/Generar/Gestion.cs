@@ -375,7 +375,7 @@ namespace sPago.Source.RetISLR.Generar
                     montoIva1 = s.Ficha.Iva_1,
                     montoIva2 = s.Ficha.Iva_2,
                     montoIva3 = s.Ficha.Iva_3,
-                    montoRetencion = Monto,
+                    montoRetencion = s.MontoRetencion,
                     montoTasa1 = s.Ficha.TasaIva_1,
                     montoTasa2 = s.Ficha.TasaIva_2,
                     montoTasa3 = s.Ficha.TasaIva_3,
@@ -468,6 +468,12 @@ namespace sPago.Source.RetISLR.Generar
                 descMedioPago = "IR",
                 estatusAnulado = "0",
                 montoRecibido = Monto,
+            };
+            ficha.proveedorAct = new OOB.RetISLR.GenerarRetencion.ProvActualizar()
+            {
+                autoProv = _data.Proveedor.id,
+                credito = _lst_ret.Where(w => w.Signo == -1).Sum(s => s.MontoRetencion),
+                debito = _lst_ret.Where(w => w.Signo == 1).Sum(s => s.MontoRetencion),
             };
 
             var r01 = Sistema.MyData.RetISLR_GenerarRetencion(ficha);

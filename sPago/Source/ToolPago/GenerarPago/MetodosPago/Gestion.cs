@@ -26,6 +26,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
         private List<data> _lstPago;
         private BindingList<data> _blPago;
         private BindingSource _bsPago;
+        private bool _editarMetodoPagoIsOk;
 
 
         public decimal MontoPagar { get { return _montoPagar; } }
@@ -48,6 +49,8 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
         public decimal MontoRecibido { get { return _blPago.Sum(s => s.Importe); } }
         public decimal MontoPend { get { return MontoPagar - MontoRecibido; } }
         public bool DescartarIsOk { get { return _descartarIsOk; } }
+        public string RestaCambio { get { return MontoPend > 0 ? "Resta:" : "Cambio:"; } }
+        public bool EditarMetodoPagoIsOk { get { return _editarMetodoPagoIsOk; } }
 
 
         public Gestion() 
@@ -74,6 +77,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
             _blPago.Clear();
             _descartarIsOk = false;
             _aceptarFichaIsOk = false;
+            _editarMetodoPagoIsOk = false;
             _habilitarFicha = false;
             _abandonarIsOk = false;
             _procesarIsOk = false;
@@ -172,6 +176,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
             if (_habilitarFicha)
                 return;
 
+            _editarMetodoPagoIsOk = false;
             _aceptarFichaIsOk = false;
             _habilitarFicha = true;
             _data.Limpiar();
@@ -183,6 +188,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
             _descartarIsOk = false;
             if (_data.IsValida())
             {
+                _editarMetodoPagoIsOk = false;
                 _blPago.Add(new data(_data));
                 _aceptarFichaIsOk = true;
                 _habilitarFicha = false;
@@ -192,6 +198,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
 
         public void EliminarMetodoPago()
         {
+            _editarMetodoPagoIsOk = false;
             if (_bsPago.Current != null) 
             {
                 if (_habilitarFicha) { return; }
@@ -204,6 +211,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
 
         public void DescartarFicha()
         {
+            _editarMetodoPagoIsOk = false;
             _descartarIsOk = true;
             _aceptarFichaIsOk = false;
             _habilitarFicha = false;
@@ -217,6 +225,11 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
                 Helpers.Msg.Error("MONTO RECIBIDO INFERIOR AL MONTO A PAGAR");
                 return;
             }
+            if (MontoRecibido > _montoPagar)
+            {
+                Helpers.Msg.Error("MONTO RECIBIDO SUPERIOR AL MONTO A PAGAR");
+                return;
+            }
 
             if (MontoRecibido >= _montoPagar) 
             {
@@ -227,6 +240,25 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
                 {
                     _procesarIsOk = true;
                 }
+            }
+        }
+
+        public void EditarMetodoPago()
+        {
+            _editarMetodoPagoIsOk = false;
+            if (_habilitarFicha)
+            {
+                return;
+            }
+            if (_bsPago.Current != null)
+            {
+                var it = (data)_bsPago.Current;
+                _aceptarFichaIsOk = false;
+                _habilitarFicha = true;
+                _data.setData(it);
+                _blPago.Remove(it);
+                _descartarIsOk = false;
+                _editarMetodoPagoIsOk = true;
             }
         }
 

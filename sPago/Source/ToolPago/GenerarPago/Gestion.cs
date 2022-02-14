@@ -245,6 +245,12 @@ namespace sPago.Source.ToolPago.GenerarPago
                 };
                 return nr;
             }).ToList();
+            fichaOOB.proveedorAct = new OOB.ToolPago.GenerarPago.ProvActualizar()
+            {
+                autoProv = _data.Proveedor.id,
+                credito = _data.DocumentosPagar.Where(s => s.Ficha.signoDoc == -1).Sum(ss => ss.MontoPagar),
+                debito = _data.DocumentosPagar.Where(s => s.Ficha.signoDoc == 1).Sum(ss => ss.MontoPagar),
+            };
 
             var r01 = Sistema.MyData.ToolPago_GenerarPago(fichaOOB);
             if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError) 

@@ -12,12 +12,14 @@ namespace DTO.CtaPagar.AnularDoc
     {
 
         public string autoDoc { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
         public Auditoria regAuditoria { get; set; }
 
 
         public Ficha() 
         {
             autoDoc = "";
+            proveedorAct = new ProvActualizar();
             regAuditoria = new Auditoria();
         }
 

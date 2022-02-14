@@ -18,6 +18,7 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
         private Seguridad.IGestion _gSeguridad;
         private Anular.IGestion _gAnular;
         private SistemaCtrl.VerAnulacion.IGestion _gAuditoria;
+        private IVerDocumento _gVisualizarDoc;
 
 
         public string TituloAdministrador { get { return "Administrador de Documentos: Ctas por Pagar"; } }
@@ -26,10 +27,11 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
         public bool AnularItemIsOk { get { return _anularItemIsOk; } }
 
 
-        public Gestion() 
+        public Gestion(IVerDocumento ctrVisualizarDoc, Filtrar.IFiltrar ctrFiltro) 
         {
             _anularItemIsOk = false;
-            _gFiltro = new GestionFiltro();
+            _gVisualizarDoc = ctrVisualizarDoc;
+            _gFiltro = ctrFiltro; 
         }
 
 
@@ -181,7 +183,7 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                 {
                     if (ItemActual.tipoDoc != "PAG")
                     {
-                        AnularDoc(ItemActual.autoDoc, _gAnular.Motivo);
+                        AnularDoc(r01.MiEntidad, _gAnular.Motivo);
                     }
                     else if(ItemActual.tipoDoc == "PAG")
                     {
@@ -239,6 +241,12 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                     usuCodigo = Sistema.Usuario.codigoUsu,
                     usuNombre = Sistema.Usuario.nombreUsu,
                 },
+                proveedorAct = new OOB.CtaPagar.AnularPago.ProvActualizar()
+                {
+                    autoProv = fichaCxP.autoProv,
+                    credito = r01.ListaEntidad.Where(w => w.monto < 0).Sum(s => s.monto),
+                    debito = r01.ListaEntidad.Where(w => w.monto > 0).Sum(s => s.monto),
+                },
             };
             var r02 = Sistema.MyData.CtaPagar_AnularPago(ficha);
             if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
@@ -250,7 +258,7 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
             Helpers.Msg.EliminarOk();
         }
 
-        private void AnularDoc(string aDoc, string mot)
+        private void AnularDoc(OOB.CtaPagar.Entidad.Ficha docCxP, string mot)
         {
             var xms = "Anular Documento ?";
             var msg = MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -259,12 +267,28 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                 return;
             }
 
+            var debito=0m;
+            var credito=0m;
+            if (docCxP.tipoDoc == "NCF")
+            {
+                credito = docCxP.importeDoc * docCxP.signoDoc;
+            }
+            else
+            {
+                debito= docCxP.importeDoc * docCxP.signoDoc;
+            }
             var ficha = new OOB.CtaPagar.AnularDoc.Ficha()
             {
-                autoDoc = aDoc,
+                autoDoc = docCxP.autoDoc,
+                proveedorAct = new OOB.CtaPagar.AnularDoc.ProvActualizar()
+                {
+                    autoProv = docCxP.autoProv,
+                    credito = credito,
+                    debito = debito,
+                },
                 regAuditoria = new OOB.CtaPagar.AnularDoc.Auditoria()
                 {
-                    autoDoc = aDoc,
+                    autoDoc = docCxP.autoDoc,
                     detalle = mot,
                     equipoEstacion = Sistema.EquipoEstacion,
                     moduloOrigen = "05",
@@ -306,6 +330,17 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
                 }
                 Helpers.Utils.VisualizarReciboPago(r02.MiEntidad);
             }
+            else 
+            {
+                VerDocumento(r01.MiEntidad);
+            }
+        }
+
+        private void VerDocumento(OOB.CtaPagar.Entidad.Ficha ficha)
+        {
+            _gVisualizarDoc.Inicializa();
+            _gVisualizarDoc.setData(ficha);
+            _gVisualizarDoc.Inicia();
         }
 
         public void ReporteDocumentos(List<data> lst)
@@ -318,7 +353,21 @@ namespace sPago.Source.CtasPagar.AdministradorDoc
 
         public void VisualizarDocAnulado(data ItemActual)
         {
-            Helpers.Msg.Alerta("VISUALIZANDO DOCUMENTO ANULADO");
+            var ficha = new OOB.Sistema.DocAnulado.Buscar.Ficha()
+            {
+                autoDoc = ItemActual.autoDoc,
+                moduloOrigen = "05",
+            };
+            var r01 = sPago.Sistema.MyData.Sistema_DocAnulado_Buscar(ficha);
+            if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+
+            _gAuditoria.Inicializa();
+            _gAuditoria.setData(r01.MiEntidad);
+            _gAuditoria.Inicia();
         }
 
     }

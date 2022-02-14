@@ -91,7 +91,69 @@ namespace sPago.Helpers
 
         public static void VisualizarReciboPago(OOB.ToolPago.ReciboPago.Ficha ficha)
         {
-            MessageBox.Show("VISUALIZANDO PAGO");
+            var pt = AppDomain.CurrentDomain.BaseDirectory + @"Source\Reportes\CtaPagar\ReciboPago.rdlc";
+            var ds = new DS_CTAPAGAR ();
+
+            DataRow rt = ds.Tables["ReciboPago"].NewRow();
+            rt["numero"] = ficha.recibo.numeroRecibo;
+            rt["fecha"] = ficha.recibo.fechaRecibo;
+            rt["ciRifProv"] = ficha.recibo.ciRifProv;
+            rt["nomProv"] = ficha.recibo.ciRifProv+Environment.NewLine+ficha.recibo.nombreRazonSocialProv+Environment.NewLine+ficha.recibo.dirFiscalProv;
+            rt["dirFisProv"] = ficha.recibo.dirFiscalProv;
+            rt["telProv"] = ficha.recibo.dirFiscalProv;
+            ds.Tables["ReciboPago"].Rows.Add(rt);
+
+            DataRow rt2 = ds.Tables["Empresa"].NewRow();
+            rt2["nombre"] = Sistema.DatosEmpresa.nombreRazonSocial;
+            rt2["ciRif"] = Sistema.DatosEmpresa.ciRif;
+            rt2["dirFiscal"] = Sistema.DatosEmpresa.dirFiscal;
+            ds.Tables["Empresa"].Rows.Add(rt2);
+
+            foreach (var it in ficha.documentos)
+            {
+                DataRow rtDet = ds.Tables["ReciboPagoDoc"].NewRow();
+                rtDet["id"] = it.nItem;
+                rtDet["tipo"] = it.nombreDoc;
+                rtDet["numero"] = it.numDoc;
+                rtDet["fecha"] = it.fechaDoc;
+                rtDet["importe"] = it.monto;
+                rtDet["operacion"] = it.detalle;
+                ds.Tables["ReciboPagoDoc"].Rows.Add(rtDet);
+            }
+
+            foreach (var it in ficha.metodosPago)
+            {
+                var factor = "";
+                if (it.factorCambioIsActivo)
+                {
+                    factor += it.montoRecibido.ToString("n2") + " x " + it.factorCambio.ToString("n2");
+                }
+                DataRow rtMet = ds.Tables["ReciboPagoMet"].NewRow();
+                rtMet["medioPago"] = "(" + it.codigoMedioPago + ")" + Environment.NewLine + it.descMedioPago;
+                rtMet["importe"] = it.importe;
+                rtMet["banco"] = it.banco;
+                rtMet["numCta"] = it.numeroCta;
+                rtMet["cheqRef"] = it.numeroChequeRef;
+                rtMet["factor"] = factor;
+                rtMet["detalle"] = it.fechaOperacion.ToShortDateString()+Environment.NewLine+it.detalleOperacion;
+                ds.Tables["ReciboPagoMet"].Rows.Add(rtMet);
+            }
+
+            var Rds = new List<ReportDataSource>();
+            var pmt = new List<ReportParameter>();
+            //pmt.Add(new ReportParameter("EMPRESA_RIF", Sistema.DatosEmpresa.ciRif));
+            //pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
+            ////pmt.Add(new ReportParameter("Filtros", _filtros));
+            Rds.Add(new ReportDataSource("ReciboPago", ds.Tables["ReciboPago"]));
+            Rds.Add(new ReportDataSource("ReciboPagoDoc", ds.Tables["ReciboPagoDoc"]));
+            Rds.Add(new ReportDataSource("ReciboPagoMet", ds.Tables["ReciboPagoMet"]));
+            Rds.Add(new ReportDataSource("Empresa", ds.Tables["Empresa"]));
+
+            var frp = new ReporteFrm();
+            frp.rds = Rds;
+            frp.prmts = pmt;
+            frp.Path = pt;
+            frp.ShowDialog();
         }
 
     }

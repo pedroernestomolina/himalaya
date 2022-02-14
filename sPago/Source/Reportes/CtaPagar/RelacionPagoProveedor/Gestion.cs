@@ -29,6 +29,7 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
 
         public void Generar(Filtrar.dataFiltrar data)
         {
+            var filtrarPor = "Filtrado Por: ";
             string _idProv = "";
             DateTime? _desde = null;
             DateTime? _hasta = null;
@@ -37,14 +38,17 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
             if (data.GetFechaDesde_Habilitar)
             {
                 _desde = data.GetDesde;
+                filtrarPor += "Desde La Fecha: " + _desde.Value.ToShortDateString();
             }
             if (data.GetFechaHasta_Habilitar)
             {
                 _hasta = data.GetHasta;
+                filtrarPor += ", Hasta La Fecha: " + _hasta.Value.ToShortDateString();
             }
             if (data.Proveedor != null)
             {
                 _idProv = data.Proveedor.id;
+                filtrarPor += ", Proveedor: " + data.Proveedor.desc;
             }
             if (data.Esatus != null)
             {
@@ -53,6 +57,7 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
                 {
                     _estatus = OOB.Reportes.CtasPagar.baseFiltro.enumEstatus.Anulado;
                 }
+                filtrarPor += ", Estatus : " + data.Esatus.desc;
             }
             var filtro = new OOB.Reportes.CtasPagar.RelacionPagoDiario.Filtro()
             {
@@ -67,7 +72,7 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
-            Imprime(r01.ListaEntidad, "");
+            Imprime(r01.ListaEntidad, filtrarPor);
         }
 
         private void Imprime(List<OOB.Reportes.CtasPagar.RelacionPagoDiario.Ficha> _lst, string _filtro)
@@ -77,12 +82,18 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
 
             foreach (var it in _lst.OrderByDescending(o => o.fechaRecibo).ThenByDescending(o=>o.numeroRecibo).ToList())
             {
+                var importe = it.importeRecibo;
+                if (it.estatusRecibo == "1")
+                {
+                    importe = 0m;
+                }
                 DataRow rt = ds.Tables["RelPago"].NewRow();
                 rt["fechaRec"] = it.fechaRecibo ;
                 rt["proveedor"] = it.provCiRif + Environment.NewLine + it.provNombre;
                 rt["numeroRec"] = it.numeroRecibo;
-                rt["importeRec"] = it.importeRecibo ;
+                rt["importeRec"] = importe;
                 rt["detalleREc"] = it.detalleRecibo;
+                rt["estatusRec"] = it.estatusRecibo == "1" ? "ANULADO" : "";
                 ds.Tables["RelPago"].Rows.Add(rt);
             }
 
@@ -90,7 +101,7 @@ namespace sPago.Source.Reportes.CtaPagar.RelacionPagoProveedor
             var pmt = new List<ReportParameter>();
             //pmt.Add(new ReportParameter("EMPRESA_RIF", Sistema.DatosEmpresa.ciRif));
             //pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
-            //pmt.Add(new ReportParameter("FILTRO", _filtro));
+            pmt.Add(new ReportParameter("FILTRO", _filtro));
             Rds.Add(new ReportDataSource("RelPago", ds.Tables["RelPago"]));
 
             var frp = new ReporteFrm();

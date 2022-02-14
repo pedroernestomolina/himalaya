@@ -40,11 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CtaPagar\Agregar\Ficha.cs" />
+    <Compile Include="CtaPagar\Agregar\ProvActualizar.cs" />
     <Compile Include="CtaPagar\AnularDoc\Auditoria.cs" />
     <Compile Include="CtaPagar\AnularDoc\Ficha.cs" />
+    <Compile Include="CtaPagar\AnularDoc\ProvActualizar.cs" />
     <Compile Include="CtaPagar\AnullarPago\Auditoria.cs" />
     <Compile Include="CtaPagar\AnullarPago\CtaPagarActualizar.cs" />
     <Compile Include="CtaPagar\AnullarPago\Ficha.cs" />
+    <Compile Include="CtaPagar\AnullarPago\ProvActualizar.cs" />
     <Compile Include="CtaPagar\Entidad\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Ficha.cs" />
     <Compile Include="CtaPagar\Lista\Filtro.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="RetISLR\AnularRetencion\Anular\DocAplicaRetencion.cs" />
     <Compile Include="RetISLR\AnularRetencion\Anular\docRegistro.cs" />
     <Compile Include="RetISLR\AnularRetencion\Anular\Ficha.cs" />
+    <Compile Include="RetISLR\AnularRetencion\Anular\ProvActualizar.cs" />
     <Compile Include="RetISLR\AnularRetencion\CapturarData\DocAplicaRetencion.cs" />
     <Compile Include="RetISLR\AnularRetencion\CapturarData\Ficha.cs" />
     <Compile Include="RetISLR\DocumentoPendPorAplicar\CxPagar\Ficha.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="RetISLR\GenerarRetencion\Ficha.cs" />
     <Compile Include="RetISLR\GenerarRetencion\MedioPago.cs" />
     <Compile Include="RetISLR\GenerarRetencion\CxP.cs" />
+    <Compile Include="RetISLR\GenerarRetencion\ProvActualizar.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Recibo.cs" />
     <Compile Include="RetISLR\GenerarRetencion\Retencion.cs" />
     <Compile Include="RetISLR\GenerarRetencion\RetencionDet.cs" />
@@ -101,8 +106,13 @@
     <Compile Include="ToolPago\GenerarPago\DocInvRecibo.cs" />
     <Compile Include="ToolPago\GenerarPago\Ficha.cs" />
     <Compile Include="ToolPago\GenerarPago\FormaPago.cs" />
+    <Compile Include="ToolPago\GenerarPago\ProvActualizar.cs" />
     <Compile Include="ToolPago\GenerarPago\Recibo.cs" />
     <Compile Include="ToolPago\PendPagar\Ficha.cs" />
+    <Compile Include="ToolPago\ReciboPago\Documento.cs" />
+    <Compile Include="ToolPago\ReciboPago\Ficha.cs" />
+    <Compile Include="ToolPago\ReciboPago\MetodoPago.cs" />
+    <Compile Include="ToolPago\ReciboPago\Recibo.cs" />
     <Compile Include="ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />
   </ItemGroup>

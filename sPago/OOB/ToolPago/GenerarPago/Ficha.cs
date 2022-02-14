@@ -16,6 +16,7 @@ namespace sPago.OOB.ToolPago.GenerarPago
         public List<DocInvRecibo> docInvRecibo { get; set; }
         public List<FormaPago> formasPago { get; set; }
         public List<DocActualizarSaldoCxP> docActualizarSaldoCxP { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
 
 
         public Ficha() 
@@ -25,6 +26,7 @@ namespace sPago.OOB.ToolPago.GenerarPago
             docInvRecibo = new List<DocInvRecibo>();
             formasPago  = new List<FormaPago>();
             docActualizarSaldoCxP = new List<DocActualizarSaldoCxP>();
+            proveedorAct = new ProvActualizar();
         }
 
     }

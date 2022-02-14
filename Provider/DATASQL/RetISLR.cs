@@ -340,7 +340,7 @@ namespace Provider.DATASQL
                                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
                                 return rt;
                             }
-                            if ((entCxP.acumulado + r.montoAbonado)> entCxP.importe)
+                            if (Math.Abs(entCxP.acumulado + r.montoAbonado)> Math.Abs(entCxP.importe))
                             {
                                 rt.Mensaje = "DOCUMENTO CXP ESTATUS: MONTO PAGO INCORRECTO";
                                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
@@ -495,6 +495,21 @@ namespace Provider.DATASQL
                         cn.Database.ExecuteSqlCommand(sqlModoPago, xp1, xp2, xp3, xp4, xp5, xp6, xp7, xp8, xp9, xp10);
                         cn.SaveChanges();
 
+
+                        //ACTUALIZAR SALDOS PROVEEDOR
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos -= ficha.proveedorAct.debito;
+                        entPrv.total_creditos -= ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
+                        cn.SaveChanges();
+
+                        //
                         ts.Complete();
                         rt.Auto = autoRet;
                     }
@@ -704,6 +719,20 @@ namespace Provider.DATASQL
                         cn.Database.ExecuteSqlCommand(sql, tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp9);
                         cn.SaveChanges();
 
+                        //ACTUALIZAR SALDOS PROVEEDOR
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos += ficha.proveedorAct.debito;
+                        entPrv.total_creditos += ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
+                        cn.SaveChanges();
+
+                        //
                         ts.Complete();
                     }
                 }
@@ -805,7 +834,7 @@ namespace Provider.DATASQL
                             rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
                             return rt;
                         }
-                        if ((entCxP.acumulado + r.montoAbonado) > entCxP.importe)
+                        if (Math.Abs(entCxP.acumulado + r.montoAbonado) > Math.Abs(entCxP.importe))
                         {
                             rt.Mensaje = "DOCUMENTO CXP ESTATUS: MONTO PAGO INCORRECTO";
                             rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;

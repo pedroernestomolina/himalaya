@@ -16,6 +16,7 @@ namespace DTO.RetISLR.AnularRetencion.Anular
         public string autoRecibo { get; set; }
         public List<DocCompraAplicaRetencion> docCompraAplicaRetencion { get; set; }
         public docRegistro registroAnulacion { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
 
 
         public Ficha() 
@@ -25,6 +26,7 @@ namespace DTO.RetISLR.AnularRetencion.Anular
             autoRecibo = "";
             docCompraAplicaRetencion = new List<DocCompraAplicaRetencion>();
             registroAnulacion = new docRegistro();
+            proveedorAct = new ProvActualizar();
         }
 
     }

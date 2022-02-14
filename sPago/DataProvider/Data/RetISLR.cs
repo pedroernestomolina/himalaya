@@ -370,6 +370,12 @@ namespace sPago.DataProvider.Data
                 estatusAnulado = e4.estatusAnulado,
                 montoRecibido = e4.montoRecibido,
             };
+            fichaDTO.proveedorAct = new DTO.RetISLR.GenerarRetencion.ProvActualizar()
+            {
+                autoProv = ficha.proveedorAct.autoProv,
+                credito = ficha.proveedorAct.credito,
+                debito = ficha.proveedorAct.debito
+            };
 
             var r01 = MyData.RetISLR_GenerarRetencion(fichaDTO);
             if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
@@ -445,6 +451,12 @@ namespace sPago.DataProvider.Data
                     moduloOrigen = ss.moduloOrigen,
                     usuCodigo = ss.usuCodigo,
                     usuNombre = ss.usuNombre,
+                },
+                proveedorAct = new DTO.RetISLR.AnularRetencion.Anular.ProvActualizar()
+                {
+                    autoProv = ficha.proveedorAct.autoProv,
+                    credito = ficha.proveedorAct.credito,
+                    debito = ficha.proveedorAct.debito
                 },
             };
             var r01 = MyData.RetISLR_AnularRetencion (fichaDTO);

@@ -70,8 +70,12 @@ namespace sPago.Source.ToolPago.GenerarPago.DetalleMonto
 
         public void setData(decimal montoPendiente, decimal montoPagar, string detalle)
         {
+            if (montoPagar == 0m)
+                _monto = montoPendiente;
+            else
+                _monto = montoPagar;
+
             _montoPendiente = montoPendiente;
-            _monto = montoPagar;
             _detalle = detalle;
         }
 

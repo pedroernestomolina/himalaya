@@ -28,6 +28,10 @@ namespace Service.SERVICE
         {
             return ServiceProv.ToolPago_GenerarPago(ficha);
         }
+        public DTO.Resutado.Entidad<DTO.ToolPago.ReciboPago.Ficha> ToolPago_ReciboPago_GetByAutoRecibo(string autoRecibo)
+        {
+            return ServiceProv.ToolPago_ReciboPago_GetByAutoRecibo(autoRecibo);
+        }
 
     }
 

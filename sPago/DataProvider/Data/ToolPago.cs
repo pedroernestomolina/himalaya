@@ -201,6 +201,12 @@ namespace sPago.DataProvider.Data
                 };
                 return nr;
             }).ToList();
+            fichaDTO.proveedorAct = new DTO.ToolPago.GenerarPago.ProvActualizar()
+            {
+                autoProv = ficha.proveedorAct.autoProv,
+                credito = ficha.proveedorAct.credito,
+                debito = ficha.proveedorAct.debito,
+            };
 
             var r01 = MyData.ToolsPago_GenerarPago(fichaDTO);
             if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
@@ -217,6 +223,70 @@ namespace sPago.DataProvider.Data
         public OOB.Resultado.Entidad<OOB.ToolPago.ReciboPago.Ficha> ToolPago_ReciboPago_GetByAutoRecibo(string autoRecibo)
         {
             var rt = new OOB.Resultado.Entidad<OOB.ToolPago.ReciboPago.Ficha>();
+
+            var r01 = MyData.ToolPago_ReciboPago_GetByAutoRecibo(autoRecibo);
+            if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
+            {
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = OOB.Resultado.Enumerados.EnumResult.isError;
+                return rt;
+            }
+
+            rt.MiEntidad = new OOB.ToolPago.ReciboPago.Ficha();
+            var r = r01.MiEntidad.recibo;
+            var recibo = new OOB.ToolPago.ReciboPago.Recibo()
+            {
+                cantDocInvolucrado = r.cantDocInvolucrado,
+                ciRifProv = r.ciRifProv.Trim(),
+                codigoProv = r.codigoProv.Trim(),
+                detalle = r.detalle.Trim(),
+                dirFiscalProv = r.dirFiscalProv.Trim(),
+                estatusAnulado = r.estatusAnulado.Trim(),
+                fechaRecibo = r.fechaRecibo,
+                importe = r.importe,
+                montoCambio = r.montoCambio,
+                montoRecibido = r.montoRecibido,
+                nombreRazonSocialProv = r.nombreRazonSocialProv.Trim(),
+                nombreUsuario = r.nombreUsuario.Trim(),
+                numeroRecibo = r.numeroRecibo.Trim(),
+                telefonoProv = r.telefonoProv.Trim(),
+            };
+            rt.MiEntidad.recibo = recibo;
+
+            rt.MiEntidad.documentos = r01.MiEntidad.documentos.Select(s =>
+            {
+                var nr = new OOB.ToolPago.ReciboPago.Documento()
+                {
+                    detalle = s.detalle.Trim(),
+                    fechaDoc = s.fechaDoc,
+                    monto = s.monto,
+                    nItem = s.nItem,
+                    nombreDoc = s.nombreDoc.Trim(),
+                    numDoc = s.numDoc.Trim(),
+                    operacion = s.operacion.Trim(),
+                    tipoDoc = s.tipoDoc.Trim(),
+                };
+                return nr;
+            }).ToList();
+
+            rt.MiEntidad.metodosPago = r01.MiEntidad.metodosPago.Select(s =>
+            {
+                var nr = new OOB.ToolPago.ReciboPago.MetodoPago()
+                {
+                    aplicaFactorCambio = s.aplicaFactorCambio.Trim(),
+                    banco = s.banco.Trim(),
+                    codigoMedioPago = s.codigoMedioPago.Trim(),
+                    descMedioPago = s.descMedioPago.Trim(),
+                    detalleOperacion = s.detalleOperacion.Trim(),
+                    factorCambio = s.factorCambio,
+                    fechaOperacion = s.fechaOperacion,
+                    importe = s.importe,
+                    montoRecibido = s.montoRecibido,
+                    numeroChequeRef = s.numeroChequeRef.Trim(),
+                    numeroCta = s.numeroCta.Trim(),
+                };
+                return nr;
+            }).ToList();
 
             return rt;
         }

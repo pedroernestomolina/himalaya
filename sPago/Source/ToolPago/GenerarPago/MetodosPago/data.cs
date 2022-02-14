@@ -150,6 +150,20 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
             return true;
         }
 
+        public void setData(data it)
+        {
+            Limpiar();
+            _monto=it.GetMonto;
+            _factorCambio = it.GetFactorCambio;
+            _banco= it.GetBanco;
+            _numeroCta=it.GetNumeroCta;
+            _detalle=it.GetDetalleOperacion;
+            _numeroChequeRef=it.GetNumeroChequeRef;
+            _fechaOperacion=it.GetFechaOperacion;
+            _aplicarFactorCambio = it.GetAplicaFactorCambio;
+            _medioPago = it.GetMedioPago;
+        }
+
     }
 
 }

@@ -125,6 +125,12 @@ namespace sPago.DataProvider.Data
                 restaDoc = ficha.restaDoc,
                 signoDoc = ficha.signoDoc,
                 tipoDoc = ficha.tipoDoc,
+                proveedorAct = new DTO.CtaPagar.Agregar.ProvActualizar()
+                {
+                    autoProv = ficha.proveedorAct.autoProv,
+                    credito = ficha.proveedorAct.credito,
+                    debito = ficha.proveedorAct.debito,
+                },
             };
             var r01 = MyData.CtaPagar_Agregar(fichaDTO);
             if (r01.Result == DTO.Resutado.Enumerados.EnumResult.isError)
@@ -146,6 +152,12 @@ namespace sPago.DataProvider.Data
             var fichaDTO = new DTO.CtaPagar.AnularDoc.Ficha()
             {
                 autoDoc = ficha.autoDoc,
+                proveedorAct = new DTO.CtaPagar.AnularDoc.ProvActualizar()
+                {
+                    autoProv = ficha.proveedorAct.autoProv,
+                    credito = ficha.proveedorAct.credito,
+                    debito = ficha.proveedorAct.debito,
+                },
                 regAuditoria = new DTO.CtaPagar.AnularDoc.Auditoria()
                 {
                     autoDoc = ss.autoDoc,
@@ -206,6 +218,12 @@ namespace sPago.DataProvider.Data
             {
                 autoCxP = ficha.autoCxP,
                 autoRecibo = ficha.autoRecibo,
+                proveedorAct = new DTO.CtaPagar.AnularPago.ProvActualizar()
+                {
+                    autoProv = ficha.proveedorAct.autoProv,
+                    credito = ficha.proveedorAct.credito,
+                    debito = ficha.proveedorAct.debito,
+                },
                 regAuditoria = new DTO.CtaPagar.AnularPago.Auditoria()
                 {
                     autoDoc = ss.autoDoc,

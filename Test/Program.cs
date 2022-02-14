@@ -86,6 +86,8 @@ namespace Test
              //var r21 = dataProv.ToolsPago_ResumenPendPagar_GetLista();
 
             //var r22 = dataProv.CtaPagar_GetById ("0000000040");
+
+             //var r23 = dataProv.ToolPago_ReciboPago_GetByAutoRecibo("0000000024");
         }
 
     }

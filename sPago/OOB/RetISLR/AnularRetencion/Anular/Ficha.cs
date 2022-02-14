@@ -16,6 +16,7 @@ namespace sPago.OOB.RetISLR.AnularRetencion.Anular
         public string autoRecibo { get; set; }
         public List<DocCompraAplicaRetencion> docCompraAplicaRetencion { get; set; }
         public DocRegistro docRegistrAnulacion { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
 
 
         public Ficha()
@@ -25,6 +26,7 @@ namespace sPago.OOB.RetISLR.AnularRetencion.Anular
             autoRecibo = "";
             docCompraAplicaRetencion = new List<DocCompraAplicaRetencion>();
             docRegistrAnulacion = new DocRegistro();
+            proveedorAct = new ProvActualizar();
         }
 
     }

@@ -227,6 +227,18 @@ namespace Provider.DATASQL
                         cn.cxp.Add(nEntCxP);
                         cn.SaveChanges();
 
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos += ficha.proveedorAct.debito;
+                        entPrv.total_creditos += ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
+                        cn.SaveChanges();
+
                         ts.Complete();
                         rt.Auto = autoCxP;
                     }
@@ -330,6 +342,18 @@ namespace Provider.DATASQL
                                 VALUES
                                 (@codigo ,@fecha ,@hora ,@detalle ,@estacion ,@usuario ,@codigo_usuario ,@auto ,@auto_documento)";
                         cn.Database.ExecuteSqlCommand(sql, tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp9);
+                        cn.SaveChanges();
+
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos -= ficha.proveedorAct.debito;
+                        entPrv.total_creditos -= ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
                         cn.SaveChanges();
 
                         ts.Complete();
@@ -468,6 +492,20 @@ namespace Provider.DATASQL
                             cn.SaveChanges();
                         }
 
+                        //ACTUALIZAR SALDOS PROVEEDOR
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos += ficha.proveedorAct.debito;
+                        entPrv.total_creditos += ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
+                        cn.SaveChanges();
+
+                        //
                         ts.Complete();
                     }
                 }

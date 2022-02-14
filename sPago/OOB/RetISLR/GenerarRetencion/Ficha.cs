@@ -19,6 +19,7 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
         public Recibo recibo { get; set; }
         public List<DocInvRecibo> docInvRecibo { get; set; }
         public MedioPago medioPago { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
 
 
         public Ficha() 
@@ -31,6 +32,7 @@ namespace sPago.OOB.RetISLR.GenerarRetencion
             recibo = new Recibo();
             docInvRecibo = new List<DocInvRecibo>();
             medioPago = new MedioPago();
+            proveedorAct = new ProvActualizar();
         }
 
     }

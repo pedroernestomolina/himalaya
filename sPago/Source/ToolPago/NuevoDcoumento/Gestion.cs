@@ -189,19 +189,24 @@ namespace sPago.Source.ToolPago.NuevoDcoumento
 
         private void GuardarDatos()
         {
+            var mdebito=0m;
+            var mcredito=0m;
             var signoDocumento=1;
             var tipoDocumento="";
             switch (_data.TipoDocumento.id) 
             {
                 case "01":
                     tipoDocumento = "FAC";
+                    mdebito= _data.Importe;
                     break;
                 case "02":
                     tipoDocumento = "NDF";
+                    mdebito= _data.Importe;
                     break;
                 case "03":
                     signoDocumento = -1;
                     tipoDocumento = "NCF";
+                    mcredito= _data.Importe*signoDocumento;
                     break;
             }
             var ficha = new OOB.CtaPagar.Agregar.Ficha()
@@ -214,14 +219,20 @@ namespace sPago.Source.ToolPago.NuevoDcoumento
                 estatusDoc = "0",
                 fechaEmisionDoc = _data.FechaEmision,
                 fechaVenceDoc = _data.FechaVencimiento,
-                importeDoc = _data.Importe*signoDocumento,
+                importeDoc = _data.Importe * signoDocumento,
                 numeroDoc = _data.DocumentoNro,
                 provCiRif = _data.Proveedor.ciRif,
                 provCodigo = _data.Proveedor.codigo,
                 provNombre = _data.Proveedor.nombreRazonSocial,
-                restaDoc = _data.Importe*signoDocumento,
+                restaDoc = _data.Importe * signoDocumento,
                 signoDoc = signoDocumento,
                 tipoDoc = tipoDocumento,
+                proveedorAct = new OOB.CtaPagar.Agregar.ProvActualizar()
+                {
+                    autoProv = _data.Proveedor.id,
+                    credito = mcredito,
+                    debito = mdebito,
+                },
             };
             var r01 = Sistema.MyData.CtaPagar_Agregar(ficha);
             if (r01.Result == OOB.Resultado.Enumerados.EnumResult.isError)

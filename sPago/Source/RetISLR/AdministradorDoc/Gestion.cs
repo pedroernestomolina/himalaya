@@ -170,6 +170,12 @@ namespace sPago.Source.RetISLR.AdministradorDoc
                         Helpers.Msg.Error(r01.Mensaje);
                         return;
                     }
+                    var r02 = Sistema.MyData.RetISLR_GetById(idDoc);
+                    if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                    {
+                        Helpers.Msg.Error(r02.Mensaje);
+                        return;
+                    }
 
                     var s = r01.MiEntidad;
                     var ficha = new OOB.RetISLR.AnularRetencion.Anular.Ficha()
@@ -197,10 +203,16 @@ namespace sPago.Source.RetISLR.AdministradorDoc
                         usuCodigo = Sistema.Usuario.codigoUsu,
                         usuNombre = Sistema.Usuario.nombreUsu,
                     };
-                    var r02 = Sistema.MyData.RetISLR_AnularRetencion(ficha);
-                    if (r02.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                    ficha.proveedorAct = new OOB.RetISLR.AnularRetencion.Anular.ProvActualizar()
                     {
-                        Helpers.Msg.Error(r02.Mensaje);
+                        autoProv = r02.MiEntidad.idProv,
+                        credito = r01.MiEntidad.docCompraAplicaRetencion.Where(w => w.montoAplica < 0).Sum(ss => ss.montoAplica),
+                        debito = r01.MiEntidad.docCompraAplicaRetencion.Where(w => w.montoAplica > 0).Sum(ss => ss.montoAplica),
+                    };
+                    var r03 = Sistema.MyData.RetISLR_AnularRetencion(ficha);
+                    if (r03.Result == OOB.Resultado.Enumerados.EnumResult.isError)
+                    {
+                        Helpers.Msg.Error(r03.Mensaje);
                         return;
                     }
                     Helpers.Msg.EliminarOk();

@@ -174,7 +174,7 @@ namespace Provider.DATASQL
                                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
                                 return rt;
                             }
-                            if ((entCxP.acumulado + r.montoAbonado) > entCxP.importe)
+                            if (Math.Abs(entCxP.acumulado + r.montoAbonado) >  Math.Abs(entCxP.importe))
                             {
                                 rt.Mensaje = "DOCUMENTO CXP ESTATUS: MONTO PAGO INCORRECTO";
                                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
@@ -331,6 +331,21 @@ namespace Provider.DATASQL
                             cn.Database.ExecuteSqlCommand(sqlModoPago, xp1, xp2, xp3, xp4, xp5, xp6, xp7, xp8, xp9, xp10, xp11, xp12, xp13, xp14, xp15, xp16, xp17);
                             cn.SaveChanges();
                         }
+
+
+                        //ACTUALIZAR SALDOS PROVEEDOR
+                        var entPrv = cn.proveedores.Find(ficha.proveedorAct.autoProv);
+                        if (entPrv == null)
+                        {
+                            rt.Mensaje = "PROVEEDOR NO REGISTRADO";
+                            rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                            return rt;
+                        }
+                        entPrv.total_debitos -= ficha.proveedorAct.debito;
+                        entPrv.total_creditos -= ficha.proveedorAct.credito;
+                        entPrv.total_saldo = (entPrv.total_debitos + entPrv.total_creditos);
+                        cn.SaveChanges();
+
                         rt.Auto = autoRecibo;
                         rt.Id = -1;
                         ts.Complete();
@@ -362,6 +377,89 @@ namespace Provider.DATASQL
                 }
                 rt.Mensaje = ex.Message;
                 rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+            catch (Exception e)
+            {
+                rt.Mensaje = e.Message;
+                rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+            }
+
+            return rt;
+        }
+        public DTO.Resutado.Entidad<DTO.ToolPago.ReciboPago.Ficha> ToolPago_ReciboPago_GetByAutoRecibo(string autoRecibo)
+        {
+            var rt = new DTO.Resutado.Entidad<DTO.ToolPago.ReciboPago.Ficha>();
+
+            try
+            {
+                rt.MiEntidad = new DTO.ToolPago.ReciboPago.Ficha();
+                using (var cn = new EPago(_cn.ConnectionString))
+                {
+                    var p1 = new SqlParameter("@aRecibo", autoRecibo);
+                    var sql_1 = @"SELECT 
+                                    [numero] as numeroRecibo,
+                                    [fecha] as fechaRecibo, 
+                                    [importe],
+                                    [usuario] as nombreUsuario,
+                                    [detalle],
+                                    [nombre_proveedor] as nombreRazonSocialProv,
+                                    ci_rif_proveedor as ciRifProv ,
+                                    [codigo_proveedor] as codigoProv ,
+                                    [estatus] estatusAnulado,
+                                    [cant_doc_rel] as cantDocInvolucrado,
+                                    [monto_recibido] as montoRecibido ,
+                                    [monto_cambio] as montoCambio ,
+                                    [dirFiscal_proveedor] as dirFiscalProv ,
+                                    [telefono_proveedor] as telefonoProv 
+                                    FROM [cxp_recibos]
+                                    where auto=@aRecibo";
+                    var sql = sql_1;
+                    var entRecibo = cn.Database.SqlQuery<DTO.ToolPago.ReciboPago.Recibo>(sql, p1).FirstOrDefault();
+                    if (entRecibo == null)
+                    {
+                        rt.Mensaje = "RECIBO NO ENCONTRADO";
+                        rt.Result = DTO.Resutado.Enumerados.EnumResult.isError;
+                        return rt;
+                    }
+                    rt.MiEntidad.recibo = entRecibo;
+
+                    var p2 = new SqlParameter("@aRecibo", autoRecibo);
+                    var sql_2 = @"SELECT 
+                                    item as nItem, 
+                                    operacion,
+                                    monto,
+                                    documento as numDoc,  
+                                    tipo as tipoDoc,
+                                    fecha as fechaDoc, 
+                                    detalle,
+                                    origen as nombreDoc
+                                    FROM [cxp_documentos]
+                                    where auto_cxp_recibo=@aRecibo";
+                    sql = sql_2;
+                    var entDocumentos= cn.Database.SqlQuery<DTO.ToolPago.ReciboPago.Documento>(sql, p2).ToList();
+                    rt.MiEntidad.documentos = entDocumentos;
+
+                    var p3 = new SqlParameter("@aRecibo", autoRecibo);
+                    var sql_3 = @"SELECT 
+                                    banco,
+                                    importe,
+                                    codigo_medio_pago as codigoMedioPago,
+                                    desc_medio_pago as descMedioPago,
+                                    [factorCambio],
+                                    [aplicaFactorCambio],
+                                    [numeroChequeRef],
+                                    [numeroCta],
+                                    [fechaOperacion],
+                                    [detalleOperacion],
+                                    [monto] as montoRecibido
+                                    FROM [cxp_modo_pago]
+                                    where auto_recibo=@aRecibo";
+                    sql = sql_3;
+                    var entMetodosPago = cn.Database.SqlQuery<DTO.ToolPago.ReciboPago.MetodoPago>(sql, p3).ToList();
+                    rt.MiEntidad.metodosPago = entMetodosPago;
+
+                    return rt;
+                }
             }
             catch (Exception e)
             {

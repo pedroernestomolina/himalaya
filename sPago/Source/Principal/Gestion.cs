@@ -35,6 +35,8 @@ namespace sPago.Source.Principal
         private ToolPago.GenerarPago.IMetodosPago _gMetodoPago;
         private ToolPago.GenerarPago.IDetalleMonto _gDetalleMontoPago;
         private ToolPago.GenerarPago.IGestion _gGeneradorPago;
+        private CtasPagar.AdministradorDoc.IVerDocumento _gVisualizarDoc;
+        private Filtrar.IFiltrar _gCtaPagarAdmFiltro; 
 
 
         public string Host { get { return Sistema.Instancia + "/" + Sistema.BaseDatos; } }
@@ -60,11 +62,14 @@ namespace sPago.Source.Principal
             _gMetodoPago = new ToolPago.GenerarPago.MetodosPago.Gestion();
             _gDetalleMontoPago = new ToolPago.GenerarPago.DetalleMonto.Gestion();
             _gGeneradorPago = new ToolPago.GenerarPago.Gestion(_gListaDocPago, _gMetodoPago, _gDetalleMontoPago);
+            _gVisualizarDoc = new ToolPago.VisualizarDocumento.Gestion();
+            _gCtaPagarAdmFiltro = new CtasPagar.AdministradorDoc.GestionFiltro();
+
             //
             _gReport = new Reportes.Gestion(_gFiltrar);
             _gestionRetIslrGenerar = new RetISLR.Generar.Gestion(_gListaProv);
             _gAdmDoc = new AdministradorDoc.Gestion(_gSeguridad, _gAnular, _gAuditoria, _gFiltrar, _gAdmLista);
-            _gAdmDocCtaPagar = new CtasPagar.AdministradorDoc.Gestion();
+            _gAdmDocCtaPagar = new CtasPagar.AdministradorDoc.Gestion(_gVisualizarDoc, _gCtaPagarAdmFiltro);
             _gAdmDocRetIslr = new RetISLR.AdministradorDoc.Gestion();
             _gToolPago = new ToolPago.Gestion(_gListaProv, _gPorPagar, _gGeneradorPago);
         }

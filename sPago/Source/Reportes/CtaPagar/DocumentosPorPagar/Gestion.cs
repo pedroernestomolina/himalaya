@@ -29,20 +29,24 @@ namespace sPago.Source.Reportes.CtaPagar.DocumentosPorPagar
 
         public void Generar(Filtrar.dataFiltrar data)
         {
+            var filtrarPor = "Filtrado Por: ";
             string _idProv="";
             DateTime? _desde=null;
             DateTime? _hasta=null;
             if (data.GetFechaDesde_Habilitar) 
             {
                 _desde=data.GetDesde;
+                filtrarPor += "Desde La Fecha: "+_desde.Value.ToShortDateString();
             }
             if (data.GetFechaHasta_Habilitar) 
             {
                 _hasta=data.GetHasta;
+                filtrarPor += ", Hasta La Fecha: " + _hasta.Value.ToShortDateString();
             }
             if (data.Proveedor!=null) 
             {
                 _idProv=data.Proveedor.id;
+                filtrarPor += ", Proveedor: " + data.Proveedor.desc;
             }
             var filtro = new OOB.Reportes.CtasPagar.DocumentosPorPagar.Filtro()
             {
@@ -56,7 +60,7 @@ namespace sPago.Source.Reportes.CtaPagar.DocumentosPorPagar
                 Helpers.Msg.Error(r01.Mensaje);
                 return;
             }
-            Imprime(r01.ListaEntidad,"");
+            Imprime(r01.ListaEntidad, filtrarPor);
         }
 
         private void Imprime(List<OOB.Reportes.CtasPagar.DocumentosPorPagar.Ficha> _lst, string _filtro)
@@ -84,7 +88,7 @@ namespace sPago.Source.Reportes.CtaPagar.DocumentosPorPagar
             var pmt = new List<ReportParameter>();
             //pmt.Add(new ReportParameter("EMPRESA_RIF", Sistema.DatosEmpresa.ciRif));
             //pmt.Add(new ReportParameter("EMPRESA_NOMBRE", Sistema.DatosEmpresa.nombreRazonSocial));
-            //pmt.Add(new ReportParameter("FILTRO", _filtro));
+            pmt.Add(new ReportParameter("FILTRO", _filtro));
             Rds.Add(new ReportDataSource("DocPagar", ds.Tables["DocPagar"]));
 
             var frp = new ReporteFrm();

@@ -14,6 +14,7 @@ namespace sPago.OOB.CtaPagar.AnularPago
         public string autoCxP { get; set; }
         public string autoRecibo { get; set; }
         public List<CtaPagarActualizar> ctasActualizar { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
         public Auditoria regAuditoria { get; set; }
 
 
@@ -22,6 +23,7 @@ namespace sPago.OOB.CtaPagar.AnularPago
             autoCxP = "";
             autoRecibo = "";
             ctasActualizar = new List<CtaPagarActualizar>();
+            proveedorAct = new ProvActualizar();
             regAuditoria = new Auditoria();
         }
 

@@ -108,6 +108,7 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
         {
             L_MONTO_RECIBIDO.Text = _controlador.MontoRecibido.ToString("n2");
             L_MONTO_PEND.Text = _controlador.MontoPend.ToString("n2");
+            L_RESTA_CAMBIO.Text = _controlador.RestaCambio;
         }
 
         private void BT_PROCESAR_Click(object sender, EventArgs e)
@@ -178,6 +179,8 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
 
         private void CHB_APLICA_FACTOR_CheckedChanged(object sender, EventArgs e)
         {
+            if (_modoEditar)
+                return;
             TB_FACTOR.Enabled = CHB_APLICA_FACTOR.Checked;
             _controlador.setAplicarFactorCambio();
         }
@@ -232,14 +235,15 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
         {
             P_FICHA.Enabled = _controlador.HabilitarFichaIsOk;
             CB_MEDIO_PAGO.SelectedValue = _controlador.GetIdMedioPago;
-            TB_MONTO.Text = _controlador.GetMonto.ToString("n2");
+            TB_MONTO.Text = _controlador.GetMonto.ToString();
             TB_NUM_CTA.Text = _controlador.GetNumeroCta;
             TB_NUM_CGEQ_REF.Text = _controlador.GetNumeroChequeRef;
             TB_DETALLE_OPERACION.Text = _controlador.GetDetalleOperacion;
             TB_BANCO .Text = _controlador.GetBanco;
-            TB_FACTOR.Text = _controlador.GetfactorCambio.ToString("n2");
+            TB_FACTOR.Text = _controlador.GetfactorCambio.ToString();
             CHB_APLICA_FACTOR.Checked = _controlador.GetAplicaFactorCambio;
             DTP_FECHA_OPERACION.Value = _controlador.GetFechaOperacion;
+            TB_FACTOR.Enabled = _controlador.GetAplicaFactorCambio;
         }
 
         private void BT_ELIMINAR_METODO_PAGO_Click(object sender, EventArgs e)
@@ -266,6 +270,24 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
                 ActualizarFicha();
                 ActualizarTotal();
             }
+        }
+
+        bool _modoEditar;
+        private void BT_EDITAR_Click(object sender, EventArgs e)
+        {
+            EditarMetodoPago();
+            if (_controlador.EditarMetodoPagoIsOk)
+            {
+                _modoEditar = true;
+                ActualizarFicha();
+                ActualizarTotal();
+                _modoEditar = false;
+            }
+        }
+
+        private void EditarMetodoPago()
+        {
+            _controlador.EditarMetodoPago();
         }
    
     }

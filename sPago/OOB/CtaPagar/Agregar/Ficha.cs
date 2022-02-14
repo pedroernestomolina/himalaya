@@ -28,6 +28,7 @@ namespace sPago.OOB.CtaPagar.Agregar
         public string estatusCanceladoDoc { get; set; }
         public int signoDoc { get; set; }
         public string codigoModuloOrigen { get; set; }
+        public ProvActualizar proveedorAct { get; set; }
 
 
         public Ficha()
@@ -48,6 +49,7 @@ namespace sPago.OOB.CtaPagar.Agregar
             estatusCanceladoDoc = "";
             signoDoc = 1;
             codigoModuloOrigen = "";
+            proveedorAct = new ProvActualizar();
         }
 
     }

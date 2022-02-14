@@ -33,7 +33,7 @@ namespace sPago.Source.ToolPago.GenerarPago.DetalleMonto
         private void DetalleMontoFrm_Load(object sender, EventArgs e)
         {
             L_MONTO_PENDIENTE.Text = _controlador.MontoPendiente.ToString("n2");
-            TB_MONTO_PAGAR.Text = _controlador.MontoPagar.ToString("n2");
+            TB_MONTO_PAGAR.Text = _controlador.MontoPagar.ToString();
             TB_DETALLE.Text = _controlador.Detalle;
         }
 
