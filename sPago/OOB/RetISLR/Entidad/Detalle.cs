@@ -34,10 +34,12 @@ namespace sPago.OOB.RetISLR.Entidad
         public decimal montoTasa1 { get; set; }
         public decimal montoTasa2 { get; set; }
         public decimal montoTasa3 { get; set; }
+        public string serieDoc { get; set; }
 
 
         public Detalle()
         {
+            serieDoc = "";
             autoDoc = "";
             numDoc = "";
             fechaDoc = DateTime.Now.Date;

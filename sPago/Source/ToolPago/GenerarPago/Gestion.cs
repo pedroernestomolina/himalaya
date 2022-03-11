@@ -262,6 +262,21 @@ namespace sPago.Source.ToolPago.GenerarPago
             _procesarPagoIsOk = true;
         }
 
+        public void MarcarDesmarcarDoc()
+        {
+            if (ItemActual != null) 
+            {
+                if (ItemActual.IsPagarActiva)
+                {
+                    LimpiarItemPagar();
+                }
+                else 
+                {
+                    MarcarItemPagar();
+                }
+            }
+        }
+
     }
 
 }

@@ -238,6 +238,15 @@ namespace sPago.Source.ToolPago.GenerarPago
             }
         }
 
+        private void DGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && e.ColumnIndex != -1)
+            {
+                _controlador.MarcarDesmarcarDoc();
+                ActualizarTotal();
+            }
+        }
+
     }
 
 }

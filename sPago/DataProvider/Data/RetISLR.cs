@@ -203,6 +203,7 @@ namespace sPago.DataProvider.Data
                 {
                     var nr = new OOB.RetISLR.Entidad.Detalle()
                     {
+                        serieDoc = ss.serieDoc.Trim(),
                         autoDoc = ss.autoDoc,
                         ciRifProv = ss.ciRifProv,
                         estatusAnulado = ss.estatusAnulado,

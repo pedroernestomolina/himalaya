@@ -112,13 +112,13 @@ namespace sPago.Source.ToolPago.GenerarPago.MetodosPago
                 Helpers.Msg.Error(r01.Mensaje);
                 return false;
             }
-
             _lstMP.Clear();
             foreach (var rg in r01.ListaEntidad.OrderBy(o => o.descripcion).ToList())
             {
                 _lstMP.Add(new ficha(rg.id.ToString(), rg.codigo, rg.descripcion, rg.id));
             }
             _bsMP.DataSource = _lstMP;
+            _bsMP.CurrencyManager.Refresh();
 
             return true;
         }

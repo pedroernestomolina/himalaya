@@ -996,6 +996,7 @@ namespace Provider.DATASQL
                     {
                         var nr = new DTO.RetISLR.Entidad.Detalle()
                         {
+                            serieDoc= d.compras.n_serie,
                             autoDoc = d.auto_documento,
                             ciRifProv = d.ci_rif,
                             estatusAnulado = d.estatus,

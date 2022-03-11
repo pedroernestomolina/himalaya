@@ -42,16 +42,17 @@ namespace sPago.Helpers
                 var fac = "";
                 var ncr= "";
                 var ndb= "";
+                var doc = it.serieDoc + it.numDoc;
                 switch (it.tipoDoc)
                 {
                     case "01":
-                        fac = it.numDoc;
+                        fac = doc;
                         break;
                     case "02":
-                        ndb = it.numDoc;
+                        ndb = doc;
                         break;
                     case "03":
-                        ncr = it.numDoc;
+                        ncr = doc;
                         break;
                 }
 

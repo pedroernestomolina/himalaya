@@ -55,6 +55,7 @@
             this.P_FICHA = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.TB_MONTO = new sPago.LibControl.NumeroDec();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -80,6 +81,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.CHB_APLICA_FACTOR = new System.Windows.Forms.CheckBox();
             this.panel27 = new System.Windows.Forms.Panel();
+            this.TB_FACTOR = new sPago.LibControl.NumeroDec();
             this.panel28 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
@@ -114,8 +116,6 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.BT_SALIR = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.TB_MONTO = new sPago.LibControl.NumeroDec();
-            this.TB_FACTOR = new sPago.LibControl.NumeroDec();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -537,6 +537,20 @@
             this.panel17.Size = new System.Drawing.Size(261, 24);
             this.panel17.TabIndex = 3;
             // 
+            // TB_MONTO
+            // 
+            this.TB_MONTO.BackColor = System.Drawing.Color.Yellow;
+            this.TB_MONTO.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TB_MONTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB_MONTO.Location = new System.Drawing.Point(2, 2);
+            this.TB_MONTO.Name = "TB_MONTO";
+            this.TB_MONTO.Size = new System.Drawing.Size(126, 22);
+            this.TB_MONTO.TabIndex = 0;
+            this.TB_MONTO.Text = "0";
+            this.TB_MONTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_MONTO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
+            this.TB_MONTO.Leave += new System.EventHandler(this.TB_MONTO_Leave);
+            // 
             // panel16
             // 
             this.panel16.Controls.Add(this.label4);
@@ -826,6 +840,20 @@
             this.panel27.Padding = new System.Windows.Forms.Padding(2);
             this.panel27.Size = new System.Drawing.Size(261, 24);
             this.panel27.TabIndex = 13;
+            // 
+            // TB_FACTOR
+            // 
+            this.TB_FACTOR.BackColor = System.Drawing.Color.Yellow;
+            this.TB_FACTOR.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TB_FACTOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB_FACTOR.Location = new System.Drawing.Point(2, 2);
+            this.TB_FACTOR.Name = "TB_FACTOR";
+            this.TB_FACTOR.Size = new System.Drawing.Size(126, 22);
+            this.TB_FACTOR.TabIndex = 0;
+            this.TB_FACTOR.Text = "0";
+            this.TB_FACTOR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TB_FACTOR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
+            this.TB_FACTOR.Leave += new System.EventHandler(this.TB_FACTOR_Leave);
             // 
             // panel28
             // 
@@ -1227,34 +1255,6 @@
             this.BT_SALIR.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.BT_SALIR.UseVisualStyleBackColor = true;
             this.BT_SALIR.Click += new System.EventHandler(this.BT_SALIR_Click);
-            // 
-            // TB_MONTO
-            // 
-            this.TB_MONTO.BackColor = System.Drawing.Color.Yellow;
-            this.TB_MONTO.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TB_MONTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_MONTO.Location = new System.Drawing.Point(2, 2);
-            this.TB_MONTO.Name = "TB_MONTO";
-            this.TB_MONTO.Size = new System.Drawing.Size(126, 22);
-            this.TB_MONTO.TabIndex = 0;
-            this.TB_MONTO.Text = "0";
-            this.TB_MONTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TB_MONTO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
-            this.TB_MONTO.Leave += new System.EventHandler(this.TB_MONTO_Leave);
-            // 
-            // TB_FACTOR
-            // 
-            this.TB_FACTOR.BackColor = System.Drawing.Color.Yellow;
-            this.TB_FACTOR.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TB_FACTOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_FACTOR.Location = new System.Drawing.Point(2, 2);
-            this.TB_FACTOR.Name = "TB_FACTOR";
-            this.TB_FACTOR.Size = new System.Drawing.Size(126, 22);
-            this.TB_FACTOR.TabIndex = 0;
-            this.TB_FACTOR.Text = "0";
-            this.TB_FACTOR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TB_FACTOR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_KeyDown);
-            this.TB_FACTOR.Leave += new System.EventHandler(this.TB_FACTOR_Leave);
             // 
             // MetodosPagoFrm
             // 

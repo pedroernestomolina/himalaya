@@ -24,6 +24,7 @@ namespace sPago.Source.Maestro
         void EditarItem(data ItemActual);
         void Inicializa();
         void EliminarItem(data ItemActual);
+
     }
 
 }
