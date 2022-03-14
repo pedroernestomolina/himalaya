@@ -196,8 +196,9 @@ namespace sPago.DataProvider.Data
                 mIva = s.mIva,
                 mTotal = s.mTotal,
                 anoRelacion = s.anoRelacion,
-                codigoProv = s.codigoProv,
-                idProv = s.idProv,
+                codigoProv = s.codigoProv.Trim(),
+                dirFiscalProv=s.dirFiscalProv.Trim(),
+                idProv = s.idProv.Trim(),
                 mesRelacion = s.mesRelacion,
                 Detalles = s.Detalles.Select(ss => 
                 {

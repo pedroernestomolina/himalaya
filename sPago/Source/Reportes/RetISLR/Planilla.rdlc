@@ -1525,7 +1525,7 @@
   <Width>10.75583in</Width>
   <Page>
     <PageHeader>
-      <Height>7.20549cm</Height>
+      <Height>8.55487cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1549,7 +1549,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>1.16431cm</Top>
+          <Top>1.79931cm</Top>
           <Left>22.5276cm</Left>
           <Height>0.52063cm</Height>
           <Width>4.45792cm</Width>
@@ -1584,7 +1584,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>2.56717cm</Top>
+          <Top>3.20217cm</Top>
           <Left>22.52764cm</Left>
           <Height>0.52063cm</Height>
           <Width>4.45792cm</Width>
@@ -1620,7 +1620,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>4.0053cm</Top>
+          <Top>4.6403cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.52063cm</Height>
           <Width>4.45792cm</Width>
@@ -1869,7 +1869,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>5.40815cm</Top>
+          <Top>6.04315cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.52063cm</Height>
           <Width>4.45792cm</Width>
@@ -1904,7 +1904,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>tasaRetencion</rd:DefaultName>
-          <Top>6.03461cm</Top>
+          <Top>6.66961cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.62509cm</Height>
           <Width>4.45784cm</Width>
@@ -2011,7 +2011,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>documento</rd:DefaultName>
-          <Top>4.63176cm</Top>
+          <Top>5.26676cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.6cm</Height>
           <Width>4.45784cm</Width>
@@ -2047,7 +2047,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>fechaRet</rd:DefaultName>
-          <Top>1.79078cm</Top>
+          <Top>2.42578cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.6cm</Height>
           <Width>4.45784cm</Width>
@@ -2084,7 +2084,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>periodoRet</rd:DefaultName>
-          <Top>3.19363cm</Top>
+          <Top>3.82863cm</Top>
           <Left>22.52768cm</Left>
           <Height>0.6cm</Height>
           <Width>4.45784cm</Width>
@@ -2207,7 +2207,7 @@
           </Style>
         </Textbox>
         <Line Name="Line3">
-          <Top>7.08202cm</Top>
+          <Top>8.49023cm</Top>
           <Left>0.57892cm</Left>
           <Height>0cm</Height>
           <Width>26.4066cm</Width>
@@ -2218,6 +2218,77 @@
             </Border>
           </Style>
         </Line>
+        <Textbox Name="dirFiscalProv">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!dirFiscalProv.Value, "Planilla")</Value>
+                  <Style>
+                    <FontSize>7pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>dirFiscalProv</rd:DefaultName>
+          <Top>7.53745cm</Top>
+          <Left>0.61419cm</Left>
+          <Height>0.77639cm</Height>
+          <Width>15.84793cm</Width>
+          <ZIndex>20</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <BackgroundColor>Gray</BackgroundColor>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox36">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>DIRECCION FISCAL DEL SUJETO RETENIDO:</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>6.87571cm</Top>
+          <Left>0.57892cm</Left>
+          <Height>0.52063cm</Height>
+          <Width>15.8832cm</Width>
+          <ZIndex>21</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>

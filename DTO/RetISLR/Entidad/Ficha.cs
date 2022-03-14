@@ -18,6 +18,7 @@ namespace DTO.RetISLR.Entidad
         public string idProv { get; set; }
         public string nombreProv { get; set; }
         public string ciRifProv { get; set; }
+        public string dirFiscalProv { get; set; }
         public string codigoProv { get; set; }
         public decimal tasaRet { get; set; }
         public decimal montoRet { get; set; }
@@ -40,6 +41,7 @@ namespace DTO.RetISLR.Entidad
             deFecha = DateTime.Now.Date;
             nombreProv = "";
             ciRifProv = "";
+            dirFiscalProv = "";
             codigoProv = "";
             tasaRet = 0m;
             montoRet = 0m;

@@ -972,12 +972,13 @@ namespace Provider.DATASQL
                     var enc = new DTO.RetISLR.Entidad.Ficha()
                     {
                         anoRelacion = ent.ano_relacion,
-                        ciRifProv = ent.ci_rif,
-                        codigoProv = ent.codigo_entidad,
+                        ciRifProv = ent.ci_rif.Trim(),
+                        codigoProv = ent.codigo_entidad.Trim(),
+                        dirFiscalProv=ent.proveedores.dir_fiscal.Trim(),
                         deFecha = ent.fecha,
-                        documento = ent.documento,
+                        documento = ent.documento.Trim(),
                         estatus = ent.estatus,
-                        id = ent.auto,
+                        id = ent.auto.Trim(),
                         idProv = ent.auto_entidad,
                         mBase = ent.@base,
                         mesRelacion = ent.mes_relacion,

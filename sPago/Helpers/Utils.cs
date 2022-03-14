@@ -24,7 +24,7 @@ namespace sPago.Helpers
             rt["documento"] = ficha.documento;
             rt["ciRifProv"] = ficha.ciRifProv;
             rt["nombreProv"] = ficha.nombreProv;
-            rt["dirFiscalProv"] = "";
+            rt["dirFiscalProv"] = ficha.dirFiscalProv;
             rt["tasaRetencion"] = ficha.tasaRet;
             rt["fechaRet"] = ficha.deFecha;
             rt["periodoRet"] = ficha.anoRelacion+"-"+ficha.mesRelacion;
