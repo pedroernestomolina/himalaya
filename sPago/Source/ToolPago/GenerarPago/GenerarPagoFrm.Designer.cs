@@ -53,6 +53,7 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.BT_MARCAR = new System.Windows.Forms.Button();
             this.panel19 = new System.Windows.Forms.Panel();
@@ -67,7 +68,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.BT_SALIR = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -391,6 +391,17 @@
             this.panel16.Size = new System.Drawing.Size(139, 24);
             this.panel16.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(2, 2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Opciones Item";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel18
             // 
             this.panel18.Controls.Add(this.BT_MARCAR);
@@ -555,17 +566,6 @@
             this.BT_SALIR.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.BT_SALIR.UseVisualStyleBackColor = true;
             this.BT_SALIR.Click += new System.EventHandler(this.BT_SALIR_Click);
-            // 
-            // label4
-            // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 2);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(135, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Opciones Item";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GenerarPagoFrm
             // 

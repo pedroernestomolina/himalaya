@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace sPago.DataProvider.Data
 {
-    
     public partial class Provider: IProvider
     {
 

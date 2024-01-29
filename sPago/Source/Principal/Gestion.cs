@@ -294,6 +294,15 @@ namespace sPago.Source.Principal
             _gMaestro.Inicia();
         }
 
+        sPago.Source.VentasAdm.AdmDocumento.Vista.IVista _admDoc;
+        public void VentasAdministradorDoc()
+        {
+            if (_admDoc == null) 
+            {
+                _admDoc = new VentasAdm.AdmDocumento.Handler.Imp();
+            }
+            _admDoc.Inicializa();
+            _admDoc.Inicia();
+        }
     }
-
 }

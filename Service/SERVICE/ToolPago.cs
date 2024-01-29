@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Service.SERVICE
 {
-
     public partial class DataService: IDataService
     {
-
         public DTO.Resutado.Lista<DTO.ToolPago.ResumenPendPagar.Ficha> ToolsPago_ResumenPendPagar_GetLista()
         {
             return ServiceProv.ToolPago_ResumenPendPagar_GetLista();

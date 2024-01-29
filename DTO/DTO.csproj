@@ -115,6 +115,15 @@
     <Compile Include="ToolPago\ReciboPago\Recibo.cs" />
     <Compile Include="ToolPago\ResumenPendPagar\Ficha.cs" />
     <Compile Include="Usuario\Entidad\Ficha.cs" />
+    <Compile Include="VentaAdm\AdmDoc\Ficha.cs" />
+    <Compile Include="VentaAdm\AdmDoc\Filtro.cs" />
+    <Compile Include="VentaAdm\__\baseFiltro.cs" />
+    <Compile Include="VentaAdm\Reportes\Documentos\baseDoc.cs" />
+    <Compile Include="VentaAdm\Reportes\Documentos\baseItem.cs" />
+    <Compile Include="VentaAdm\Reportes\Documentos\Factura\Doc.cs" />
+    <Compile Include="VentaAdm\Reportes\Documentos\Factura\Ficha.cs" />
+    <Compile Include="VentaAdm\Reportes\Documentos\Factura\Item.cs" />
+    <Compile Include="VentaAdm\__\enumerados.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

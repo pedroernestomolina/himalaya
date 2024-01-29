@@ -72,6 +72,7 @@
     <Compile Include="DataProvider\Data\Sistema.cs" />
     <Compile Include="DataProvider\Data\ToolPago.cs" />
     <Compile Include="DataProvider\Data\Usuario.cs" />
+    <Compile Include="DataProvider\Data\VentaAdm.cs" />
     <Compile Include="DataProvider\IData\IConfiguracion.cs" />
     <Compile Include="DataProvider\IData\ICtaPagar.cs" />
     <Compile Include="DataProvider\IData\IEmpresa.cs" />
@@ -85,8 +86,10 @@
     <Compile Include="DataProvider\IData\ISistema.cs" />
     <Compile Include="DataProvider\IData\IToolPago.cs" />
     <Compile Include="DataProvider\IData\IUsuario.cs" />
+    <Compile Include="DataProvider\IData\IVentaAdm.cs" />
     <Compile Include="Helpers\Msg.cs" />
     <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Helpers\Venta\Utils.cs" />
     <Compile Include="LibControl\NumeroDec.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -142,6 +145,15 @@
     <Compile Include="OOB\ToolPago\ReciboPago\MetodoPago.cs" />
     <Compile Include="OOB\ToolPago\ReciboPago\Recibo.cs" />
     <Compile Include="OOB\ToolPago\ResumenPendPagar\Ficha.cs" />
+    <Compile Include="OOB\VentaAdm\AdmDoc\Ficha.cs" />
+    <Compile Include="OOB\VentaAdm\AdmDoc\Filtro.cs" />
+    <Compile Include="OOB\VentaAdm\_\baseFiltro.cs" />
+    <Compile Include="OOB\VentaAdm\_\enumerados.cs" />
+    <Compile Include="OOB\VentaAdm\Reportes\Documentos\baseDoc.cs" />
+    <Compile Include="OOB\VentaAdm\Reportes\Documentos\baseItem.cs" />
+    <Compile Include="OOB\VentaAdm\Reportes\Documentos\Factura\Doc.cs" />
+    <Compile Include="OOB\VentaAdm\Reportes\Documentos\Factura\Ficha.cs" />
+    <Compile Include="OOB\VentaAdm\Reportes\Documentos\Factura\Item.cs" />
     <Compile Include="Source\AdministradorDoc\data.cs" />
     <Compile Include="Source\AdministradorDoc\Enumerados.cs" />
     <Compile Include="Source\AdministradorDoc\GestionLista.cs" />
@@ -384,6 +396,50 @@
     <Compile Include="Source\ToolPago\VisualizarDocumento\VerDocumentoFrm.Designer.cs">
       <DependentUpon>VerDocumentoFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\VentasAdm\AdmDocumento\Handler\dataVenta.cs" />
+    <Compile Include="Source\VentasAdm\AdmDocumento\Handler\Imp.cs" />
+    <Compile Include="Source\VentasAdm\AdmDocumento\Handler\Items.cs" />
+    <Compile Include="Source\VentasAdm\AdmDocumento\Vista\Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\VentasAdm\AdmDocumento\Vista\Frm.Designer.cs">
+      <DependentUpon>Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\VentasAdm\AdmDocumento\Vista\IVista.cs" />
+    <Compile Include="Source\VentasAdm\AdmFiltro\Handler\data.cs" />
+    <Compile Include="Source\VentasAdm\AdmFiltro\Handler\ImpFiltro.cs" />
+    <Compile Include="Source\VentasAdm\AdmFiltro\Vista\Idata.cs" />
+    <Compile Include="Source\VentasAdm\AdmFiltro\Vista\IFiltroAdm.cs" />
+    <Compile Include="Source\VentasAdm\Reportes\DS_VENTA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_VENTA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\VentasAdm\Reportes\Formatos\Factura\Imp.cs" />
+    <Compile Include="Source\VentasAdm\Reportes\Formatos\HojaDetalleFact\Imp.cs" />
+    <Compile Include="Source\VentasAdm\Reportes\IDocumento.cs" />
+    <Compile Include="Source\VentasAdm\Reportes\IReporte.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\enumerados.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\Handler\baseImp.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\Handler\baseItems.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\Vista\IbaseVista.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\Vista\IdataItem.cs" />
+    <Compile Include="Source\_\Componente\AdmDoc\Vista\IItems.cs" />
+    <Compile Include="Source\_\Componente\Filtro\Handler\baseImp.cs" />
+    <Compile Include="Source\_\Componente\Filtro\Vista\IbaseFiltro.cs" />
+    <Compile Include="Source\_\Componente\IFiltro.cs" />
+    <Compile Include="Source\_\Componente\IGestion.cs" />
+    <Compile Include="Source\_\Componente\ILista.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Abandonar\IAbandonar.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Abandonar\Imp.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\baseImp.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\IBoton.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Procesar\Imp.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Procesar\IProcesar.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Salir\Imp.cs" />
+    <Compile Include="Source\_\Ctrl\Boton\Salir\ISalir.cs" />
+    <Compile Include="Source\_\Ctrl\FiltroFecha\IFecha.cs" />
+    <Compile Include="Source\_\Ctrl\FiltroFecha\Imp.cs" />
     <EmbeddedResource Include="Source\Anular\AnularFrm.resx">
       <DependentUpon>AnularFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -470,6 +526,24 @@
     <EmbeddedResource Include="Source\ToolPago\VisualizarDocumento\VerDocumentoFrm.resx">
       <DependentUpon>VerDocumentoFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\AdmDocumento\Vista\Frm.resx">
+      <DependentUpon>Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\Reportes\DocFactura - Copy.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\Reportes\HojaDetalleFact - Copy %282%29.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\Reportes\HojaDetalleFact - Copy.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\Reportes\HojaDetalleFact.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\VentasAdm\Reportes\DocFactura.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -501,6 +575,17 @@
     </None>
     <None Include="Source\Reportes\DS_ISLR.xss">
       <DependentUpon>DS_ISLR.xsd</DependentUpon>
+    </None>
+    <None Include="Source\VentasAdm\Reportes\DS_VENTA.xsc">
+      <DependentUpon>DS_VENTA.xsd</DependentUpon>
+    </None>
+    <None Include="Source\VentasAdm\Reportes\DS_VENTA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_VENTA.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Source\VentasAdm\Reportes\DS_VENTA.xss">
+      <DependentUpon>DS_VENTA.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

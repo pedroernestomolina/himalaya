@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace sPago
 {
-
     static class Program
     {
         /// <summary>
@@ -22,7 +21,5 @@ namespace sPago
             var gestionMain = new Gestion();
             gestionMain.Inicia();
         }
-
     }
-
 }

@@ -62,6 +62,7 @@
     <Compile Include="DATASQL\Sistema.cs" />
     <Compile Include="DATASQL\ToolPago.cs" />
     <Compile Include="DATASQL\Usuario.cs" />
+    <Compile Include="DATASQL\VentaAdm.cs" />
     <Compile Include="IDATA\IConfiguracion.cs" />
     <Compile Include="IDATA\ICtaPagar.cs" />
     <Compile Include="IDATA\IEmpresa.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="IDATA\ISistema.cs" />
     <Compile Include="IDATA\IToolPago.cs" />
     <Compile Include="IDATA\IUsuario.cs" />
+    <Compile Include="IDATA\IVentaAdm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

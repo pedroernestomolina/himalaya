@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace sPago.DataProvider.IData
 {
-
     public interface IProvider: ILogin, IUsuario, IPermiso, IConfiguracion,
         IProveedor, IRetISLR, IEmpresa, ISistema, ICtaPagar, IReportes, IToolPago,
-        IMedioPago
+        IMedioPago, IVentaAdm
     {
-
         OOB.Resultado.Entidad<DateTime> FechaSistema();
-
     }
-
 }

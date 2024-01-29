@@ -11,10 +11,8 @@ using System.Transactions;
 
 namespace Provider.DATASQL
 {
-    
     public partial class Provider: IProvider
     {
-
         public DTO.Resutado.Lista<DTO.ToolPago.ResumenPendPagar.Ficha> ToolPago_ResumenPendPagar_GetLista()
         {
             var rt = new DTO.Resutado.Lista<DTO.ToolPago.ResumenPendPagar.Ficha>();

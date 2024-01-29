@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace sPago.Source.AdministradorDoc
 {
-    
     public class Enumerados
     {
-
         public enum EnumTipoAdministrador { RetencionISLR, RetencionIva, CtasxPagar };
-
     }
-
 }

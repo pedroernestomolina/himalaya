@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace sPago
 {
-    
     public class Sistema
     {
-
         static public IProvider MyData;
         static public string Instancia;
         static public string BaseDatos;
@@ -19,7 +17,5 @@ namespace sPago
         public static OOB.Empresa.Entidad.Ficha DatosEmpresa;
         public static string EquipoEstacion;
         public static string IdEquipo;
-
     }
-
 }

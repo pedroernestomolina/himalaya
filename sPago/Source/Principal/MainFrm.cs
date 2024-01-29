@@ -160,7 +160,6 @@ namespace sPago.Source.Principal
         {
             ToolPago();
         }
-
         private void ToolPago()
         {
             _controlador.ToolPago();
@@ -170,12 +169,18 @@ namespace sPago.Source.Principal
         {
             MaestrosMedioPago();
         }
-
         private void MaestrosMedioPago()
         {
             _controlador.MaestrosMedioPago();
         }
 
+        private void M_VENTAS_ADM_ADMINISTRADOR_DOC_Click(object sender, EventArgs e)
+        {
+            VentasAdministradorDoc();
+        }
+        private void VentasAdministradorDoc()
+        {
+            _controlador.VentasAdministradorDoc();
+        }
     }
-
 }

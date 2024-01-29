@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace sPago.DataProvider.IData
 {
-    
     public interface IRetISLR
     {
-
         OOB.Resultado.Entidad<int> RetISLR_ContadorUltimaRetencion();
 
         //
@@ -27,7 +25,5 @@ namespace sPago.DataProvider.IData
         //
         OOB.Resultado.Lista<OOB.RetISLR.Entidad.Ficha> RetISLR_GetLista(OOB.RetISLR.Lista.Filtro filtro);
         OOB.Resultado.Entidad<OOB.RetISLR.Entidad.Ficha> RetISLR_GetById(string id);
-
     }
-
 }
